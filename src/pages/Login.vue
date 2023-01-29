@@ -30,7 +30,7 @@
     </van-form>
 
     <div class="footbox" style="margin-top: 0.3rem">
-      <a href="javascript:;" class="tishi">forgot password</a>
+      <a href="http://localhost:8081/#/fp" class="tishi">forgot password</a>
     </div>
   </div>
 </template>
@@ -46,7 +46,6 @@ onMounted(() => {})
 function tohome() {
   router.push('/home')
 }
-
 const onSubmit = () => {
   if (username.value == 'username' && password.value == 'password') {
     store.login()

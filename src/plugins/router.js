@@ -19,6 +19,7 @@ const routes = [
     },
   },
   { path: '/search', component: () => import('../pages/Search.vue') },
+  { path: '/fp', component: () => import('../pages/FP.vue') },
   { path: '/home', component: () => import('../pages/Home.vue') },
   { path: '/friends', component: () => import('../pages/Follow.vue') },
   { path: '/detail', component: () => import('../pages/Detail.vue') },
