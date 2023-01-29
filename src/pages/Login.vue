@@ -30,7 +30,7 @@
     </van-form>
 
     <div class="footbox" style="margin-top: 0.3rem">
-      <a href="./fp" class="tishi">forgot password</a>
+      <a class="tishi" @click="tofp()">forgot password</a>
     </div>
   </div>
 </template>
@@ -43,6 +43,11 @@ const router = useRouter()
 const username = ref('')
 const password = ref('')
 onMounted(() => {})
+
+function tofp(){
+router.push('./fp');
+
+}
 function tohome() {
   router.push('/home')
 }
