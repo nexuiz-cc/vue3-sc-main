@@ -1,17 +1,8 @@
 <template>
   <div class="content">
-    <van-nav-bar class="gray" fixed left-arrow @click-left="$router.back()" />
-    <h1></h1>
-    <div class="login-box">
-      <p class="lsolid"></p>
-      <div class="login">
-        <span></span>
-        <a href="reg_m.html" class="reg">Register</a>
-      </div>
-      <p class="rsolid"></p>
-    </div>
-
-    <van-form @submit="onSubmit">
+    <h1>Login</h1>
+    <h4>Accusamus at soluta amet id esse eaque.</h4>
+    <van-form>
       <van-cell-group inset>
         <div class="Username">Username</div>
         <div></div>
@@ -19,7 +10,7 @@
           v-model="username"
           name="username"
           label=""
-          placeholder="                             Username"
+          placeholder="Please enter your username."
           :rules="[{ required: true, message: 'Please input username!' }]"
         />
         <div class="Password">Password</div>
@@ -29,7 +20,7 @@
           type="password"
           name="密码"
           label=""
-          placeholder="                             Password"
+          placeholder="Please enter your password."
           :rules="[{ required: true, message: 'Please input password!' }]"
         />
       </van-cell-group>
@@ -98,10 +89,11 @@ watchEffect(() => {})
 .content h1 {
   width: 2.18rem;
   height: 1.35rem;
-  background: url(../assets/image/say.png) no-repeat 0 0;
   background-size: 100%;
   margin: 0 auto;
   margin-top: 1.22rem;
+  margin-left: 0.2rem;
+  font-size: 0.8rem;
 }
 .content .login {
   width: 2rem;
@@ -206,6 +198,15 @@ watchEffect(() => {})
 
 .Username,
 .Password {
-  font-size: 0.18rem;
+  font-size: 0.3rem;
+  margin-top: 0.1rem;
+  font-weight: bolder;
+}
+
+h4{
+  font-size: 0.28rem;
+  margin-left: 0.2rem;
+  margin-top: -0.2rem;
+  padding-bottom: 0.5rem;
 }
 </style>
