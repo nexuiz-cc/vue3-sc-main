@@ -22,7 +22,6 @@
     <van-collapse-item title="Private Docs" name="2"> Eveniet animi error eligendi</van-collapse-item>
     <van-collapse-item title="Other Docs" name="3">Vel officia iure quidem totam aut blanditiis velit </van-collapse-item>
   </van-collapse>
-
   <TabBar></TabBar>
 </template>
 
