@@ -4,10 +4,8 @@
 </template>
 
 <script setup>
-import { computed, onMounted, reactive, watchEffect, ref } from 'vue'
+import { computed, onMounted, watchEffect } from 'vue'
 import TabBar from '../components/TabBar.vue'
-import Home from '../pages/Home.vue'
-import Detail from '../pages/Detail.vue'
 defineProps([])
 onMounted(() => {})
 
