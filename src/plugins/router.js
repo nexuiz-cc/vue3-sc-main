@@ -21,7 +21,7 @@ const routes = [
   //   { path: "/follow", component: () => import("../pages/Follow.vue") },
   //   { path: "/column", component: () => import("../pages/Column.vue") },
   { path: '/detail', component: () => import('../pages/Detail.vue') },
-  //   { path: "/user", component: () => import("../pages/User.vue") },
+  { path: "/user", component: () => import("../pages/MyPage.vue") },
   { path: '/', redirect: '/home' },
   //   { path: "/:pathMatch(.*)*", component: () => import("../pages/NoPage.vue") },
 ]
