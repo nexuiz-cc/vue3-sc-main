@@ -3,7 +3,7 @@ import './style.css'
 import App from '../src/layouts/App.vue'
 import { Button } from 'vant'
 import router from './plugins/router'
-import { Tabbar, TabbarItem, Swipe, SwipeItem, Cell, CellGroup, NavBar, Field , Collapse, CollapseItem} from 'vant'
+import { Tabbar, TabbarItem, Swipe, SwipeItem, Cell, CellGroup, NavBar, Field , Collapse, CollapseItem,Search,ConfigProvider,Switch  } from 'vant'
 import 'vant/lib/index.css'
 import './plugins/uc-flexible'
 const app = createApp(App)
@@ -18,5 +18,8 @@ app.use(NavBar)
 app.use(Field)
 app.use(Collapse)
 app.use(CollapseItem)
+app.use(Search)
 app.use(router)
+app.use(ConfigProvider)
+app.use(Switch)
 app.mount('#app')

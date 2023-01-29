@@ -9,7 +9,7 @@ const routes = [
   {
     path: '/home',
     component: () => import('../pages/Home.vue'),
-    beforeEnter: (to, from) => {
+    beforeEnter: () => {
       if (store.isLogin) {
         return true
       } else {
@@ -18,10 +18,11 @@ const routes = [
       }
     },
   },
-  //   { path: "/follow", component: () => import("../pages/Follow.vue") },
-  //   { path: "/column", component: () => import("../pages/Column.vue") },
+  { path: '/search', component: () => import('../pages/Search.vue') },
+  { path: '/home', component: () => import('../pages/Home.vue') },
+  { path: '/friends', component: () => import('../pages/Follow.vue') },
   { path: '/detail', component: () => import('../pages/Detail.vue') },
-  { path: "/user", component: () => import("../pages/MyPage.vue") },
+  { path: '/user', component: () => import('../pages/MyPage.vue') },
   { path: '/', redirect: '/home' },
   //   { path: "/:pathMatch(.*)*", component: () => import("../pages/NoPage.vue") },
 ]

@@ -18,17 +18,25 @@
   </div>
   <div class="h1"></div>
   <van-collapse v-model="activeNames">
-    <van-collapse-item title="Public Docs" name="1"> Lorem ipsum dolor sit, amet consectetur adipisicing elit.  </van-collapse-item>
-    <van-collapse-item title="Private Docs" name="2"> Eveniet animi error eligendi</van-collapse-item>
-    <van-collapse-item title="Other Docs" name="3">Vel officia iure quidem totam aut blanditiis velit </van-collapse-item>
+    <van-collapse-item title="Public Docs" name="Public">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+    </van-collapse-item>
+    <van-collapse-item title="Private Docs" name="Private"> Eveniet animi error eligendi</van-collapse-item>
+    <van-collapse-item title="Settings" name="Settings">
+      <div class="setting">
+        <div class="dm"><van-switch v-model="checked" /></div>
+        Dark Mode
+      </div>
+    </van-collapse-item>
   </van-collapse>
   <TabBar></TabBar>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 import TabBar from '../components/TabBar.vue'
-const activeNames = ref(['1']);
+const activeNames = ref(['1'])
+const checked = ref([false])
 </script>
 
 <style scoped>
@@ -82,7 +90,7 @@ const activeNames = ref(['1']);
   margin-top: 1rem;
 }
 .a1 {
-  margin-left: -0.5rem;
+  margin-left: -0.6rem;
   font-size: 0.3rem;
 }
 .a2 {
@@ -92,5 +100,13 @@ const activeNames = ref(['1']);
 
 * {
   font-family: 'Consolas', Courier, monospace;
+}
+
+.setting {
+  font-size: 0.25rem;
+}
+
+.dm {
+  margin-left: 0.2rem;
 }
 </style>
