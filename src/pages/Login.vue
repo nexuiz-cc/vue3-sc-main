@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-import { onMounted, watchEffect, reactive, ref, computed } from 'vue'
+import { onMounted, watchEffect, ref, computed } from 'vue'
 import { store } from '../plugins/store.js'
 import { useRouter } from 'vue-router'
 const router = useRouter()
