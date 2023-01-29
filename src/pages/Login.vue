@@ -47,11 +47,8 @@
 <script setup>
 import { onMounted, watchEffect, reactive, ref, computed } from 'vue'
 import { store } from '../plugins/store.js'
-import Input from '../components/Input.vue'
-import Button from '../components/Button.vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
-const data = reactive({})
 const username = ref('')
 const password = ref('')
 onMounted(() => {})
