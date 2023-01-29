@@ -2,11 +2,15 @@ import { reactive } from 'vue'
 
 export const store = reactive({
   isLogin: false,
-  password:"password",
+  Username:'username',
+  Password:"password",
   login: function () {
     this.isLogin = true
   },
   changePassword:function(param){
-    this.password=param;
+    this.password=param.value;
+  },
+  changeUsername:function(param){
+    this.Username=param.value;
   }
 })

@@ -30,6 +30,7 @@
     </van-form>
 
     <div class="footbox" style="margin-top: 0.3rem">
+      <a class="tishi" @click="tofp()">forgot username</a>
       <a class="tishi" @click="tofp()">forgot password</a>
     </div>
   </div>
@@ -52,9 +53,8 @@ function tohome() {
   router.push('/home')
 }
 const onSubmit = () => {
-  if (username.value == 'username' && password.value == 'password') {
+  if (username.value == store.Username && password.value == store.Password) {
     store.login()
-    console.log(store.isLogin)
     tohome()
   }
 }
