@@ -30,7 +30,7 @@
     </van-form>
 
     <div class="footbox" style="margin-top: 0.3rem">
-      <a href="http://localhost:8081/#/fp" class="tishi">forgot password</a>
+      <a href="./fp" class="tishi">forgot password</a>
     </div>
   </div>
 </template>
