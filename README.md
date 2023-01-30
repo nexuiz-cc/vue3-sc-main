@@ -1,6 +1,4 @@
-# vue3-sc
-
-# モバイル向け業務系システム
+# vue3 モバイル向け業務系システム
 
 #　使用言語：　 HTML,JS,CSS #　使用 FW：VUE3 #　使用 UI Lib：vant
 
