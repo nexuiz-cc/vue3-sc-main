@@ -1,6 +1,6 @@
 <template>
   <div class="icon">
-      <van-icon name="arrow-left" color="#1989fa" size="25" @click="showPopup" />
+      <van-icon name="bars" color="#1989fa" size="25" @click="showPopup" />
       <h4 class="info">Tabele {{ tableNumber }} ,{{ amount }} People</h4>
   </div>
    
@@ -59,7 +59,10 @@ const showPopup = () => {
   margin-top: 0.05rem;
 }
 
-.van-button{
-  color: black;
+.van-button--primary{
+  color: black !important;
+  size: 0.8rem;
+  font-weight: bolder;
+  font-family: 'Consolas', Courier, monospace!important;
   }
 </style>
