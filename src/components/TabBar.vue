@@ -1,9 +1,9 @@
 <template>
   <Tabbar v-model="active" class="tabbar" id="tabbar">
-    <TabbarItem icon="home-o" to="/home" name="home">Home</TabbarItem>
-    <TabbarItem icon="shopping-cart" to="/search" name="search">Product</TabbarItem>
-    <TabbarItem icon="friends-o" to="/friends" name="friends">Friends</TabbarItem>
-    <TabbarItem icon="setting-o" to="/user" name="user">MyPage</TabbarItem>
+    <TabbarItem icon="home-o" to="/home" name="home">DashBoard</TabbarItem>
+    <TabbarItem icon="shopping-cart" to="/product" name="product">Order Food</TabbarItem>
+    <TabbarItem icon="friends-o" to="/friends" name="friends">Shoping Cart</TabbarItem>
+    <TabbarItem icon="setting-o" to="/user" name="mypage">MyPage</TabbarItem>
   </Tabbar>
 </template>
 
