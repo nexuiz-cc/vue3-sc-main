@@ -12,7 +12,7 @@ export const store = reactive({
   price1:2200,
   price2:5500,
   price3:1300,
-  price4:1540,
+  price4:280,
   Password:"password",
   login: function () {
     this.isLogin = true

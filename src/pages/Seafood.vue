@@ -55,17 +55,17 @@
   <div>
     <div class="d1">
       <img src="../assets/image/sea3.jpg" width="100" height="100" class="img1"/>
-      <h4 id="h4">Grilled RockFish</h4>
+      <h4 id="h4">Sashimi</h4>
     </div>
     <div class="d2">
-      <p>Grilled rockfish with salt.</p>
+      <p>It has a sweet flavor.</p>
     </div >
     <div class='d3'>
-      <p class="d3p1">¥{{ store.price1 }}</p>
-      <p v-show="store.num1!==0" class="d3p2">X {{  store.num1}}</p>
+      <p class="d3p1">¥{{ store.price3 }}</p>
+      <p v-show="store.num3!==0" class="d3p2">X {{  store.num3}}</p>
       <div class="d3p3">
-        <button @click="minus(1)" class="btn2" id="btn1">-</button>
-        <button @click="plus(1)" class="btn2" id="btn2">+</button>
+        <button @click="minus(3)" class="btn2" id="btn1">-</button>
+        <button @click="plus(3)" class="btn2" id="btn2">+</button>
        
       </div>
     </div>
@@ -74,19 +74,25 @@
   <div>
     <div class="d1">
       <img src="../assets/image/sea4.jpg" width="100" height="100" class="img1"/>
-      <h4 id="h4">Fugu chopped</h4>
+      <h4 id="h4">Grilled prawn</h4>
     </div>
     <div class="d2">
-      <p>Grilled rockfish with salt.</p>
+      <p>Grilled prawn with salt.</p>
     </div >
     <div class='d3'>
-      <p class="d3p1">¥{{ store.price1 }}</p>
-      <p v-show="store.num1!==0" class="d3p2">X {{  store.num1}}</p>
+      <p class="d3p1">¥{{ store.price4 }}</p>
+      <p v-show="store.num4!==0" class="d3p2">X {{  store.num4}}</p>
       <div class="d3p3">
-        <button @click="minus(1)" class="btn2" id="btn1">-</button>
-        <button @click="plus(1)" class="btn2" id="btn2">+</button>
+        <button @click="minus(4)" class="btn2" id="btn1">-</button>
+        <button @click="plus(4)" class="btn2" id="btn2">+</button>
       </div>
     </div>
+  </div>
+
+  <div>
+    <button class="btnadd">
+      Add to cart
+    </button>
   </div>
 
   <TabBar></TabBar>
@@ -111,7 +117,12 @@ const plus = (param) => {
   if(param==2){
     store.num2+=1;
   }
-
+  if(param==3){
+    store.num3+=1;
+  }
+  if(param==4){
+    store.num4+=1;
+  }
 }
 const minus = (param) => {
   if(param==1){
@@ -119,6 +130,12 @@ const minus = (param) => {
   }
   if(param==2){
     store.num2-=1;
+  }
+  if(param==3){
+    store.num3-=1;
+  }
+  if(param==4){
+    store.num4-=1;
   }
 }
 
@@ -232,6 +249,18 @@ margin-left: 0.1rem;
   border: white;
   color: aliceblue;
   background-color: #ec09bb;
+}
+
+.btnadd{
+  width: 6rem;
+  height: 0.8rem;
+  border: white;
+  color: aliceblue;
+  font-size: 0.3rem;
+  font-family: 'Calling Code', Courier, monospace;
+  background-color: #0ca33e;
+  margin-top: 0.5rem;
+  margin-left: 0.2rem;
 }
 
 </style>
