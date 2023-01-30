@@ -10,7 +10,7 @@ export const store = reactive({
   num3:0,
   num4:0,
   price1:2200,
-  price2:2230,
+  price2:5500,
   price3:1300,
   price4:1540,
   Password:"password",

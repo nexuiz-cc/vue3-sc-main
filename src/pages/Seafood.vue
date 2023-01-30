@@ -28,7 +28,63 @@
       <div class="d3p3">
         <button @click="minus(1)" class="btn2" id="btn1">-</button>
         <button @click="plus(1)" class="btn2" id="btn2">+</button>
-        <button class="btn2" id="btn3">add cart</button>
+       
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="d1">
+      <img src="../assets/image/sea2.jpg" width="100" height="100" class="img1"/>
+      <h4 id="h4">Fugu chopped</h4>
+    </div>
+    <div class="d2">
+      <p>Fugu served as sashimi.</p>
+    </div >
+    <div class='d3'>
+      <p class="d3p1">¥{{ store.price2 }}</p>
+      <p v-show="store.num2!==0" class="d3p2">X {{  store.num2}}</p>
+      <div class="d3p3">
+        <button @click="minus(2)" class="btn2" id="btn1">-</button>
+        <button @click="plus(2)" class="btn2" id="btn2">+</button>
+       
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="d1">
+      <img src="../assets/image/sea3.jpg" width="100" height="100" class="img1"/>
+      <h4 id="h4">Grilled RockFish</h4>
+    </div>
+    <div class="d2">
+      <p>Grilled rockfish with salt.</p>
+    </div >
+    <div class='d3'>
+      <p class="d3p1">¥{{ store.price1 }}</p>
+      <p v-show="store.num1!==0" class="d3p2">X {{  store.num1}}</p>
+      <div class="d3p3">
+        <button @click="minus(1)" class="btn2" id="btn1">-</button>
+        <button @click="plus(1)" class="btn2" id="btn2">+</button>
+       
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="d1">
+      <img src="../assets/image/sea4.jpg" width="100" height="100" class="img1"/>
+      <h4 id="h4">Fugu chopped</h4>
+    </div>
+    <div class="d2">
+      <p>Grilled rockfish with salt.</p>
+    </div >
+    <div class='d3'>
+      <p class="d3p1">¥{{ store.price1 }}</p>
+      <p v-show="store.num1!==0" class="d3p2">X {{  store.num1}}</p>
+      <div class="d3p3">
+        <button @click="minus(1)" class="btn2" id="btn1">-</button>
+        <button @click="plus(1)" class="btn2" id="btn2">+</button>
       </div>
     </div>
   </div>
@@ -52,10 +108,17 @@ const plus = (param) => {
   if(param==1){
     store.num1+=1;
   }
+  if(param==2){
+    store.num2+=1;
+  }
+
 }
 const minus = (param) => {
   if(param==1){
     store.num1-=1;
+  }
+  if(param==2){
+    store.num2-=1;
   }
 }
 
@@ -98,7 +161,7 @@ const minus = (param) => {
 
 .d1 {
   display: inline-flex;
-  font-family: 'Consolas', Courier, monospace;
+  font-family: 'Calling Code', Courier, monospace;
   font-size: 0.3rem;
   font-weight: bolder;
   margin-top: 0.2rem;
@@ -106,7 +169,7 @@ const minus = (param) => {
 }
 
 .d2 {
-  font-family: 'Consolas', Courier, monospace;
+  font-family: 'Calling Code', Courier, monospace;
   margin-left: 2.1rem;
   margin-top: -1.4rem;
   font-size: 0.25rem;
@@ -120,20 +183,21 @@ const minus = (param) => {
 .d3p1{
   margin-left:2rem;
   font-size: 0.35rem;
-  font-family: 'Consolas', Courier, monospace;
+  font-family: 'Calling Code', Courier, monospace;
+  margin-top: 0.01rem;
 }
 
 .d3p3{
   display: inline-flex;
   font-size: 0.35rem;
-  font-family: 'Consolas', Courier, monospace;
+  font-family: 'Calling Code', Courier, monospace;
   margin-left:1.9rem;
   margin-top: 0.1rem;
 }
 
 .d3p2{
   font-size: 0.3rem;
-  font-family: 'Consolas', Courier, monospace;
+  font-family: 'Calling Code', Courier, monospace;
   margin-left:4.2rem;
   margin-top: -0.36rem;
 }
@@ -146,17 +210,20 @@ margin-left: 0.1rem;
 }
 
 #btn1{
-  width: 0.6rem;
+  width: 0.8rem;
+  height: 0.5rem;
   border: white;
   color: aliceblue;
   background-color: #096bec;
 }
 
 #btn2{
-  width: 0.6rem;
+  width: 0.8rem;
+  height: 0.5rem;
   border: white;
   color: aliceblue;
   background-color: #ec5c09;
+  margin-left: 0.2rem;
 }
 
 #btn3{
