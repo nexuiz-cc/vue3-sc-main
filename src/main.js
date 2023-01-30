@@ -18,7 +18,8 @@ import {
   ConfigProvider,
   Switch,
   Popup,
-  Icon
+  Icon,
+  Card 
 } from 'vant'
 import 'vant/lib/index.css'
 import './plugins/uc-flexible'
@@ -40,4 +41,5 @@ app.use(ConfigProvider)
 app.use(Switch)
 app.use(Popup)
 app.use(Icon)
+app.use(Card)
 app.mount('#app')

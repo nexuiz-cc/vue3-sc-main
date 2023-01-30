@@ -18,7 +18,7 @@ const routes = [
       }
     },
   },
-  { path: '/product', component: () => import('../pages/Product.vue') },
+  { path: '/seafood', component: () => import('../pages/Seafood.vue') },
   { path: '/fp', component: () => import('../pages/FP.vue') },
   { path: '/home', component: () => import('../pages/Home.vue') },
   { path: '/friends', component: () => import('../pages/Follow.vue') },
