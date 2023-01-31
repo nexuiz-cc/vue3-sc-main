@@ -1,7 +1,17 @@
 <template>
 
-<h1>friends</h1>
-<TabBar></TabBar>
+  <div>
+    <div class="sc-title">
+      <h3>Shopping Cart</h3>
+    </div>
+    <div class="sc-content">
+      <div></div>
+
+    </div>
+
+
+  </div>
+  <TabBar></TabBar>
 </template>
 
 <script setup>
