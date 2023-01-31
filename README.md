@@ -4,4 +4,4 @@
 
 # 機能：ログイン、権限管理、ショッピングカート、支払い処理、メッセージ通知
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/vue3-script-setup-with-vite-weffye)
+[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/vitejs-vite-xdukea?file=README.md)
