@@ -5,11 +5,8 @@
       <h3>Shopping Cart</h3>
     </div>
     <div class="sc-content">
-      <div></div>
-
+      <div></div><!-- v-for -->
     </div>
-
-
   </div>
   <TabBar></TabBar>
 </template>
