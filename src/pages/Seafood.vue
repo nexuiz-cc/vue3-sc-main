@@ -4,8 +4,15 @@
     <h4 class="info">Table {{ tableNumber }} ,{{ amount }} People</h4>
   </div>
 
-  <van-search v-model="value" placeholder="Search the food whatever you want." input-align="center" left-icon="none"
-    right-icon="search" autocomplete="on" class="search" />
+  <van-search
+    v-model="value"
+    placeholder="Search the food whatever you want."
+    input-align="center"
+    left-icon="none"
+    right-icon="search"
+    autocomplete="on"
+    class="search"
+  />
   <van-popup v-model:show="show" position="left" :style="{ width: '30%', height: '100%' }">
     <van-button square size="large" type="primary" color="#b7b7b8" class="btn">Seafood</van-button>
     <van-button square size="large" type="primary" color="#b7b7b8" class="btn">Steak</van-button>
@@ -16,72 +23,69 @@
 
   <div>
     <div class="d1">
-      <img src="../assets/image/sea1.jpg" width="100" height="100" class="img1"/>
+      <img src="../assets/image/sea1.jpg" width="100" height="100" class="img1" />
       <h4 id="h4">Grilled RockFish</h4>
     </div>
     <div class="d2">
       <p>Grilled rockfish with salt.</p>
-    </div >
-    <div class='d3'>
+    </div>
+    <div class="d3">
       <p class="d3p1">¥{{ store.price1 }}</p>
-      <p v-show="store.num1!==0" class="d3p2">X {{  store.num1}}</p>
+      <p v-show="store.num1 !== 0" class="d3p2">X {{ store.num1 }}</p>
       <div class="d3p3">
         <button @click="minus(1)" class="btn2" id="btn1">-</button>
         <button @click="plus(1)" class="btn2" id="btn2">+</button>
-       
       </div>
     </div>
   </div>
 
   <div>
     <div class="d1">
-      <img src="../assets/image/sea2.jpg" width="100" height="100" class="img1"/>
+      <img src="../assets/image/sea2.jpg" width="100" height="100" class="img1" />
       <h4 id="h4">Fugu chopped</h4>
     </div>
     <div class="d2">
       <p>Fugu served as sashimi.</p>
-    </div >
-    <div class='d3'>
+    </div>
+    <div class="d3">
       <p class="d3p1">¥{{ store.price2 }}</p>
-      <p v-show="store.num2!==0" class="d3p2">X {{  store.num2}}</p>
+      <p v-show="store.num2 !== 0" class="d3p2">X {{ store.num2 }}</p>
       <div class="d3p3">
         <button @click="minus(2)" class="btn2" id="btn1">-</button>
         <button @click="plus(2)" class="btn2" id="btn2">+</button>
-       
       </div>
     </div>
   </div>
 
   <div>
     <div class="d1">
-      <img src="../assets/image/sea3.jpg" width="100" height="100" class="img1"/>
+      <img src="../assets/image/sea3.jpg" width="100" height="100" class="img1" />
       <h4 id="h4">Sashimi</h4>
     </div>
     <div class="d2">
       <p>It has a sweet flavor.</p>
-    </div >
-    <div class='d3'>
+    </div>
+    <div class="d3">
       <p class="d3p1">¥{{ store.price3 }}</p>
-      <p v-show="store.num3!==0" class="d3p2">X {{  store.num3}}</p>
+      <p v-show="store.num3 !== 0" class="d3p2">X {{ store.num3 }}</p>
       <div class="d3p3">
         <button @click="minus(3)" class="btn2" id="btn1">-</button>
         <button @click="plus(3)" class="btn2" id="btn2">+</button>
-       
       </div>
     </div>
   </div>
 
   <div>
     <div class="d1">
-      <img src="../assets/image/sea4.jpg" width="100" height="100" class="img1"/>
+      <img src="../assets/image/sea4.jpg" width="100" height="100" class="img1" />
       <h4 id="h4">Grilled prawn</h4>
     </div>
     <div class="d2">
       <p>Grilled prawn with salt.</p>
-    </div >
-    <div class='d3'>
+    </div>
+    <div class="d3">
       <p class="d3p1">¥{{ store.price4 }}</p>
-      <p v-show="store.num4!==0" class="d3p2">X {{  store.num4}}</p>
+      <p v-show="store.num4 !== 0" class="d3p2">X {{ store.num4 }}</p>
       <div class="d3p3">
         <button @click="minus(4)" class="btn2" id="btn1">-</button>
         <button @click="plus(4)" class="btn2" id="btn2">+</button>
@@ -90,60 +94,63 @@
   </div>
 
   <div>
-    <button class="btnadd">
-      Add to cart
-    </button>
+    <button class="btnadd">Add to cart</button>
   </div>
 
   <TabBar></TabBar>
 </template>
 
 <script setup>
-
 import TabBar from '../components/TabBar.vue'
 import { ref } from 'vue'
 import { store } from '../plugins/store'
-const tableNumber = store.tableNumber;
+const tableNumber = store.tableNumber
 const amount = store.amount
-let show = ref(false);
+let show = ref(false)
 const showPopup = () => {
   show.value = true
 }
 
 const plus = (param) => {
-  if(param==1){
-    store.num1+=1;
+  if (param == 1) {
+    store.num1 += 1
   }
-  if(param==2){
-    store.num2+=1;
+  if (param == 2) {
+    store.num2 += 1
   }
-  if(param==3){
-    store.num3+=1;
+  if (param == 3) {
+    store.num3 += 1
   }
-  if(param==4){
-    store.num4+=1;
+  if (param == 4) {
+    store.num4 += 1
   }
 }
 const minus = (param) => {
-  if(param==1){
-    store.num1-=1;
+  if (param == 1) {
+    store.num1 -= 1
+    if (store.num1 < 0) {
+      store.num1 = 0
+    }
   }
-  if(param==2){
-    store.num2-=1;
+  if (param == 2) {
+    store.num2 -= 1
+    if (store.num2 < 0) {
+      store.num2 = 0
+    }
   }
-  if(param==3){
-    store.num3-=1;
+  if (param == 3) {
+    store.num3 -= 1
+    if (store.num3 < 0) {
+      store.num3 = 0
+    }
   }
-  if(param==4){
-    store.num4-=1;
+  if (param == 4) {
+    store.num4 -= 1
+    if (store.num4 < 0) {
+      store.num4 = 0
+    }
   }
 }
-
-
-
-
-
-
 </script>
 
 <style scoped>
@@ -197,36 +204,36 @@ const minus = (param) => {
   margin-top: 0.03rem;
 }
 
-.d3p1{
-  margin-left:2rem;
+.d3p1 {
+  margin-left: 2rem;
   font-size: 0.35rem;
   font-family: 'Calling Code', Courier, monospace;
   margin-top: 0.01rem;
 }
 
-.d3p3{
+.d3p3 {
   display: inline-flex;
   font-size: 0.35rem;
   font-family: 'Calling Code', Courier, monospace;
-  margin-left:1.9rem;
+  margin-left: 1.9rem;
   margin-top: 0.1rem;
 }
 
-.d3p2{
+.d3p2 {
   font-size: 0.3rem;
   font-family: 'Calling Code', Courier, monospace;
-  margin-left:4.2rem;
+  margin-left: 4.2rem;
   margin-top: -0.36rem;
 }
-.btn2{
-margin-left: 0.1rem;
+.btn2 {
+  margin-left: 0.1rem;
 }
 
-.img1{
+.img1 {
   margin-top: 0.1rem;
 }
 
-#btn1{
+#btn1 {
   width: 0.8rem;
   height: 0.5rem;
   border: white;
@@ -234,7 +241,7 @@ margin-left: 0.1rem;
   background-color: #096bec;
 }
 
-#btn2{
+#btn2 {
   width: 0.8rem;
   height: 0.5rem;
   border: white;
@@ -243,7 +250,7 @@ margin-left: 0.1rem;
   margin-left: 0.2rem;
 }
 
-#btn3{
+#btn3 {
   width: 150px;
   padding-bottom: 3px;
   border: white;
@@ -251,7 +258,7 @@ margin-left: 0.1rem;
   background-color: #ec09bb;
 }
 
-.btnadd{
+.btnadd {
   width: 6rem;
   height: 0.8rem;
   border: white;
@@ -262,5 +269,4 @@ margin-left: 0.1rem;
   margin-top: 0.5rem;
   margin-left: 0.2rem;
 }
-
 </style>
