@@ -194,8 +194,8 @@ const minus = (param) => {
 
 .d2 {
   font-family: 'Calling Code', Courier, monospace;
-  margin-left: 2.1rem;
-  margin-top: -1.4rem;
+  margin-left: 30%;
+  margin-top: -20%;
   font-size: 0.25rem;
 }
 
