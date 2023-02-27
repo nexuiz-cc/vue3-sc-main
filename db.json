@@ -1,0 +1,55 @@
+{
+  "user": [{
+    "id": "profile",
+    "admin": {
+      "username": "username",
+      "password": "password",
+      "role": "admin",
+      "name": "admin"
+    }
+  }],
+  "product": [{
+    "id": "menu",
+    "seafood": {
+      "itemlist": [
+        {
+          "id": 0,
+          "foodname": "Grilled RockFish",
+          "description": "Grilled rockfish with salt.",
+          "price": "2200",
+          "count": 0
+        },
+        {
+          "id": 1,
+          "foodname": "Fugu chopped",
+          "description": "Fugu served as sashimi.",
+          "price": "5500",
+          "count": 0
+        },
+        {
+          "id": 2,
+          "foodname": "Sashimi",
+          "description": "It has a sweet flavor.",
+          "price": "1300",
+          "count": 0
+        },
+        {
+          "id": 3,
+          "foodname": "Grilled prawn",
+          "description": "Grilled prawn with salt.",
+          "price": "280",
+          "count": 0
+        }
+      ]
+    },
+    "steak": {},
+    "cafe": {},
+    "pasta": {},
+    "sushi": {},
+    "postId": 1
+  }, {
+    "id": "cart",
+    "seafood": {}
+  }]
+
+}
