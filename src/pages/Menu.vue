@@ -184,7 +184,7 @@ const minus = (param) => {
 }
 
 .d1 {
-  display: inline-flex;
+  display: flex;
   font-family: 'Calling Code', Courier, monospace;
   font-size: 0.3rem;
   font-weight: bolder;
@@ -194,8 +194,8 @@ const minus = (param) => {
 
 .d2 {
   font-family: 'Calling Code', Courier, monospace;
-  margin-left: 30%;
-  margin-top: -20%;
+  margin-left: 2.1rem;
+  margin-top: -1.4rem;
   font-size: 0.25rem;
 }
 
