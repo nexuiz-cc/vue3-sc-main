@@ -24,14 +24,14 @@
   <div>
     <div class="d1">
       <img src="../assets/image/sea1.jpg" width="100" height="100" class="img1" />
-      <h4 id="h4">{{ foodname0 }}</h4>
+      <h4 id="h4">{{menuStore.$state.resdata.seafood.itemlist[0].foodname}}</h4>
     </div>
     <div class="d2">
       <div>asdasd</div>
     </div>
     <div class="d3">
-      <p class="d3p1">¥{{ store.price1 }}</p>
-      <p v-show="store.num1 !== 0" class="d3p2">X {{ store.num1 }}</p>
+      <p class="d3p1">¥{{menuStore.$state.resdata.seafood.itemlist[0].price }}</p>
+      <p class="d3p2">X {{ menuStore.$state.resdata.seafood.itemlist[0].count }}</p>
       <div class="d3p3">
         <button @click="minus(1)" class="btn2" id="btn1">-</button>
         <button @click="plus(1)" class="btn2" id="btn2">+</button>
@@ -42,14 +42,14 @@
   <div>
     <div class="d1">
       <img src="../assets/image/sea2.jpg" width="100" height="100" class="img1" />
-      <h4 id="h4">Fugu chopped</h4>
+      <h4 id="h4">{{ menuStore.$state.resdata.seafood.itemlist[1].foodname }}</h4>
     </div>
     <div class="d2">
       <p>Fugu served as sashimi.</p>
     </div>
     <div class="d3">
-      <p class="d3p1">¥{{ store.price2 }}</p>
-      <p v-show="store.num2 !== 0" class="d3p2">X {{ store.num2 }}</p>
+      <p class="d3p1">¥{{ menuStore.$state.resdata.seafood.itemlist[1].price }}</p>
+      <p class="d3p2">X {{ menuStore.$state.resdata.seafood.itemlist[1].count }}</p>
       <div class="d3p3">
         <button @click="minus(2)" class="btn2" id="btn1">-</button>
         <button @click="plus(2)" class="btn2" id="btn2">+</button>
@@ -60,14 +60,14 @@
   <div>
     <div class="d1">
       <img src="../assets/image/sea3.jpg" width="100" height="100" class="img1" />
-      <h4 id="h4">Sashimi</h4>
+      <h4 id="h4">{{ menuStore.$state.resdata.seafood.itemlist[2].foodname }}</h4>
     </div>
     <div class="d2">
       <p>It has a sweet flavor.</p>
     </div>
     <div class="d3">
-      <p class="d3p1">¥{{ store.price3 }}</p>
-      <p v-show="store.num3 !== 0" class="d3p2">X {{ store.num3 }}</p>
+      <p class="d3p1">¥{{ menuStore.$state.resdata.seafood.itemlist[2].price }}</p>
+      <p  class="d3p2">X {{  menuStore.$state.resdata.seafood.itemlist[2].count}}</p>
       <div class="d3p3">
         <button @click="minus(3)" class="btn2" id="btn1">-</button>
         <button @click="plus(3)" class="btn2" id="btn2">+</button>
@@ -78,14 +78,14 @@
   <div>
     <div class="d1">
       <img src="../assets/image/sea4.jpg" width="100" height="100" class="img1" />
-      <h4 id="h4"></h4>
+      <h4 id="h4">{{ menuStore.$state.resdata.seafood.itemlist[3].foodname }}</h4>
     </div>
     <div class="d2">
       <p>Grilled prawn with salt.</p>
     </div>
     <div class="d3">
-      <p class="d3p1">¥{{ store.price4 }}</p>
-      <p v-show="store.num4 !== 0" class="d3p2">X {{ store.num4 }}</p>
+      <p class="d3p1">¥{{ menuStore.$state.resdata.seafood.itemlist[2].price }}</p>
+      <p class="d3p2">X {{ menuStore.$state.resdata.seafood.itemlist[2].count }}</p>
       <div class="d3p3">
         <button @click="minus(4)" class="btn2" id="btn1">-</button>
         <button @click="plus(4)" class="btn2" id="btn2">+</button>
@@ -104,72 +104,69 @@
 import axios from 'axios';
 import TabBar from '../components/TabBar.vue'
 import { ref,onMounted } from 'vue'
-import { store } from '../plugins/store'
-const tableNumber = store.tableNumber
-const amount = store.amount;
+import { useMenuStore } from '../stores/menu'
+const menuStore = useMenuStore();
 
 
+const tableNumber = menuStore.$state.tableNumber;
 let show = ref(false)
 const showPopup = () => {
   show.value = true
 }
-let foodname0 = "";
+
 onMounted(()=>{
   axios.get('http://localhost:5000/product/menu')
   .then(function(response){
-     store.data = response.data;
-     console.log('response',response);
-     console.log('store.data',store.data);
-     foodname0 = response.seafood.itemlist[0].foodname;
-
+    menuStore.$state.resdata = response.data;
   }) .catch(function (error) {
     console.log(error);
   })
+
 })
 
 
   
 
-const plus = (param) => {
-  if (param == 1) {
-    store.num1 += 1
-  }
-  if (param == 2) {
-    store.num2 += 1
-  }
-  if (param == 3) {
-    store.num3 += 1
-  }
-  if (param == 4) {
-    store.num4 += 1
-  }
-}
-const minus = (param) => {
-  if (param == 1) {
-    store.num1 -= 1
-    if (store.num1 < 0) {
-      store.num1 = 0
-    }
-  }
-  if (param == 2) {
-    store.num2 -= 1
-    if (store.num2 < 0) {
-      store.num2 = 0
-    }
-  }
-  if (param == 3) {
-    store.num3 -= 1
-    if (store.num3 < 0) {
-      store.num3 = 0
-    }
-  }
-  if (param == 4) {
-    store.num4 -= 1
-    if (store.num4 < 0) {
-      store.num4 = 0
-    }
-  }
-}
+// const plus = (param) => {
+//   if (param == 1) {
+//     store.num1 += 1
+//   }
+//   if (param == 2) {
+//     store.num2 += 1
+//   }
+//   if (param == 3) {
+//     store.num3 += 1
+//   }
+//   if (param == 4) {
+//     store.num4 += 1
+//   }
+// }
+// const minus = (param) => {
+//   if (param == 1) {
+//     store.num1 -= 1
+//     if (store.num1 < 0) {
+//       store.num1 = 0
+//     }
+//   }
+//   if (param == 2) {
+//     store.num2 -= 1
+//     if (store.num2 < 0) {
+//       store.num2 = 0
+//     }
+//   }
+//   if (param == 3) {
+//     store.num3 -= 1
+//     if (store.num3 < 0) {
+//       store.num3 = 0
+//     }
+//   }
+//   if (param == 4) {
+//     store.num4 -= 1
+//     if (store.num4 < 0) {
+//       store.num4 = 0
+//     }
+//   }
+// }
 </script>
 
 <style scoped>

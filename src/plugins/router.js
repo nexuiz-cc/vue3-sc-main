@@ -1,8 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { store } from '../plugins/store.js'
+import { useMenuStore } from '../stores/menu'
 import Login from '../pages/Login.vue'
 // import Reg from "../pages/Reg.vue";
-
 const routes = [
   { path: '/login', component: Login },
   //   { path: "/reg", component: Reg },
@@ -10,7 +9,8 @@ const routes = [
     path: '/home',
     component: () => import('../pages/Home.vue'),
     beforeEnter: () => {
-      if (store.isLogin) {
+      const menuStore = useMenuStore();
+      if (menuStore.$state.isLogin) {
         return true
       } else {
         router.push('./login')

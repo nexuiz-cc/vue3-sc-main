@@ -38,12 +38,15 @@
 
 <script setup>
 import { onMounted, watchEffect, ref, computed } from 'vue'
-import { store } from '../plugins/store.js'
+import { useMenuStore } from '../stores/menu'
 import { useRouter } from 'vue-router'
-const router = useRouter()
-const username = ref('')
-const password = ref('')
-onMounted(() => {})
+const menuStore = useMenuStore();
+const router = useRouter();
+const username = ref('');
+const password = ref('');
+onMounted(() => {
+ console.log(menuStore.$state.username);
+})
 
 function tofp(){
 router.push('./fp');
@@ -52,10 +55,16 @@ router.push('./fp');
 function tohome() {
   router.push('/home')
 }
+const login=()=>{
+  menuStore.$state.isLogin = true
+}
 const onSubmit = () => {
-  if (username.value == store.Username && password.value == store.Password) {
-    store.login()
+  if (username.value == menuStore.$state.username && password.value == menuStore.$state.password) {
+    login();
+    console.log('success')
     tohome()
+  }else{
+    console.log('failed')
   }
 }
 

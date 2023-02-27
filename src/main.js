@@ -24,6 +24,8 @@ import {
 import 'vant/lib/index.css'
 import './plugins/uc-flexible'
 const app = createApp(App)
+import pinia from "./plugins/pinia";
+app.use(pinia);
 app.use(Button)
 app.use(Tabbar)
 app.use(TabbarItem)
@@ -41,5 +43,5 @@ app.use(ConfigProvider)
 app.use(Switch)
 app.use(Popup)
 app.use(Icon)
-app.use(Card),
+app.use(Card)
 app.mount('#app')

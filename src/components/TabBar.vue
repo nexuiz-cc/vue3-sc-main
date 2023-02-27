@@ -10,12 +10,13 @@
 <script setup>
 import { Tabbar, TabbarItem } from 'vant'
 import { ref, onMounted } from 'vue'
-import { store } from '../plugins/store.js'
+import { useMenuStore } from '../stores/menu'
 const active = ref('home')
-const isLogin = store.isLogin
+const menuStore = useMenuStore();
+
 
 onMounted(() => {
-  if (isLogin) {
+  if (menuStore.$state.isLogin) {
     const tab = document.getElementById('tabbar')
     tab.style.display = 'flex'
   }
