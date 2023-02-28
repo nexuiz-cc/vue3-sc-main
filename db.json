@@ -1,55 +1,50 @@
 {
-  "user": [{
-    "id": "profile",
-    "admin": {
-      "username": "username",
-      "password": "password",
-      "role": "admin",
-      "name": "admin"
+  "user": [
+    {
+      "id": "profile",
+      "admin": {
+        "username": "username",
+        "password": "password",
+        "role": "admin",
+        "name": "admin"
+      }
     }
-  }],
-  "product": [{
-    "id": "menu",
-    "seafood": {
-      "itemlist": [
-        {
-          "id": 0,
-          "foodname": "Grilled RockFish",
-          "description": "Grilled rockfish with salt.",
-          "price": "2200",
-          "count": 0
-        },
-        {
-          "id": 1,
-          "foodname": "Fugu chopped",
-          "description": "Fugu served as sashimi.",
-          "price": "5500",
-          "count": 0
-        },
-        {
-          "id": 2,
-          "foodname": "Sashimi",
-          "description": "It has a sweet flavor.",
-          "price": "1300",
-          "count": 0
-        },
-        {
-          "id": 3,
-          "foodname": "Grilled prawn",
-          "description": "Grilled prawn with salt.",
-          "price": "280",
-          "count": 0
-        }
-      ]
-    },
-    "steak": {},
-    "cafe": {},
-    "pasta": {},
-    "sushi": {},
-    "postId": 1
-  }, {
-    "id": "cart",
-    "seafood": {}
-  }]
-
+  ],
+  "product": [
+      {
+        "name": "Grilled Rock Fish",
+        "description": "Grilled rock fish with sale.",
+        "price": 2200,
+        "image": "https://dummyimage.com/400x400/000/fff&text=fish+1",
+        "count":0
+      },
+      {
+        "name": "Grilled Rock Fish2",
+        "description": "Grilled rock fish with sale.",
+        "price": 2200,
+        "image": "https://dummyimage.com/400x400/000/fff&text=fish+2",
+        "count":0
+      },
+      {
+        "name": "Grilled Rock Fish3",
+        "description": "Grilled rock fish with sale.",
+        "price": 2200,
+        "image": "https://dummyimage.com/400x400/000/fff&text=fish+3",
+        "count":0
+      },
+      {
+        "name": "Grilled Rock Fish4",
+        "description": "Grilled rock fish with sale.",
+        "price": 2200,
+        "image": "https://dummyimage.com/400x400/000/fff&text=fish+4",
+        "count":0
+      },
+      {
+        "name": "Grilled Rock Fish5",
+        "description": "Grilled rock fish with sale.",
+        "price": 2200,
+        "image": "https://dummyimage.com/400x400/000/fff&text=fish+5",
+        "count":0
+      }
+  ]
 }

@@ -16,82 +16,30 @@
   <van-popup v-model:show="show" position="left" :style="{ width: '30%', height: '100%' }">
     <van-button square size="large" type="primary" color="#b7b7b8" class="btn">Seafood</van-button>
     <van-button square size="large" type="primary" color="#b7b7b8" class="btn">Steak</van-button>
-    <van-button square size="large" type="primary" color="#b7b7b8" class="btn">Café</van-button>
+    <van-button square size="large" type="primary" color="#b7b7b8" class="btn">Cafe</van-button>
     <van-button square size="large" type="primary" color="#b7b7b8" class="btn">Pasta</van-button>
     <van-button square size="large" type="primary" color="#b7b7b8" class="btn">Sushi</van-button>
   </van-popup>
 
-  <div>
-    <div class="d1">
-      <img src="../assets/image/sea1.jpg" width="100" height="100" class="img1" />
-      <h4 id="h4">{{menuStore.$state.resdata.seafood.itemlist[0].foodname}}</h4>
-    </div>
-    <div class="d2">
-      <div>asdasd</div>
-    </div>
-    <div class="d3">
-      <p class="d3p1">¥{{menuStore.$state.resdata.seafood.itemlist[0].price }}</p>
-      <p class="d3p2">X {{ menuStore.$state.resdata.seafood.itemlist[0].count }}</p>
-      <div class="d3p3">
-        <button @click="minus(1)" class="btn2" id="btn1">-</button>
-        <button @click="plus(1)" class="btn2" id="btn2">+</button>
+  <ul class="scroll">
+    <li v-for="(menu, index) in menues" class="Menu" :key="index">
+      <div class="Menu_imagearea">
+        <img :src="menu.image" class="Menu_image" />
       </div>
-    </div>
-  </div>
-
-  <div>
-    <div class="d1">
-      <img src="../assets/image/sea2.jpg" width="100" height="100" class="img1" />
-      <h4 id="h4">{{ menuStore.$state.resdata.seafood.itemlist[1].foodname }}</h4>
-    </div>
-    <div class="d2">
-      <p>Fugu served as sashimi.</p>
-    </div>
-    <div class="d3">
-      <p class="d3p1">¥{{ menuStore.$state.resdata.seafood.itemlist[1].price }}</p>
-      <p class="d3p2">X {{ menuStore.$state.resdata.seafood.itemlist[1].count }}</p>
-      <div class="d3p3">
-        <button @click="minus(2)" class="btn2" id="btn1">-</button>
-        <button @click="plus(2)" class="btn2" id="btn2">+</button>
+      <div class="Menu_detail">
+        <h4 class="Menu_name">{{ menu.name }}</h4>
+        <p class="Menu_description">{{ menu.description }}</p>
+        <p class="Menu_price">¥{{ menu.price }}</p>
+        <div class="Menu_orderbox">
+          <p class="Menu_count" v-show="menu.count!==0">X {{ menu.count }}</p>
+          <div class="Menu_">
+            <button class="Menu_button-minus" @click="minus(index)" id="btn1">-</button>
+            <button class="Menu_button-plus" @click="plus(index)" id="btn2">+</button>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div>
-    <div class="d1">
-      <img src="../assets/image/sea3.jpg" width="100" height="100" class="img1" />
-      <h4 id="h4">{{ menuStore.$state.resdata.seafood.itemlist[2].foodname }}</h4>
-    </div>
-    <div class="d2">
-      <p>It has a sweet flavor.</p>
-    </div>
-    <div class="d3">
-      <p class="d3p1">¥{{ menuStore.$state.resdata.seafood.itemlist[2].price }}</p>
-      <p  class="d3p2">X {{  menuStore.$state.resdata.seafood.itemlist[2].count}}</p>
-      <div class="d3p3">
-        <button @click="minus(3)" class="btn2" id="btn1">-</button>
-        <button @click="plus(3)" class="btn2" id="btn2">+</button>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <div class="d1">
-      <img src="../assets/image/sea4.jpg" width="100" height="100" class="img1" />
-      <h4 id="h4">{{ menuStore.$state.resdata.seafood.itemlist[3].foodname }}</h4>
-    </div>
-    <div class="d2">
-      <p>Grilled prawn with salt.</p>
-    </div>
-    <div class="d3">
-      <p class="d3p1">¥{{ menuStore.$state.resdata.seafood.itemlist[2].price }}</p>
-      <p class="d3p2">X {{ menuStore.$state.resdata.seafood.itemlist[2].count }}</p>
-      <div class="d3p3">
-        <button @click="minus(4)" class="btn2" id="btn1">-</button>
-        <button @click="plus(4)" class="btn2" id="btn2">+</button>
-      </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 
   <div>
     <button class="btnadd">Add to cart</button>
@@ -101,72 +49,33 @@
 </template>
 
 <script setup>
-import axios from 'axios';
+import axios from 'axios'
 import TabBar from '../components/TabBar.vue'
-import { ref,onMounted } from 'vue'
-import { useMenuStore } from '../stores/menu'
-const menuStore = useMenuStore();
-
-
-const tableNumber = menuStore.$state.tableNumber;
+import { ref ,onMounted} from 'vue'
+const tableNumber = 54
 let show = ref(false)
 const showPopup = () => {
   show.value = true
 }
 
-onMounted(()=>{
-  axios.get('http://localhost:5000/product/menu')
-  .then(function(response){
-    menuStore.$state.resdata = response.data;
-  }) .catch(function (error) {
-    console.log(error);
-  })
+const plus=(index)=>{
+  menues.value[index].count+=1;
+}
 
+const minus=(index)=>{
+  if(menues.value[index].count>0){
+    menues.value[index].count-=1;
+  }
+}
+
+
+const menues = ref([])
+onMounted(async () => {
+  const result = await axios.get('http://localhost:5000/product')
+  menues.value.push(...result.data)
 })
-
-
-  
-
-// const plus = (param) => {
-//   if (param == 1) {
-//     store.num1 += 1
-//   }
-//   if (param == 2) {
-//     store.num2 += 1
-//   }
-//   if (param == 3) {
-//     store.num3 += 1
-//   }
-//   if (param == 4) {
-//     store.num4 += 1
-//   }
-// }
-// const minus = (param) => {
-//   if (param == 1) {
-//     store.num1 -= 1
-//     if (store.num1 < 0) {
-//       store.num1 = 0
-//     }
-//   }
-//   if (param == 2) {
-//     store.num2 -= 1
-//     if (store.num2 < 0) {
-//       store.num2 = 0
-//     }
-//   }
-//   if (param == 3) {
-//     store.num3 -= 1
-//     if (store.num3 < 0) {
-//       store.num3 = 0
-//     }
-//   }
-//   if (param == 4) {
-//     store.num4 -= 1
-//     if (store.num4 < 0) {
-//       store.num4 = 0
-//     }
-//   }
-// }
+console.log('count:',menues);
+ 
 </script>
 
 <style scoped>
@@ -197,56 +106,6 @@ onMounted(()=>{
   size: 0.8rem;
   font-weight: bolder;
   font-family: 'Consolas', Courier, monospace !important;
-}
-
-.d1 {
-  display: flex;
-  font-family: 'Calling Code', Courier, monospace;
-  font-size: 0.3rem;
-  font-weight: bolder;
-  margin-top: 2%;
-  margin-left: 2%;
-}
-
-.d2 {
-  font-family: 'Calling Code', Courier, monospace;
-  margin-left: 2.1rem;
-  margin-top: -1.4rem;
-  font-size: 0.25rem;
-}
-
-#h4 {
-  margin-left: 0.1rem;
-  margin-top: 0.03rem;
-}
-
-.d3p1 {
-  margin-left: 2rem;
-  font-size: 0.35rem;
-  font-family: 'Calling Code', Courier, monospace;
-  margin-top: 0.01rem;
-}
-
-.d3p3 {
-  display: inline-flex;
-  font-size: 0.35rem;
-  font-family: 'Calling Code', Courier, monospace;
-  margin-left: 1.9rem;
-  margin-top: 0.1rem;
-}
-
-.d3p2 {
-  font-size: 0.3rem;
-  font-family: 'Calling Code', Courier, monospace;
-  margin-left: 4.2rem;
-  margin-top: -0.36rem;
-}
-.btn2 {
-  margin-left: 0.1rem;
-}
-
-.img1 {
-  margin-top: 0.1rem;
 }
 
 #btn1 {
@@ -285,4 +144,49 @@ onMounted(()=>{
   margin-top: 0.5rem;
   margin-left: 0.2rem;
 }
+</style>
+<style scoped>
+.scroll {
+  overflow:scroll;
+  height: 8rem;
+}
+.Menu {
+  display: flex;
+}
+
+.Menu_image {
+  width: 2rem;
+  height: 2rem;
+}
+
+.Menu_name {
+  font-size: 0.2rem;
+}
+
+.Menu_detail {
+  margin-left: 0.3rem;
+  font-size: 0.1rem;
+}
+
+.Menu_description {
+  margin-top: 0.05rem;
+}
+
+.Menu_price {
+  margin-top: 0.1rem;
+  font-size: 0.1rem;
+  font-weight: bold;
+}
+
+.Menu_orderbox {
+  margin-top: 0.3rem;
+}
+.Menu_count{
+  margin-left: 1.1rem;
+  margin-top: -0.5rem;
+}
+.Menu_{
+  margin-top: 0.5rem;
+}
+
 </style>
