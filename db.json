@@ -21,14 +21,14 @@
       {
         "name": "Grilled Rock Fish2",
         "description": "Grilled rock fish with sale.",
-        "price": 2200,
+        "price": 2000,
         "image": "https://dummyimage.com/400x400/000/fff&text=fish+2",
         "count":0
       },
       {
         "name": "Grilled Rock Fish3",
         "description": "Grilled rock fish with sale.",
-        "price": 2200,
+        "price": 2300,
         "image": "https://dummyimage.com/400x400/000/fff&text=fish+3",
         "count":0
       },
@@ -42,7 +42,7 @@
       {
         "name": "Grilled Rock Fish5",
         "description": "Grilled rock fish with sale.",
-        "price": 2200,
+        "price": 2300,
         "image": "https://dummyimage.com/400x400/000/fff&text=fish+5",
         "count":0
       }

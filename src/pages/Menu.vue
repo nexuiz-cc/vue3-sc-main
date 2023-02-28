@@ -4,15 +4,8 @@
     <h4 class="info">Table {{ tableNumber }} ,{{ amount }} People</h4>
   </div>
 
-  <van-search
-    v-model="value"
-    placeholder="Search the food whatever you want."
-    input-align="center"
-    left-icon="none"
-    right-icon="search"
-    autocomplete="on"
-    class="search"
-  />
+  <van-search v-model="search" placeholder="Search the food whatever you want." input-align="center" left-icon="none"
+    right-icon="search" autocomplete="on" class="search" @search="onSearch" />
   <van-popup v-model:show="show" position="left" :style="{ width: '30%', height: '100%' }">
     <van-button square size="large" type="primary" color="#b7b7b8" class="btn">Seafood</van-button>
     <van-button square size="large" type="primary" color="#b7b7b8" class="btn">Steak</van-button>
@@ -31,7 +24,7 @@
         <p class="Menu_description">{{ menu.description }}</p>
         <p class="Menu_price">¥{{ menu.price }}</p>
         <div class="Menu_orderbox">
-          <p class="Menu_count" v-show="menu.count!==0">X {{ menu.count }}</p>
+          <p class="Menu_count" id="Menu_count">X {{ menu.count }}</p>
           <div class="Menu_">
             <button class="Menu_button-minus" @click="minus(index)" id="btn1">-</button>
             <button class="Menu_button-plus" @click="plus(index)" id="btn2">+</button>
@@ -51,31 +44,60 @@
 <script setup>
 import axios from 'axios'
 import TabBar from '../components/TabBar.vue'
-import { ref ,onMounted} from 'vue'
+import { ref, onMounted } from 'vue'
 const tableNumber = 54
 let show = ref(false)
 const showPopup = () => {
   show.value = true
 }
-
-const plus=(index)=>{
-  menues.value[index].count+=1;
+const amount = 4;
+const plus = (index) => {
+  const num = document.getElementsByClassName('Menu_count');
+  num[index].style.visibility = 'visible';
+  menues.value[index].count += 1;
 }
 
-const minus=(index)=>{
-  if(menues.value[index].count>0){
-    menues.value[index].count-=1;
+
+
+
+const minus = (index) => {
+  if (menues.value[index].count > 0) {
+    menues.value[index].count -= 1;
+  }
+
+  if (menues.value[index].count == 0) {
+    const num = document.getElementsByClassName('Menu_count');
+    num[index].style.visibility = 'hidden';
   }
 }
 
+const menues = ref([]);
 
-const menues = ref([])
 onMounted(async () => {
   const result = await axios.get('http://localhost:5000/product')
   menues.value.push(...result.data)
 })
-console.log('count:',menues);
- 
+console.log('count:', menues);
+const search = ref('').value;
+
+console.log(menues);
+const onSearch = (search) => {
+
+}
+
+let searchInArray = (searchQuery, array, objectKey = null) => {
+  return array.filter(d => {
+    let data = objectKey ? d[objectKey] : d //Incase If It's Array Of Objects.
+    let dataWords = typeof data == "string" && data?.split(" ")?.map(b => b && b.toLowerCase().trim()).filter(b => b)
+    let searchWords = typeof searchQuery == "string" && searchQuery?.split(" ").map(b => b && b.toLowerCase().trim()).filter(b => b)
+    let matchingWords = searchWords.filter(word => dataWords.includes(word))
+    return matchingWords.length
+
+  })
+}
+console.log("search:", search);
+
+
 </script>
 
 <style scoped>
@@ -147,9 +169,10 @@ console.log('count:',menues);
 </style>
 <style scoped>
 .scroll {
-  overflow:scroll;
+  overflow: scroll;
   height: 8rem;
 }
+
 .Menu {
   display: flex;
 }
@@ -160,7 +183,8 @@ console.log('count:',menues);
 }
 
 .Menu_name {
-  font-size: 0.2rem;
+  font-size: 0.25rem;
+  margin-top: 0.05rem;
 }
 
 .Menu_detail {
@@ -170,23 +194,28 @@ console.log('count:',menues);
 
 .Menu_description {
   margin-top: 0.05rem;
+  padding-top: 0.03rem;
+  margin-left: 0.2rem;
 }
 
 .Menu_price {
-  margin-top: 0.1rem;
-  font-size: 0.1rem;
+  margin-top: 0.15rem;
+  font-size: 0.28rem;
   font-weight: bold;
 }
 
 .Menu_orderbox {
   margin-top: 0.3rem;
 }
-.Menu_count{
+
+.Menu_count {
+  visibility: hidden;
   margin-left: 1.1rem;
-  margin-top: -0.5rem;
-}
-.Menu_{
-  margin-top: 0.5rem;
+  margin-top: -0.58rem;
+  font-size: 0.22rem;
 }
 
+.Menu_ {
+  margin-top: 0.3rem;
+}
 </style>
