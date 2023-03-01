@@ -12,13 +12,15 @@
   ],
   "product": [
       {
-        "name": "Grilled Rock Fish",
+        "id":0,
+        "name": "Grilled What Fish",
         "description": "Grilled rock fish with sale.",
         "price": 2200,
         "image": "https://dummyimage.com/400x400/000/fff&text=fish+1",
         "count":0
       },
       {
+        "id":1,
         "name": "Grilled Rock Fish2",
         "description": "Grilled rock fish with sale.",
         "price": 2000,
@@ -26,6 +28,7 @@
         "count":0
       },
       {
+        "id":2,
         "name": "Grilled Rock Fish3",
         "description": "Grilled rock fish with sale.",
         "price": 2300,
@@ -33,6 +36,7 @@
         "count":0
       },
       {
+        "id":3,
         "name": "Grilled Rock Fish4",
         "description": "Grilled rock fish with sale.",
         "price": 2200,
@@ -40,10 +44,43 @@
         "count":0
       },
       {
+        "id":4,
         "name": "Grilled Rock Fish5",
         "description": "Grilled rock fish with sale.",
         "price": 2300,
         "image": "https://dummyimage.com/400x400/000/fff&text=fish+5",
+        "count":0
+      },
+      {
+        "id":5,
+        "name": "Grilled Rock Fish6",
+        "description": "Grilled rock fish with sale.",
+        "price": 2300,
+        "image": "https://dummyimage.com/400x400/000/fff&text=fish+6",
+        "count":0
+      },
+      {
+        "id":6,
+        "name": "Grilled Rock Fish7",
+        "description": "Grilled rock fish with sale.",
+        "price": 2300,
+        "image": "https://dummyimage.com/400x400/000/fff&text=fish+7",
+        "count":0
+      },
+      {
+        "id":7,
+        "name": "Grilled Rock Fish8",
+        "description": "Grilled rock fish with sale.",
+        "price": 2300,
+        "image": "https://dummyimage.com/400x400/000/fff&text=fish+8",
+        "count":0
+      },
+      {
+        "id":8,
+        "name": "Grilled Sale Fishsh",
+        "description": "Grilled rock fish with salesalesale dummyimage.",
+        "price": 2300,
+        "image": "https://dummyimage.com/400x400/000/fff&text=SaleFish",
         "count":0
       }
   ]

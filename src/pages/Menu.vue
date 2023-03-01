@@ -3,9 +3,11 @@
     <van-icon name="bars" color="#1989fa" size="25" @click="showPopup" />
     <h4 class="info">Table {{ tableNumber }} ,{{ amount }} People</h4>
   </div>
-
-  <van-search v-model="search" placeholder="Search the food whatever you want." input-align="center" left-icon="none"
-    right-icon="search" autocomplete="on" class="search" @search="onSearch" />
+  <div>
+    <input type="text" class="search" id="search"/>
+    <button class="searchbtn" @click="filtered()">🔍</button>
+    <button class="searchbtn" @click="cancel()">X</button>
+  </div>
   <van-popup v-model:show="show" position="left" :style="{ width: '30%', height: '100%' }">
     <van-button square size="large" type="primary" color="#b7b7b8" class="btn">Seafood</van-button>
     <van-button square size="large" type="primary" color="#b7b7b8" class="btn">Steak</van-button>
@@ -38,11 +40,13 @@
     <button class="btnadd">Add to cart</button>
   </div>
 
+
   <TabBar></TabBar>
 </template>
 
 <script setup>
 import axios from 'axios'
+import _ from 'lodash'
 import TabBar from '../components/TabBar.vue'
 import { ref, onMounted } from 'vue'
 const tableNumber = 54
@@ -50,59 +54,72 @@ let show = ref(false)
 const showPopup = () => {
   show.value = true
 }
-const amount = 4;
+const amount = 4
 const plus = (index) => {
-  const num = document.getElementsByClassName('Menu_count');
-  num[index].style.visibility = 'visible';
-  menues.value[index].count += 1;
+  const num = document.getElementsByClassName('Menu_count')
+  num[index].style.visibility = 'visible'
+  menues.value[index].count += 1
 }
-
-
-
 
 const minus = (index) => {
   if (menues.value[index].count > 0) {
-    menues.value[index].count -= 1;
+    menues.value[index].count -= 1
   }
 
   if (menues.value[index].count == 0) {
-    const num = document.getElementsByClassName('Menu_count');
-    num[index].style.visibility = 'hidden';
+    const num = document.getElementsByClassName('Menu_count')
+    num[index].style.visibility = 'hidden'
   }
 }
 
-const menues = ref([]);
+const menues = ref([])
+const backupdata =ref([]) 
+onMounted(() => {
+  axios.get('http://localhost:5000/product').then(function (response) {
+    menues.value.push(...response.data);
+    backupdata.value.push(...response.data);
+  }) 
 
-onMounted(async () => {
-  const result = await axios.get('http://localhost:5000/product')
-  menues.value.push(...result.data)
+
 })
-console.log('count:', menues);
-const search = ref('').value;
 
-console.log(menues);
-const onSearch = (search) => {
-
+const filtered=()=>{
+  console.log('filtered');
+  let str = document.getElementById('search').value;
+  let rs = menues.value.filter((menu) => menu.name.includes(str));
+  console.log(rs);
+  menues.value = rs;
 }
-
-let searchInArray = (searchQuery, array, objectKey = null) => {
-  return array.filter(d => {
-    let data = objectKey ? d[objectKey] : d //Incase If It's Array Of Objects.
-    let dataWords = typeof data == "string" && data?.split(" ")?.map(b => b && b.toLowerCase().trim()).filter(b => b)
-    let searchWords = typeof searchQuery == "string" && searchQuery?.split(" ").map(b => b && b.toLowerCase().trim()).filter(b => b)
-    let matchingWords = searchWords.filter(word => dataWords.includes(word))
-    return matchingWords.length
-
-  })
+const cancel=()=>{
+  menues.value=backupdata.value
 }
-console.log("search:", search);
+  
+
 
 
 </script>
 
 <style scoped>
 .search {
-  margin-top: 0.3rem;
+  height: 2.8em;
+  width: 48%;
+  margin-left: 01rem;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 0 0 1px #ccc inset;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.searchbtn{
+  height: 2.8em;
+  width:  2.8em;
+}
+
+.search:focus {
+  outline: 0;
+  box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
 }
 
 * {
@@ -171,6 +188,8 @@ console.log("search:", search);
 .scroll {
   overflow: scroll;
   height: 8rem;
+  padding-top: 0.1rem;
+  padding-left: 0.3rem;
 }
 
 .Menu {
@@ -205,7 +224,8 @@ console.log("search:", search);
 }
 
 .Menu_orderbox {
-  margin-top: 0.3rem;
+  position: relative;
+  margin-top: 0.2rem;
 }
 
 .Menu_count {
