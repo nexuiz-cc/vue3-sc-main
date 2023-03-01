@@ -181,9 +181,12 @@ watchEffect(() => {})
   text-align: center;
 }
 .content .footbox {
+  display: block;
+  position: absolute;
   width: 4.65rem;
-  height: 0.65rem;
-  margin: 0 auto;
+  height: 0.45rem;
+  left: 3.6rem;
+  top:6.5rem;
 }
 .content .login-btn {
   width: 4.65rem;
@@ -198,11 +201,12 @@ watchEffect(() => {})
   font-size: 0.28rem;
 }
 .content .tishi {
+  display: block;
+  justify-content: flex-end;
   width: 2.1rem;
   font-size: 0.25rem;
-  margin: 0.28rem 2.4rem;
-  display: block;
-  text-align: right;
+  height: 0.3rem;
+
 }
 
 .reg {
