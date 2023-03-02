@@ -5,40 +5,6 @@
     <button class="searchbtn" @click="filtered()">🔍</button>
     <button class="cancel" @click="cancel()">❌</button>
   </div>
-  <van-popup
-    v-model:show="show"
-    position="left"
-    :style="{ width: '30%', height: '100%' }"
-  >
-    <van-button
-      square
-      size="large"
-      type="primary"
-      color="#b7b7b8"
-      class="btn"
-      @click="locate('#/menu')"
-      >Seafood</van-button
-    >
-    <van-button
-      square
-      size="large"
-      type="primary"
-      color="#b7b7b8"
-      class="btn"
-      @click="locate('#/steak')"
-      >Steak</van-button
-    >
-    <van-button square size="large" type="primary" color="#b7b7b8" class="btn"
-      >Cafe</van-button
-    >
-    <van-button square size="large" type="primary" color="#b7b7b8" class="btn"
-      >Pasta</van-button
-    >
-    <van-button square size="large" type="primary" color="#b7b7b8" class="btn"
-      >Sushi</van-button
-    >
-  </van-popup>
-
   <ul class="scroll">
     <li v-for="(menu, index) in menues" class="Menu" :key="index">
       <div class="Menu_imagearea">
@@ -70,8 +36,19 @@
 import axios from "axios";
 import _ from "lodash";
 import TabBar from "../components/TabBar.vue";
-import TableInfo from "../components/TableInfo.vue";
 import { ref, onMounted } from "vue";
+import TableInfo from "../components/TableInfo.vue";
+
+const filtered = () => {
+  console.log("filtered");
+  let str = document.getElementById("search").value;
+  let rs = menues.value.filter((menu) => menu.name.includes(str));
+  console.log(rs);
+  menues.value = rs;
+};
+const cancel = () => {
+  menues.value = backupdata.value;
+};
 
 const plus = (index) => {
   const num = document.getElementsByClassName("Menu_count");
@@ -89,20 +66,11 @@ const minus = (index) => {
     num[index].style.visibility = "hidden";
   }
 };
-const filtered = () => {
-  console.log("filtered");
-  let str = document.getElementById("search").value;
-  let rs = menues.value.filter((menu) => menu.name.includes(str));
-  console.log(rs);
-  menues.value = rs;
-};
-const cancel = () => {
-  menues.value = backupdata.value;
-};
+
 const menues = ref([]);
 const backupdata = ref([]);
 onMounted(() => {
-  axios.get("http://localhost:8082/product/seafood").then(function (response) {
+  axios.get("http://localhost:8082/product/steak").then(function (response) {
     menues.value.push(...response.data.itemlist);
     backupdata.value.push(...response.data.itemlist);
   });
@@ -163,6 +131,11 @@ onMounted(() => {
 .search:focus {
   outline: 0;
   box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
+}
+
+* {
+  --van-search-input-height: 50px;
+  --van-button-default-color: black;
 }
 
 .icon {

@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { useMenuStore } from '../stores/menu'
+import { store } from '../stores/store';
 import Login from '../pages/Login.vue'
 // import Reg from "../pages/Reg.vue";
 const routes = [
@@ -9,8 +9,7 @@ const routes = [
     path: '/home',
     component: () => import('../pages/Home.vue'),
     beforeEnter: () => {
-      const menuStore = useMenuStore();
-      if (menuStore.$state.isLogin) {
+      if (store.isLogin) {
         return true
       } else {
         router.push('./login')
@@ -24,7 +23,9 @@ const routes = [
   { path: '/friends', component: () => import('../pages/Follow.vue') },
   { path: '/detail', component: () => import('../pages/Detail.vue') },
   { path: '/user', component: () => import('../pages/MyPage.vue') },
+  { path: '/steak', component: () => import('../pages/Steak.vue') },
   { path: '/', redirect: '/home' },
+
   //   { path: "/:pathMatch(.*)*", component: () => import("../pages/NoPage.vue") },
 ]
 

@@ -25,7 +25,15 @@
         />
       </van-cell-group>
       <div style="margin: 16px">
-        <van-button round block type="primary" style="font-size: 0.25rem" @click="onSubmit()"> Login </van-button>
+        <van-button
+          round
+          block
+          type="primary"
+          style="font-size: 0.25rem"
+          @click="onSubmit()"
+        >
+          Login
+        </van-button>
       </div>
     </van-form>
 
@@ -37,44 +45,40 @@
 </template>
 
 <script setup>
-import { onMounted, watchEffect, ref, computed } from 'vue'
-import { useMenuStore } from '../stores/menu'
-import { useRouter } from 'vue-router'
-const menuStore = useMenuStore();
+import { onMounted, watchEffect, ref, computed } from "vue";
+import { store } from "../stores/store";
+import { useRouter } from "vue-router";
 const router = useRouter();
-const username = ref('');
-const password = ref('');
-onMounted(() => {
- console.log(menuStore.$state.username);
-})
+const username = ref("");
+const password = ref("");
+onMounted(() => {});
 
-function tofp(){
-router.push('./fp');
-
+function tofp() {
+  router.push("./fp");
 }
 function tohome() {
-  router.push('/home')
+  router.push("/home");
 }
-const login=()=>{
-  menuStore.$state.isLogin = true
-}
+const login = () => {
+  store.isLogin = true;
+};
 const onSubmit = () => {
-  if (username.value == menuStore.$state.username && password.value == menuStore.$state.password) {
+  if (username.value == store.username && password.value == store.password) {
     login();
-    console.log('success')
-    tohome()
-  }else{
-    console.log('failed')
+    console.log("success");
+    tohome();
+  } else {
+    console.log("failed");
   }
-}
+};
 
-computed(() => {})
-watchEffect(() => {})
+computed(() => {});
+watchEffect(() => {});
 </script>
 
 <style scoped>
 * {
-  font-family: 'Consolas', Courier, monospace;
+  font-family: "Consolas", Courier, monospace;
 }
 .van-nav-bar {
   background: transparent;
@@ -186,7 +190,7 @@ watchEffect(() => {})
   width: 4.65rem;
   height: 0.45rem;
   left: 3.6rem;
-  top:6.5rem;
+  top: 6.5rem;
 }
 .content .login-btn {
   width: 4.65rem;
@@ -206,7 +210,6 @@ watchEffect(() => {})
   width: 2.1rem;
   font-size: 0.25rem;
   height: 0.3rem;
-
 }
 
 .reg {
@@ -220,7 +223,7 @@ watchEffect(() => {})
   font-weight: bolder;
 }
 
-h4{
+h4 {
   font-size: 0.28rem;
   margin-left: 0.2rem;
   margin-top: -0.2rem;

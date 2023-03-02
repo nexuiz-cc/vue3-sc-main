@@ -8,19 +8,17 @@
 </template>
 
 <script setup>
-import { Tabbar, TabbarItem } from 'vant'
-import { ref, onMounted } from 'vue'
-import { useMenuStore } from '../stores/menu'
-const active = ref('home')
-const menuStore = useMenuStore();
-
+import { Tabbar, TabbarItem } from "vant";
+import { ref, onMounted } from "vue";
+import { store } from "../stores/store";
+const active = ref("home");
 
 onMounted(() => {
-  if (menuStore.$state.isLogin) {
-    const tab = document.getElementById('tabbar')
-    tab.style.display = 'flex'
+  if (store.isLogin) {
+    const tab = document.getElementById("tabbar");
+    tab.style.display = "flex";
   }
-})
+});
 </script>
 
 <style scoped>
