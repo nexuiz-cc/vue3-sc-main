@@ -75,7 +75,7 @@ const minus = (index) => {
 const menues = ref([])
 const backupdata =ref([]) 
 onMounted(() => {
-  axios.get('http://localhost:5000/product').then(function (response) {
+  axios.get('http://localhost:8082/product').then(function (response) {
     menues.value.push(...response.data);
     backupdata.value.push(...response.data);
   }) 
