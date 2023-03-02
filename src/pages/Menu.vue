@@ -1,21 +1,23 @@
 <template>
   <div class="icon">
-    <van-icon name="bars" color="#1989fa" size="25" @click="showPopup" />
-    <h4 class="info">
-      Table {{ tableNumber }} ,
-      <select class="amount">
-        <option class="amount_option" value="0"></option>
-        <option class="amount_option" value="1">1</option>
-        <option class="amount_option" value="2">2</option>
-        <option class="amount_option" value="3">3</option>
-        <option class="amount_option" value="4">4</option>
-        <option class="amount_option" value="5">5</option>
-        <option class="amount_option" value="6">6</option>
-        <option class="amount_option" value="7">7</option>
-      </select>
-      People
-    </h4>
+    <div class="bars">
+      <van-icon name="bars" color="#1989fa" size="25" @click="showPopup" />
+    </div>
+
+    <h4 class="info">Table {{ tableNumber }}</h4>
+    <select class="amount">
+      <option class="amount_option" value="0"></option>
+      <option class="amount_option" value="1">1</option>
+      <option class="amount_option" value="2">2</option>
+      <option class="amount_option" value="3">3</option>
+      <option class="amount_option" value="4">4</option>
+      <option class="amount_option" value="5">5</option>
+      <option class="amount_option" value="6">6</option>
+      <option class="amount_option" value="7">7</option>
+    </select>
+    <div class="info">people</div>
   </div>
+
   <div>
     <input type="text" class="search" id="search" />
     <button class="searchbtn" @click="filtered()">🔍</button>
@@ -106,6 +108,10 @@ const cancel = () => {
 </script>
 
 <style scoped>
+.bars {
+  display: inline-block;
+  margin-top: 0.05rem;
+}
 .amount {
   display: inline-block;
   height: 0.5rem;
