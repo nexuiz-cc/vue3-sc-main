@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "run-p dev:*",
-    "dev:vite": "vite",
+    "dev": "run-p dev:*",
     "dev:server": "json-server --watch db.json --port 8082"
+    "dev:vite": "vite"
   },
   "dependencies": {
     "axios": "^1.2.6",
