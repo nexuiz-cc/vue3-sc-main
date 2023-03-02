@@ -63,16 +63,11 @@ const showPopup = () => {
   show.value = true;
 };
 
-const amountChange = () => {};
-
 const locate = (url) => {
   location.href = url;
 };
 
-onMounted(() => {
-  const ele = document.getElementById("amount").value;
-  ele = store.amount;
-});
+onMounted(() => {});
 </script>
 
 <style scoped>

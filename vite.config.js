@@ -5,7 +5,7 @@ import postCssPxToRem from "postcss-pxtorem";
 export default defineConfig({
   plugins: [vue()],
   server: {
-    port: 8081,
+    port: 7777,
   },
   css:{
     postcss:[
