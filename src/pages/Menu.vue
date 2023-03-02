@@ -15,7 +15,7 @@
       <option class="amount_option" value="6">6</option>
       <option class="amount_option" value="7">7</option>
     </select>
-    <div class="info">people</div>
+    <h4 id="people">people</h4>
   </div>
 
   <div>
@@ -121,11 +121,17 @@ const cancel = () => {
 .amount_option {
   font-size: 0.3rem;
 }
+#people {
+  font-size: 0.34rem;
+  color: #096bec;
+  margin-left: 0.1rem;
+  margin-top: -0.01rem;
+}
 
 .search {
-  height: 2.8em;
-  width: 48%;
-  margin-left: 01rem;
+  height: 0.5rem;
+  width: 58%;
+  margin-left: 0.3rem;
   padding: 0 16px;
   border-radius: 4px;
   border: none;
