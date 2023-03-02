@@ -4,9 +4,9 @@
     <h4 class="info">Table {{ tableNumber }} ,{{ amount }} People</h4>
   </div>
   <div>
-    <input type="text" class="search" id="search"/>
+    <input type="text" class="search" id="search" />
     <button class="searchbtn" @click="filtered()">🔍</button>
-    <button class="searchbtn" @click="cancel()">X</button>
+    <button class="cancel" @click="cancel()">X</button>
   </div>
   <van-popup v-model:show="show" position="left" :style="{ width: '30%', height: '100%' }">
     <van-button square size="large" type="primary" color="#b7b7b8" class="btn">Seafood</van-button>
@@ -40,7 +40,6 @@
     <button class="btnadd">Add to cart</button>
   </div>
 
-
   <TabBar></TabBar>
 </template>
 
@@ -73,30 +72,24 @@ const minus = (index) => {
 }
 
 const menues = ref([])
-const backupdata =ref([]) 
+const backupdata = ref([])
 onMounted(() => {
   axios.get('http://localhost:8082/product').then(function (response) {
-    menues.value.push(...response.data);
-    backupdata.value.push(...response.data);
-  }) 
-
-
+    menues.value.push(...response.data)
+    backupdata.value.push(...response.data)
+  })
 })
 
-const filtered=()=>{
-  console.log('filtered');
-  let str = document.getElementById('search').value;
-  let rs = menues.value.filter((menu) => menu.name.includes(str));
-  console.log(rs);
-  menues.value = rs;
+const filtered = () => {
+  console.log('filtered')
+  let str = document.getElementById('search').value
+  let rs = menues.value.filter((menu) => menu.name.includes(str))
+  console.log(rs)
+  menues.value = rs
 }
-const cancel=()=>{
-  menues.value=backupdata.value
+const cancel = () => {
+  menues.value = backupdata.value
 }
-  
-
-
-
 </script>
 
 <style scoped>
@@ -112,11 +105,19 @@ const cancel=()=>{
   -webkit-appearance: none;
   -moz-appearance: none;
 }
-.searchbtn{
+.searchbtn {
+  display: inline-block;
   height: 2.8em;
-  width:  2.8em;
+  width: 2.8em;
 }
 
+.cancel {
+  display: inline-block;
+  height: 2.83em;
+  width: 2.8em;
+  position: relative;
+  top: -0.02rem;
+}
 .search:focus {
   outline: 0;
   box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
@@ -186,7 +187,7 @@ const cancel=()=>{
 </style>
 <style scoped>
 .scroll {
-  overflow: scroll;
+  overflow: auto;
   height: 8rem;
   padding-top: 0.1rem;
   padding-left: 0.3rem;
@@ -215,6 +216,7 @@ const cancel=()=>{
   margin-top: 0.05rem;
   padding-top: 0.03rem;
   margin-left: 0.2rem;
+  font-size: 0.22rem;
 }
 
 .Menu_price {
