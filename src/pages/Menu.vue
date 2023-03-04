@@ -298,4 +298,12 @@ margin-top: -0.035rem;
 	text-shadow:0px 1px 0px #154682;
   padding-top: 0.06rem;
 }
+.Menu_button-plus:hover{
+  background:linear-gradient(to bottom, #db7851 5%, #f05b06 100%);
+  background-color:#d85001;
+}
+.Menu_button-plus:active {
+	position:relative;
+	top:1px;
+}
 </style>

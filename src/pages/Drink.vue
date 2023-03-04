@@ -35,8 +35,12 @@
         <div class="Menu_orderbox">
           <p class="Menu_count" id="Menu_count">🗙 {{ menu.count }}</p>
           <div class="Menu_">
-            <button class="Menu_button-minus" @click="minus(index)" id="btn1">-</button>
-            <button class="Menu_button-plus" @click="plus(index)" id="btn2">+</button>
+            <button class="Menu_button-minus" @click="minus(index)">
+            <div class="text">➖</div>
+            </button>
+            <button class="Menu_button-plus" @click="plus(index)">
+            <div class="text">➕</div>
+            </button>
           </div>
         </div>
       </div>
@@ -105,6 +109,11 @@ onMounted(() => {
 <style scoped>
 .inline {
   display: flex;
+}
+.text{
+display: flex;
+margin-left: -0.15rem;
+margin-top: -0.035rem;
 }
 .btn {
   box-shadow:inset 0px 1px 0px 0px #97c4fe;
@@ -185,23 +194,6 @@ margin-left: 0.3rem;
   box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
 }
 
-#btn1 {
-  width: 0.8rem;
-  height: 0.5rem;
-  border: white;
-  color: aliceblue;
-  background-color: #096bec;
-}
-
-#btn2 {
-  width: 0.8rem;
-  height: 0.5rem;
-  border: white;
-  color: aliceblue;
-  background-color: #ec5c09;
-  margin-left: 0.2rem;
-}
-
 #btn3 {
   width: 150px;
   padding-bottom: 3px;
@@ -276,5 +268,55 @@ margin-left: 0.3rem;
 
 .Menu_ {
   margin-top: 0.3rem;
+}
+
+.Menu_button-minus {
+  width: 0.9rem;
+  height: 0.45rem;
+  box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+	background-color:#007dc1;
+	border:1px solid #124d77;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:8px 24px;
+	text-shadow:0px 1px 0px #154682;
+  padding-top: 0.06rem;
+}
+.Menu_button-minus:hover{
+  background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+	background-color:#0061a7;
+}
+.Menu_button-minus:active {
+	position:relative;
+	top:1px;
+}
+.Menu_button-plus {
+  width: 0.9rem;
+  height: 0.45rem;
+  box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background:linear-gradient(to bottom, #ee4603 5%, #d85001 100%);
+	background-color:#d85001;
+	border:1px solid #d85001;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:8px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
+  padding-top: 0.06rem;
+}
+.Menu_button-plus:hover{
+  background:linear-gradient(to bottom, #db7851 5%, #f05b06 100%);
+  background-color:#d85001;
+}
+.Menu_button-plus:active {
+	position:relative;
+	top:1px;
 }
 </style>
