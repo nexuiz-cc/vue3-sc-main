@@ -5,15 +5,14 @@
     </div>
 
     <h4 class="info">Table {{ tableNumber }}</h4>
-    <select class="amount" id="amount">
-      <option class="amount_option" value="0"></option>
+    <select v-model="selected" class="amount" @change="amChange()">
+      <option disabled value=""></option>
       <option class="amount_option" value="1">1</option>
       <option class="amount_option" value="2">2</option>
       <option class="amount_option" value="3">3</option>
       <option class="amount_option" value="4">4</option>
       <option class="amount_option" value="5">5</option>
       <option class="amount_option" value="6">6</option>
-      <option class="amount_option" value="7">7</option>
     </select>
     <h4 id="people">people</h4>
   </div>
@@ -56,18 +55,25 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { store } from "../stores/store";
-const tableNumber = "";
+const tableNumber = "54";
 
 let show = ref(false);
 const showPopup = () => {
   show.value = true;
 };
 
+const selected = ref("");
 const locate = (url) => {
   location.href = url;
 };
 
-onMounted(() => {});
+const amChange = () => {
+  store.amount = selected.value;
+};
+
+onMounted(() => {
+  selected.value = store.amount;
+});
 </script>
 
 <style scoped>

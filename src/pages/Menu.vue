@@ -11,13 +11,11 @@
     :style="{ width: '30%', height: '100%' }"
   >
     <van-button
-      square
       size="large"
       type="primary"
-      color="#b7b7b8"
       class="btn"
       @click="locate('#/menu')"
-      >Seafood</van-button
+      >Seafoo2d</van-button
     >
     <van-button
       square
@@ -51,8 +49,8 @@
         <div class="Menu_orderbox">
           <p class="Menu_count" id="Menu_count">🗙 {{ menu.count }}</p>
           <div class="Menu_">
-            <button class="Menu_button-minus" @click="minus(index)" id="btn1">-</button>
-            <button class="Menu_button-plus" @click="plus(index)" id="btn2">+</button>
+            <button class="Menu_button-minus" @click="minus(index)" >-</button>
+            <button class="Menu_button-plus" @click="plus(index)" >+</button>
           </div>
         </div>
       </div>
@@ -102,7 +100,8 @@ const cancel = () => {
 const menues = ref([]);
 const backupdata = ref([]);
 onMounted(() => {
-  axios.get("http://localhost:8082/product/seafood").then(function (response) {
+  axios.get("http://localhost:8082/product/seafood")
+  .then(function (response) {
     menues.value.push(...response.data.itemlist);
     backupdata.value.push(...response.data.itemlist);
   });
@@ -110,21 +109,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.bars {
-  display: inline-block;
-  margin-top: 0.05rem;
-}
-.amount {
-  display: inline-block;
-  height: 0.5rem;
-  width: 0.8rem;
-  font-size: 0.3rem;
-  margin-left: 0.1rem;
-}
-.amount_option {
-  font-size: 0.3rem;
-  margin-top: 0.1rem;
-}
+
 #people {
   font-size: 0.34rem;
   color: #096bec;
@@ -143,6 +128,10 @@ onMounted(() => {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+}
+
+.btn{
+  background-color: #9e5d5d;
 }
 .searchbtn {
   display: inline-block;
@@ -164,52 +153,6 @@ onMounted(() => {
   outline: 0;
   box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
 }
-
-.icon {
-  display: inline-flex;
-  margin-top: 0.3rem;
-  margin-left: 0.3rem;
-}
-
-.info {
-  font-size: 0.3rem;
-  color: #096bec;
-  margin-left: 0.3rem;
-  margin-top: 0.05rem;
-}
-
-.van-button--primary {
-  color: black !important;
-  size: 0.8rem;
-  font-weight: bolder;
-  font-family: "Consolas", Courier, monospace !important;
-}
-
-#btn1 {
-  width: 0.8rem;
-  height: 0.5rem;
-  border: white;
-  color: aliceblue;
-  background-color: #096bec;
-}
-
-#btn2 {
-  width: 0.8rem;
-  height: 0.5rem;
-  border: white;
-  color: aliceblue;
-  background-color: #ec5c09;
-  margin-left: 0.2rem;
-}
-
-#btn3 {
-  width: 150px;
-  padding-bottom: 3px;
-  border: white;
-  color: aliceblue;
-  background-color: #ec09bb;
-}
-
 .btnadd {
   width: 6rem;
   height: 0.8rem;
