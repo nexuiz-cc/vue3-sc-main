@@ -24,6 +24,7 @@ const routes = [
   { path: '/detail', component: () => import('../pages/Detail.vue') },
   { path: '/user', component: () => import('../pages/MyPage.vue') },
   { path: '/steak', component: () => import('../pages/Steak.vue') },
+  { path: '/drink', component: () => import('../pages/Drink.vue') },
   { path: '/', redirect: '/home' },
 
   //   { path: "/:pathMatch(.*)*", component: () => import("../pages/NoPage.vue") },

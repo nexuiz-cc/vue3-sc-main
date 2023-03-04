@@ -164,6 +164,59 @@
           "count": 0
         }
       ]
+    },
+    {
+      "id": "drink",
+      "itemlist":[
+        {
+          "id": 0,
+          "name": "Drink 1.",
+          "description": "drink 1.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Drink1",
+          "count": 0
+        }, 
+        {
+          "id": 1,
+          "name": "Drink 2.",
+          "description": "drink 1.",
+          "price": 600,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Drink2",
+          "count": 0
+        }, 
+        {
+          "id": 2,
+          "name": "Drink 3.",
+          "description": "drink 3.",
+          "price": 750,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Drink3",
+          "count": 0
+        }, 
+        {
+          "id": 3,
+          "name": "Drink 4.",
+          "description": "drink 4.",
+          "price": 820,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Drink4",
+          "count": 0
+        }, 
+        {
+          "id": 4,
+          "name": "Drink 5.",
+          "description": "drink 5.",
+          "price": 820,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Drink5",
+          "count": 0
+        }, 
+        {
+          "id": 5,
+          "name": "Drink 6.",
+          "description": "drink 6.",
+          "price": 820,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Drink6",
+          "count": 0
+        }
+      ]
     }
   ]
 }

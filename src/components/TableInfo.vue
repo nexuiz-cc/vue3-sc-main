@@ -1,9 +1,6 @@
 <template>
   <div class="icon">
-    <div class="bars">
-      <van-icon name="bars" color="#1989fa" size="25" @click="showPopup" />
-    </div>
-
+   
     <h4 class="info">Table {{ tableNumber }}</h4>
     <select v-model="selected" class="amount" @change="amChange()">
       <option disabled value=""></option>
@@ -16,40 +13,6 @@
     </select>
     <h4 id="people">people</h4>
   </div>
-
-  <van-popup
-    v-model:show="show"
-    position="left"
-    :style="{ width: '30%', height: '100%' }"
-  >
-    <van-button
-      square
-      size="large"
-      type="primary"
-      color="#b7b7b8"
-      class="btn"
-      @click="locate('#/menu')"
-      >Seafood</van-button
-    >
-    <van-button
-      square
-      size="large"
-      type="primary"
-      color="#b7b7b8"
-      class="btn"
-      @click="locate('#/steak')"
-      >Steak</van-button
-    >
-    <van-button square size="large" type="primary" color="#b7b7b8" class="btn"
-      >Cafe</van-button
-    >
-    <van-button square size="large" type="primary" color="#b7b7b8" class="btn"
-      >Pasta</van-button
-    >
-    <van-button square size="large" type="primary" color="#b7b7b8" class="btn"
-      >Sushi</van-button
-    >
-  </van-popup>
 </template>
 
 <script setup>
@@ -57,15 +20,10 @@ import { ref, onMounted } from "vue";
 import { store } from "../stores/store";
 const tableNumber = "54";
 
-let show = ref(false);
-const showPopup = () => {
-  show.value = true;
-};
+
 
 const selected = ref("");
-const locate = (url) => {
-  location.href = url;
-};
+
 
 const amChange = () => {
   store.amount = selected.value;
@@ -77,10 +35,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.bars {
-  display: inline-block;
-  margin-top: 0.05rem;
-}
+
 .amount {
   display: inline-block;
   height: 0.5rem;
@@ -143,7 +98,7 @@ onMounted(() => {
 .info {
   font-size: 0.3rem;
   color: #096bec;
-  margin-left: 0.3rem;
+  margin-left: -0.05rem;
   margin-top: 0.05rem;
 }
 </style>

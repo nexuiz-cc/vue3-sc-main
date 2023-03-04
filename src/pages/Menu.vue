@@ -1,40 +1,26 @@
 <template>
-  <TableInfo></TableInfo>
+  <div class="inline">
+    <div class="bars">
+      <van-icon name="bars" color="#1989fa" size="25" @click="showPopup" />
+    </div>
+    <TableInfo></TableInfo>
+  </div>
+
   <div>
     <input type="text" class="search" id="search" />
     <button class="searchbtn" @click="filtered()">🔍</button>
     <button class="cancel" @click="cancel()">❌</button>
   </div>
-  <van-popup
-    v-model:show="show"
-    position="left"
-    :style="{ width: '30%', height: '100%' }"
-  >
-    <van-button
-      size="large"
-      type="primary"
-      class="btn"
-      @click="locate('#/menu')"
-      >Seafoo2d</van-button
-    >
-    <van-button
-      square
-      size="large"
-      type="primary"
-      color="#b7b7b8"
-      class="btn"
-      @click="locate('#/steak')"
-      >Steak</van-button
-    >
-    <van-button square size="large" type="primary" color="#b7b7b8" class="btn"
-      >Cafe</van-button
-    >
-    <van-button square size="large" type="primary" color="#b7b7b8" class="btn"
-      >Pasta</van-button
-    >
-    <van-button square size="large" type="primary" color="#b7b7b8" class="btn"
-      >Sushi</van-button
-    >
+
+  <van-popup style="background-color:#AEE2FF" v-model:show="show" position="left" :style="{ width: '30%', height: '100%' }">
+    <van-button size="large" type="primary" class="btn" 
+      @click="locate('#/menu')">Seafood</van-button>
+    <van-button  size="large" type="primary" class="btn" 
+      @click="locate('#/steak')" >Steak</van-button>
+    <van-button  size="large" type="primary" class="btn" 
+      @click="locate('#/drink')" >Drink</van-button>
+    <van-button  size="large" type="primary"  class="btn">Pasta</van-button>
+    <van-button  size="large" type="primary"  class="btn">Sushi</van-button>
   </van-popup>
 
   <ul class="scroll">
@@ -49,8 +35,12 @@
         <div class="Menu_orderbox">
           <p class="Menu_count" id="Menu_count">🗙 {{ menu.count }}</p>
           <div class="Menu_">
-            <button class="Menu_button-minus" @click="minus(index)" >-</button>
-            <button class="Menu_button-plus" @click="plus(index)" >+</button>
+            <button class="Menu_button-minus" @click="minus(index)">
+            <div class="text">➖</div>
+            </button>
+            <button class="Menu_button-plus" @click="plus(index)">
+            <div class="text">➕</div>
+            </button>
           </div>
         </div>
       </div>
@@ -65,51 +55,57 @@
 </template>
 
 <script setup>
-import axios from "axios";
-import _ from "lodash";
-import TabBar from "../components/TabBar.vue";
-import TableInfo from "../components/TableInfo.vue";
-import { ref, onMounted } from "vue";
+import axios from 'axios'
+import _ from 'lodash'
+import TabBar from '../components/TabBar.vue'
+import TableInfo from '../components/TableInfo.vue'
+import { ref, onMounted } from 'vue'
 
 const plus = (index) => {
-  const num = document.getElementsByClassName("Menu_count");
-  num[index].style.visibility = "visible";
-  menues.value[index].count += 1;
-};
+  const num = document.getElementsByClassName('Menu_count')
+  num[index].style.visibility = 'visible'
+  menues.value[index].count += 1
+}
+
+let show = ref(false)
+const showPopup = () => {
+  show.value = true
+}
 
 const minus = (index) => {
   if (menues.value[index].count > 0) {
-    menues.value[index].count -= 1;
+    menues.value[index].count -= 1
   }
 
   if (menues.value[index].count == 0) {
-    const num = document.getElementsByClassName("Menu_count");
-    num[index].style.visibility = "hidden";
+    const num = document.getElementsByClassName('Menu_count')
+    num[index].style.visibility = 'hidden'
   }
-};
+}
 const filtered = () => {
-  console.log("filtered");
-  let str = document.getElementById("search").value;
-  let rs = menues.value.filter((menu) => menu.name.includes(str));
-  console.log(rs);
-  menues.value = rs;
-};
+  console.log('filtered')
+  let str = document.getElementById('search').value
+  let rs = menues.value.filter((menu) => menu.name.includes(str))
+  console.log(rs)
+  menues.value = rs
+}
 const cancel = () => {
-  menues.value = backupdata.value;
-};
-const menues = ref([]);
-const backupdata = ref([]);
+  menues.value = backupdata.value
+}
+const locate = (url) => {
+  location.href = url
+}
+const menues = ref([])
+const backupdata = ref([])
 onMounted(() => {
-  axios.get("http://localhost:8082/product/seafood")
-  .then(function (response) {
-    menues.value.push(...response.data.itemlist);
-    backupdata.value.push(...response.data.itemlist);
-  });
-});
+  axios.get('http://localhost:8082/product/seafood').then(function (response) {
+    menues.value.push(...response.data.itemlist)
+    backupdata.value.push(...response.data.itemlist)
+  })
+})
 </script>
 
 <style scoped>
-
 #people {
   font-size: 0.34rem;
   color: #096bec;
@@ -117,6 +113,17 @@ onMounted(() => {
   margin-top: 0.02rem;
 }
 
+.inline {
+  display: flex;
+}
+.bars {
+margin-top: 0.3rem;
+margin-left: 0.3rem;
+}
+
+.van-popup{
+  background:#1e62d0
+}
 .search {
   height: 0.55rem;
   width: 58%;
@@ -130,9 +137,36 @@ onMounted(() => {
   -moz-appearance: none;
 }
 
-.btn{
-  background-color: #9e5d5d;
+.btn {
+  box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+	background-color:#3d94f6;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #1570cd;
 }
+
+.btn:hover{
+  background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+	background-color:#1e62d0;
+}
+
+.btn:active{
+  position:relative;
+	top:1px;
+}
+.text{
+display: flex;
+margin-left: -0.15rem;
+margin-top: -0.035rem;
+}
+
 .searchbtn {
   display: inline-block;
   position: relative;
@@ -149,17 +183,19 @@ onMounted(() => {
   top: 0.02rem;
   text-align: center;
 }
+
 .search:focus {
   outline: 0;
   box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
 }
+
 .btnadd {
   width: 6rem;
   height: 0.8rem;
   border: white;
   color: aliceblue;
   font-size: 0.3rem;
-  font-family: "Calling Code", Courier, monospace;
+  font-family: 'Calling Code', Courier, monospace;
   background-color: #0ca33e;
   margin-top: 0.5rem;
   margin-left: 0.2rem;
@@ -219,5 +255,47 @@ onMounted(() => {
 
 .Menu_ {
   margin-top: 0.3rem;
+}
+
+.Menu_button-minus {
+  width: 0.9rem;
+  height: 0.45rem;
+  box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+	background-color:#007dc1;
+	border:1px solid #124d77;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:8px 24px;
+	text-shadow:0px 1px 0px #154682;
+  padding-top: 0.06rem;
+}
+.Menu_button-minus:hover{
+  background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+	background-color:#0061a7;
+}
+.Menu_button-minus:active {
+	position:relative;
+	top:1px;
+}
+.Menu_button-plus {
+  width: 0.9rem;
+  height: 0.45rem;
+  box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background:linear-gradient(to bottom, #ee4603 5%, #d85001 100%);
+	background-color:#d85001;
+	border:1px solid #d85001;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:8px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
+  padding-top: 0.06rem;
 }
 </style>

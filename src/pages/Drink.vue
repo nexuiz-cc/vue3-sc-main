@@ -1,5 +1,5 @@
 <template>
-  <div class="inline">
+    <div class="inline">
     <div class="bars">
       <van-icon name="bars" color="#1989fa" size="25" @click="showPopup" />
     </div>
@@ -57,6 +57,13 @@ import TabBar from "../components/TabBar.vue";
 import { ref, onMounted } from "vue";
 import TableInfo from "../components/TableInfo.vue";
 
+let show = ref(false)
+const showPopup = () => {
+  show.value = true
+}
+const locate = (url) => {
+  location.href = url
+}
 const filtered = () => {
   console.log("filtered");
   let str = document.getElementById("search").value;
@@ -64,14 +71,6 @@ const filtered = () => {
   console.log(rs);
   menues.value = rs;
 };
-
-let show = ref(false);
-const showPopup = () => {
-  show.value = true
-}
-const locate = (url) => {
-  location.href = url
-}
 const cancel = () => {
   menues.value = backupdata.value;
 };
@@ -81,7 +80,6 @@ const plus = (index) => {
   num[index].style.visibility = "visible";
   menues.value[index].count += 1;
 };
-
 
 const minus = (index) => {
   if (menues.value[index].count > 0) {
@@ -97,7 +95,7 @@ const minus = (index) => {
 const menues = ref([]);
 const backupdata = ref([]);
 onMounted(() => {
-  axios.get("http://localhost:8082/product/steak").then(function (response) {
+  axios.get("http://localhost:8082/product/drink").then(function (response) {
     menues.value.push(...response.data.itemlist);
     backupdata.value.push(...response.data.itemlist);
   });
@@ -107,10 +105,6 @@ onMounted(() => {
 <style scoped>
 .inline {
   display: flex;
-}
-.bars {
-margin-top: 0.3rem;
-margin-left: 0.3rem;
 }
 .btn {
   box-shadow:inset 0px 1px 0px 0px #97c4fe;
@@ -136,7 +130,21 @@ margin-left: 0.3rem;
   position:relative;
 	top:1px;
 }
-
+.bars {
+margin-top: 0.3rem;
+margin-left: 0.3rem;
+}
+.amount {
+  display: inline-block;
+  height: 0.5rem;
+  width: 0.8rem;
+  font-size: 0.3rem;
+  margin-left: 0.1rem;
+}
+.amount_option {
+  font-size: 0.3rem;
+  margin-top: 0.1rem;
+}
 #people {
   font-size: 0.34rem;
   color: #096bec;
