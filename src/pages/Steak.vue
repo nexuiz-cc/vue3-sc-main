@@ -55,12 +55,11 @@
 </template>
 
 <script setup>
-import axios from "axios";
 import _ from "lodash";
 import TabBar from "../components/TabBar.vue";
 import { ref, onMounted } from "vue";
 import TableInfo from "../components/TableInfo.vue";
-
+import { store } from "../stores/store";
 const filtered = () => {
   console.log("filtered");
   let str = document.getElementById("search").value;
@@ -101,10 +100,8 @@ const minus = (index) => {
 const menues = ref([]);
 const backupdata = ref([]);
 onMounted(() => {
-  axios.get("http://localhost:8082/product/steak").then(function (response) {
-    menues.value.push(...response.data.itemlist);
-    backupdata.value.push(...response.data.itemlist);
-  });
+  menues.value = store.steak.itemlist;
+  backupdata.value = store.steak.itemlist;
 });
 </script>
 
@@ -114,12 +111,12 @@ onMounted(() => {
 }
 .text{
 display: flex;
-margin-left: -0.15rem;
-margin-top: -0.035rem;
+  margin-left: -0.15rem;
+  margin-top: -0.035rem;
 }
 .bars {
-margin-top: 0.3rem;
-margin-left: 0.3rem;
+  margin-top: 0.3rem;
+  margin-left: 0.3rem;
 }
 .btn {
   box-shadow:inset 0px 1px 0px 0px #97c4fe;

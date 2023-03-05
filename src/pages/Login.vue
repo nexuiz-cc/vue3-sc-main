@@ -38,8 +38,9 @@
     </van-form>
 
     <div class="footbox" style="margin-top: 0.3rem">
-      <a class="tishi" @click="tofp()">forgot username</a>
-      <a class="tishi" @click="tofp()">forgot password</a>
+      <a class="tishi" @click="fg_username()">forgot username</a>
+      <a class="tishi" @click="fg_password()">forgot password</a>
+      <a class="tishi" @click="fg_all()">forgot username & password</a>
     </div>
   </div>
 </template>
@@ -47,14 +48,31 @@
 <script setup>
 import { onMounted, watchEffect, ref, computed } from "vue";
 import { store } from "../stores/store";
+import axios from 'axios';
 import { useRouter } from "vue-router";
 const router = useRouter();
 const username = ref("");
 const password = ref("");
-onMounted(() => {});
+onMounted(() => {
+  axios.get('http://localhost:8082/product/seafood')
+    .then(function (response) {
+      store.seafood = response.data;
+  })
+  axios.get('http://localhost:8082/product/steak')
+    .then(function (response) {
+      store.steak = response.data;
+  })
+  axios.get('http://localhost:8082/product/drink')
+    .then(function (response) {
+      store.drink = response.data;
+  })
+});
 
-function tofp() {
-  router.push("./fp");
+function fg_username() {
+  router.push("./fg_username");
+}
+function fg_password() {
+  router.push("./fg_password");
 }
 function tohome() {
   router.push("/home");
@@ -66,9 +84,12 @@ const onSubmit = () => {
   if (username.value == store.username && password.value == store.password) {
     login();
     console.log("success");
+    console.log("username:",store.username);
+    console.log("password:",store.password);
     tohome();
   } else {
-    console.log("failed");
+    console.log("username:",store.username);
+    console.log("password:",store.password);
   }
 };
 
@@ -79,14 +100,6 @@ watchEffect(() => {});
 <style scoped>
 * {
   font-family: "Consolas", Courier, monospace;
-}
-.van-nav-bar {
-  background: transparent;
-}
-.gray :deep().van-icon-arrow-left {
-  font-size: 40px;
-  font-weight: 800;
-  color: #4c4f50;
 }
 .content {
   max-width: 6.4rem;

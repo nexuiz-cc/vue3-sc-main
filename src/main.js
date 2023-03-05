@@ -23,6 +23,7 @@ import {
 } from 'vant'
 import 'vant/lib/index.css'
 import './plugins/uc-flexible'
+
 const app = createApp(App)
 app.use(Button)
 app.use(Tabbar)

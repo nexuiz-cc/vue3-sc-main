@@ -55,11 +55,10 @@
 </template>
 
 <script setup>
-import axios from "axios";
-import _ from "lodash";
 import TabBar from "../components/TabBar.vue";
 import { ref, onMounted } from "vue";
 import TableInfo from "../components/TableInfo.vue";
+import { store } from "../stores/store";
 
 let show = ref(false)
 const showPopup = () => {
@@ -99,10 +98,8 @@ const minus = (index) => {
 const menues = ref([]);
 const backupdata = ref([]);
 onMounted(() => {
-  axios.get("http://localhost:8082/product/drink").then(function (response) {
-    menues.value.push(...response.data.itemlist);
-    backupdata.value.push(...response.data.itemlist);
-  });
+  menues.value = store.drink.itemlist;
+  backupdata.value = store.drink.itemlist;
 });
 </script>
 

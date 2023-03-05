@@ -20,20 +20,19 @@
     <van-button  size="large" type="primary" class="btn" 
       @click="locate('#/drink')" >Drink</van-button>
     <van-button  size="large" type="primary"  class="btn">Pasta</van-button>
-    <van-button  size="large" type="primary"  class="btn">Sushi</van-button>
   </van-popup>
 
   <ul class="scroll">
-    <li v-for="(menu, index) in menues" class="Menu" :key="index">
+    <li v-for="(item,index) in menues" class="Menu" :key="index">
       <div class="Menu_imagearea">
-        <img :src="menu.image" class="Menu_image" />
+         <img :src="item.image" class="Menu_image" /> 
       </div>
       <div class="Menu_detail">
-        <h4 class="Menu_name">{{ menu.name }}</h4>
-        <p class="Menu_description">{{ menu.description }}</p>
-        <p class="Menu_price">¥{{ menu.price }}</p>
+        <h4 class="Menu_name">{{item.name}}</h4>
+        <p class="Menu_description">{{item.description}}</p>
+        <p class="Menu_price">¥{{item.price }}</p>
         <div class="Menu_orderbox">
-          <p class="Menu_count" id="Menu_count">🗙 {{ menu.count }}</p>
+          <p class="Menu_count" id="Menu_count">🗙 {{item.count }}</p>
           <div class="Menu_">
             <button class="Menu_button-minus" @click="minus(index)">
             <div class="text">➖</div>
@@ -55,11 +54,10 @@
 </template>
 
 <script setup>
-import axios from 'axios'
-import _ from 'lodash'
 import TabBar from '../components/TabBar.vue'
 import TableInfo from '../components/TableInfo.vue'
 import { ref, onMounted } from 'vue'
+import { store } from '../stores/store';
 
 const plus = (index) => {
   const num = document.getElementsByClassName('Menu_count')
@@ -84,9 +82,8 @@ const minus = (index) => {
 }
 const filtered = () => {
   console.log('filtered')
-  let str = document.getElementById('search').value
-  let rs = menues.value.filter((menu) => menu.name.includes(str))
-  console.log(rs)
+  const str = document.getElementById('search').value
+  const rs = menues.value.filter((menu) => menu.name.includes(str))
   menues.value = rs
 }
 const cancel = () => {
@@ -95,13 +92,12 @@ const cancel = () => {
 const locate = (url) => {
   location.href = url
 }
-const menues = ref([])
-const backupdata = ref([])
+const menues = ref({})
+const backupdata = ref({})
+
 onMounted(() => {
-  axios.get('http://localhost:8082/product/seafood').then(function (response) {
-    menues.value.push(...response.data.itemlist)
-    backupdata.value.push(...response.data.itemlist)
-  })
+  menues.value=store.seafood.itemlist;
+  backupdata.value = store.seafood.itemlist;
 })
 </script>
 
