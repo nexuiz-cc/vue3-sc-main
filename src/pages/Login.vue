@@ -202,7 +202,7 @@ watchEffect(() => {});
   position: absolute;
   width: 4.65rem;
   height: 0.45rem;
-  left: 3.6rem;
+  left: 3.3rem;
   top: 6.5rem;
 }
 .content .login-btn {
@@ -220,9 +220,11 @@ watchEffect(() => {});
 .content .tishi {
   display: block;
   justify-content: flex-end;
-  width: 2.1rem;
+  width: 5rem;
   font-size: 0.25rem;
   height: 0.3rem;
+  margin-left: -2.5rem;
+  text-align: right;
 }
 
 .reg {
