@@ -24,22 +24,38 @@
     <van-collapse-item title="Private Docs" name="Private"> Eveniet animi error eligendi</van-collapse-item>
     <van-collapse-item title="Settings" name="Settings">
       <div class="setting">
-        <div class="dm"><van-switch v-model="checked" /></div>
-        Dark Mode
+        <div class="dm">
+          <van-switch v-model="checked" />
+          <p>Dark Mode</p>
+        </div>
+        <button class="logout" @click="locate()">Log out</button>
       </div>
     </van-collapse-item>
   </van-collapse>
+
   <TabBar></TabBar>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import TabBar from '../components/TabBar.vue'
+import { store } from '../stores/store';
 const activeNames = ref(['1'])
 const checked = ref([false])
+const locate = () => {
+  store.isLogin = false;
+  location.href ='#/login';
+  }
 </script>
 
 <style scoped>
+.logout {
+  font-size: 0.3rem;
+  margin-left: 0.2rem;
+  position: relative;
+  bottom: 0.2rem;
+  left: 0.2rem;
+}
 .header h2 {
   width: 1.02rem;
   height: 1.02rem;
@@ -103,10 +119,7 @@ const checked = ref([false])
 }
 
 .setting {
+  display: inline-flex;
   font-size: 0.25rem;
-}
-
-.dm {
-  margin-left: 0.2rem;
 }
 </style>

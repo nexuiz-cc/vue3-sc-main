@@ -1,8 +1,8 @@
 <template>
   <Tabbar v-model="active" class="tabbar" id="tabbar">
     <TabbarItem icon="home-o" to="/home" name="home">DashBoard</TabbarItem>
-    <TabbarItem icon="shopping-cart" to="/menu" name="menu">Menu</TabbarItem>
-    <TabbarItem icon="friends-o" to="/sc" name="friends">Shoping Cart</TabbarItem>
+    <TabbarItem icon="newspaper-o" to="/menu" name="menu">Menu</TabbarItem>
+    <TabbarItem icon="shopping-cart" to="/sc" name="friends">Shoping Cart</TabbarItem>
     <TabbarItem icon="setting-o" to="/myPage" name="mypage">MyPage</TabbarItem>
   </Tabbar>
 </template>

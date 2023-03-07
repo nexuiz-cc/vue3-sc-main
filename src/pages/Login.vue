@@ -51,8 +51,8 @@ import { store } from "../stores/store";
 import axios from 'axios';
 import { useRouter } from "vue-router";
 const router = useRouter();
-const username = ref("");
-const password = ref("");
+const username = ref("username");
+const password = ref("password");
 onMounted(() => {
   axios.get('http://localhost:8082/product/seafood')
     .then(function (response) {
