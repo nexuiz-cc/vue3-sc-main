@@ -16,7 +16,7 @@
         //头条 百倍
         docEl.style.fontSize = 100 * (clientWidth / w) + "px";
         //标准 10倍
-        //docEl.style.fontSize = w/10 * (clientWidth / w) + "px";
+        // docEl.style.fontSize = w/10 * (clientWidth / w) + "px";
       };
   
     //窗口变化时，文档加载完毕时，控制基础字号

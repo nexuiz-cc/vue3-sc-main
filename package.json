@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "run-p dev:*",
-    "dev:server": "json-server --watch db.json --port 8082",
-    "dev:vite": "vite"
+    "server": "json-server --watch db.json --port 8082",
+    "client": "vite"
   },
   "dependencies": {
     "animate.css": "^4.1.1",
