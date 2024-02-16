@@ -53,20 +53,6 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 const username = ref("username");
 const password = ref("password");
-onMounted(() => {
-  axios.get('http://localhost:8082/product/seafood')
-    .then(function (response) {
-      store.seafood = response.data;
-  })
-  axios.get('http://localhost:8082/product/steak')
-    .then(function (response) {
-      store.steak = response.data;
-  })
-  axios.get('http://localhost:8082/product/drink')
-    .then(function (response) {
-      store.drink = response.data;
-  })
-});
 
 function fg_username() {
   router.push("./fg_username");
@@ -92,9 +78,6 @@ const onSubmit = () => {
     console.log("password:",store.password);
   }
 };
-
-computed(() => {});
-watchEffect(() => {});
 </script>
 
 <style scoped>

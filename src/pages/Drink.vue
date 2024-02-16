@@ -58,7 +58,7 @@
 import TabBar from "../components/TabBar.vue";
 import { ref, onMounted } from "vue";
 import TableInfo from "../components/TableInfo.vue";
-import { store } from "../stores/store";
+import { setData, getData } from '../api/api';
 
 let show = ref(false)
 const showPopup = () => {
@@ -98,8 +98,9 @@ const minus = (index) => {
 const menues = ref([]);
 const backupdata = ref([]);
 onMounted(() => {
-  menues.value = store.drink.itemlist;
-  backupdata.value = store.drink.itemlist;
+  getData('drink').then((res) => {
+    menues.value = res.data.itemlist
+  })
 });
 </script>
 

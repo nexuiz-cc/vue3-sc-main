@@ -12,12 +12,8 @@
     <button class="cancel" @click="cancel()">❌</button>
   </div>
 
-  <van-popup
-    style="background-color: #aee2ff"
-    v-model:show="show"
-    position="left"
-    :style="{ width: '30%', height: '100%' }"
-  >
+  <van-popup style="background-color: #aee2ff" v-model:show="show" position="left"
+    :style="{ width: '30%', height: '100%' }">
     <van-button size="large" type="primary" class="btn" @click="locate('#/menu')">Seafood</van-button>
     <van-button size="large" type="primary" class="btn" @click="locate('#/steak')">Steak</van-button>
     <van-button size="large" type="primary" class="btn" @click="locate('#/drink')">Drink</van-button>
@@ -33,8 +29,8 @@
         <h4 class="Menu_name">{{ item.name }}</h4>
         <p class="Menu_description">{{ item.description }}</p>
         <p class="Menu_price">¥{{ item.price }}</p>
-        <div class="Menu_orderbox">
-          <p class="Menu_count" id="Menu_count">🗙 {{ item.count }}</p>
+        <div class="Menu_orderbox" ref="box">
+          <p class="Menu_count" id="Menu_count" v-if="item.count>0">🗙 {{ item.count }}</p>
           <div class="Menu_">
             <button class="Menu_button-minus" @click="minus(index)">
               <div class="text">➖</div>
@@ -59,27 +55,54 @@
 import TabBar from '../components/TabBar.vue'
 import TableInfo from '../components/TableInfo.vue'
 import { ref, onMounted } from 'vue'
-import { store } from '../stores/store'
-
+import { setMenuData, getMenuData, setShopingCart } from '../api/api'
+const menues = ref([])
+const backupdata = ref([])
+const box = ref();
+onMounted(() => {
+  getMenuData('seafood').then((res) => {
+    menues.value = res.data.itemlist;
+  
+  })
+})
 const plus = (index) => {
   const num = document.getElementsByClassName('Menu_count')
   num[index].style.visibility = 'visible'
   menues.value[index].count += 1
-  store.seafoodList[index].amount += 1;
-  store.seafoodList[index].price = store.seafoodList[index].amount * store.seafoodList[index].singlePrice;
+  menues.value[index].totalPrice = menues.value[index].count * menues.value[index].price
 }
 
-let show = ref(false);
+let show = ref(false)
 const showPopup = () => {
   show.value = true
 }
 
-const addtoCart = (index) => {
-  console.log('addtoCart');
+const addtoCart = () => {
+  let sum = 0
+  let arr = menues.value
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i].totalPrice
+  }
+  setMenuData('seafood', {
+    id: 'seafood',
+    itemlist: menues.value,
+  })
+  menues.value = menues.value.filter(function callback(item) {
+    if (item.count > 0) {
+      return true
+    }
+  })
+
+  setShopingCart('seafood', {
+    id: 'seafood',
+    itemlist: menues.value,
+    totalPrice: sum,
+  })
 }
 const minus = (index) => {
   if (menues.value[index].count > 0) {
     menues.value[index].count -= 1
+    menues.value[index].totalPrice = menues.value[index].count * menues.value[index].price
   }
 
   if (menues.value[index].count == 0) {
@@ -99,13 +122,9 @@ const cancel = () => {
 const locate = (url) => {
   location.href = url
 }
-const menues = ref({})
-const backupdata = ref({})
 
-onMounted(() => {
-  menues.value = store.seafood.itemlist
-  backupdata.value = store.seafood.itemlist
-})
+
+
 </script>
 
 <style scoped>
@@ -119,6 +138,7 @@ onMounted(() => {
 .inline {
   display: flex;
 }
+
 .bars {
   margin-top: 0.3rem;
   margin-left: 0.3rem;
@@ -127,6 +147,7 @@ onMounted(() => {
 .van-popup {
   background: #1e62d0;
 }
+
 .search {
   height: 0.55rem;
   width: 58%;
@@ -164,6 +185,7 @@ onMounted(() => {
   position: relative;
   top: 1px;
 }
+
 .text {
   display: flex;
   margin-left: -0.15rem;
@@ -250,7 +272,7 @@ onMounted(() => {
 }
 
 .Menu_count {
-  visibility: hidden;
+  visibility: visible;
   margin-left: 1.1rem;
   margin-top: -0.58rem;
   font-size: 0.22rem;
@@ -276,14 +298,17 @@ onMounted(() => {
   text-shadow: 0px 1px 0px #154682;
   padding-top: 0.06rem;
 }
+
 .Menu_button-minus:hover {
   background: linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
   background-color: #0061a7;
 }
+
 .Menu_button-minus:active {
   position: relative;
   top: 1px;
 }
+
 .Menu_button-plus {
   width: 0.9rem;
   height: 0.45rem;
@@ -301,10 +326,12 @@ onMounted(() => {
   text-shadow: 0px 1px 0px #154682;
   padding-top: 0.06rem;
 }
+
 .Menu_button-plus:hover {
   background: linear-gradient(to bottom, #db7851 5%, #f05b06 100%);
   background-color: #d85001;
 }
+
 .Menu_button-plus:active {
   position: relative;
   top: 1px;

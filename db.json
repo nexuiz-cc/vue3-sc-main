@@ -7,18 +7,18 @@
         "password": "password",
         "role": "user",
         "name": "Flank",
-        "tableNumber":"54"
+        "tableNumber": "54"
       },
-      "admin":{
+      "admin": {
         "username": "admin",
         "password": "admin",
         "role": "admin",
         "name": "LEON",
-        "tableNumber":"0"
+        "tableNumber": "0"
       }
     }
   ],
-  "product": [
+  "products": [
     {
       "id": "seafood",
       "itemlist": [
@@ -28,17 +28,8 @@
           "description": "Grilled rock fish with sale.",
           "price": 2200,
           "image": "https://dummyimage.com/400x400/000/fff&text=fish+1",
-          "count": 0,
-          "totalPrice":0
-        },
-        {
-          "id": 1,
-          "name": "Grilled Rock Fish2",
-          "description": "Grilled rock fish with sale.",
-          "price": 2000,
-          "image": "https://dummyimage.com/400x400/000/fff&text=fish+2",
-          "count": 0,
-          "totalPrice":0
+          "count": 1,
+          "totalPrice": 2200
         },
         {
           "id": 2,
@@ -47,61 +38,16 @@
           "price": 2300,
           "image": "https://dummyimage.com/400x400/000/fff&text=fish+3",
           "count": 0,
-          "totalPrice":0
+          "totalPrice": 0
         },
         {
-          "id": 3,
-          "name": "Grilled Rock Fish4",
-          "description": "Grilled rock fish with sale.",
-          "price": 2200,
-          "image": "https://dummyimage.com/400x400/000/fff&text=fish+4",
-          "count": 0,
-          "totalPrice":0
-        },
-        {
-          "id": 4,
-          "name": "Grilled Rock Fish5",
+          "id": 1,
+          "name": "Grilled Rock Fish2",
           "description": "Grilled rock fish with sale.",
           "price": 2300,
-          "image": "https://dummyimage.com/400x400/000/fff&text=fish+5",
-          "count": 0,
-          "totalPrice":0
-        },
-        {
-          "id": 5,
-          "name": "Grilled Rock Fish6",
-          "description": "Grilled rock fish with sale.",
-          "price": 2300,
-          "image": "https://dummyimage.com/400x400/000/fff&text=fish+6",
-          "count": 0,
-          "totalPrice":0
-        },
-        {
-          "id": 6,
-          "name": "Grilled Rock Fish7",
-          "description": "Grilled rock fish with sale.",
-          "price": 2300,
-          "image": "https://dummyimage.com/400x400/000/fff&text=fish+7",
-          "count": 0,
-          "totalPrice":0
-        },
-        {
-          "id": 7,
-          "name": "Grilled Rock Fish8",
-          "description": "Grilled rock fish with sale.",
-          "price": 2300,
-          "image": "https://dummyimage.com/400x400/000/fff&text=fish+8",
-          "count": 0,
-          "totalPrice":0
-        },
-        {
-          "id": 8,
-          "name": "Grilled Sale Fishsh",
-          "description": "Grilled rock fish with salesalesale dummyimage.",
-          "price": 2300,
-          "image": "https://dummyimage.com/400x400/000/fff&text=SaleFish",
-          "count": 0,
-          "totalPrice":0
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+2",
+          "count": 1,
+          "totalPrice": 2300
         }
       ]
     },
@@ -115,7 +61,7 @@
           "price": 37000,
           "image": "https://dummyimage.com/400x400/000/fff&text=Emperors",
           "count": 0
-        }, 
+        },
         {
           "id": 1,
           "name": "Porter Steak for Two.",
@@ -176,7 +122,7 @@
     },
     {
       "id": "drink",
-      "itemlist":[
+      "itemlist": [
         {
           "id": 0,
           "name": "Drink 1.",
@@ -184,7 +130,7 @@
           "price": 650,
           "image": "https://dummyimage.com/400x400/000/fff&text=Drink1",
           "count": 0
-        }, 
+        },
         {
           "id": 1,
           "name": "Drink 2.",
@@ -192,7 +138,7 @@
           "price": 600,
           "image": "https://dummyimage.com/400x400/000/fff&text=Drink2",
           "count": 0
-        }, 
+        },
         {
           "id": 2,
           "name": "Drink 3.",
@@ -200,7 +146,7 @@
           "price": 750,
           "image": "https://dummyimage.com/400x400/000/fff&text=Drink3",
           "count": 0
-        }, 
+        },
         {
           "id": 3,
           "name": "Drink 4.",
@@ -208,7 +154,7 @@
           "price": 820,
           "image": "https://dummyimage.com/400x400/000/fff&text=Drink4",
           "count": 0
-        }, 
+        },
         {
           "id": 4,
           "name": "Drink 5.",
@@ -216,7 +162,7 @@
           "price": 820,
           "image": "https://dummyimage.com/400x400/000/fff&text=Drink5",
           "count": 0
-        }, 
+        },
         {
           "id": 5,
           "name": "Drink 6.",
@@ -226,6 +172,42 @@
           "count": 0
         }
       ]
+    }
+  ],
+  "shopingCart": [
+    {
+      "id": "seafood",
+      "totalPrice": 4500,
+      "itemlist": [
+        {
+          "id": 0,
+          "name": "Grilled What Fish",
+          "description": "Grilled rock fish with sale.",
+          "price": 2200,
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+1",
+          "count": 1,
+          "totalPrice": 2200
+        },
+        {
+          "id": 1,
+          "name": "Grilled Rock Fish2",
+          "description": "Grilled rock fish with sale.",
+          "price": 2300,
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+2",
+          "count": 1,
+          "totalPrice": 2300
+        }
+      ]
+    },
+    {
+      "id": "steak",
+      "totalPrice": 0,
+      "itemlist": []
+    },
+    {
+      "id": "drink",
+      "totalPrice": 0,
+      "itemlist": []
     }
   ]
 }

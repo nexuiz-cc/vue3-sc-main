@@ -6,16 +6,17 @@
     <TableInfo></TableInfo>
   </div>
 
-  <van-popup style="background-color:#AEE2FF" v-model:show="show" position="left" :style="{ width: '30%', height: '100%' }">
+  <van-popup
+    style="background-color: #aee2ff"
+    v-model:show="show"
+    position="left"
+    :style="{ width: '30%', height: '100%' }"
+  >
     <van-button size="large" type="primary" class="btn" @click="locate('#/menu')">Seafood</van-button>
-    <van-button  size="large" type="primary"  class="btn" @click="locate('#/steak')"
-      >Steak</van-button
-    >
-    <van-button  size="large" type="primary"  class="btn" @click="locate('#/drink')"
-      >Drink</van-button
-    >
-    <van-button  size="large" type="primary"  class="btn">Pasta</van-button>
-    <van-button  size="large" type="primary"  class="btn">Sushi</van-button>
+    <van-button size="large" type="primary" class="btn" @click="locate('#/steak')">Steak</van-button>
+    <van-button size="large" type="primary" class="btn" @click="locate('#/drink')">Drink</van-button>
+    <van-button size="large" type="primary" class="btn">Pasta</van-button>
+    <van-button size="large" type="primary" class="btn">Sushi</van-button>
   </van-popup>
 
   <div>
@@ -36,39 +37,35 @@
           <p class="Menu_count" id="Menu_count">🗙 {{ menu.count }}</p>
           <div class="Menu_">
             <button class="Menu_button-minus" @click="minus(index)">
-            <div class="text">➖</div>
+              <div class="text">➖</div>
             </button>
             <button class="Menu_button-plus" @click="plus(index)">
-            <div class="text">➕</div>
+              <div class="text">➕</div>
             </button>
           </div>
         </div>
       </div>
     </li>
   </ul>
-
   <div>
     <button class="btnadd">Add to cart</button>
   </div>
-
   <TabBar></TabBar>
 </template>
 
 <script setup>
-import _ from "lodash";
-import TabBar from "../components/TabBar.vue";
-import { ref, onMounted } from "vue";
-import TableInfo from "../components/TableInfo.vue";
-import { store } from "../stores/store";
+import _ from 'lodash'
+import TabBar from '../components/TabBar.vue'
+import { ref, onMounted } from 'vue'
+import TableInfo from '../components/TableInfo.vue'
+import { getMenuData, setMenuData, setShopingCart } from '../api/api'
 const filtered = () => {
-  console.log("filtered");
-  let str = document.getElementById("search").value;
-  let rs = menues.value.filter((menu) => menu.name.includes(str));
-  console.log(rs);
-  menues.value = rs;
-};
+  let str = document.getElementById('search').value
+  let rs = menues.value.filter((menu) => menu.name.includes(str))
+  menues.value = rs
+}
 
-let show = ref(false);
+let show = ref(false)
 const showPopup = () => {
   show.value = true
 }
@@ -76,41 +73,42 @@ const locate = (url) => {
   location.href = url
 }
 const cancel = () => {
-  menues.value = backupdata.value;
-};
+  menues.value = backupdata.value
+}
 
 const plus = (index) => {
-  const num = document.getElementsByClassName("Menu_count");
-  num[index].style.visibility = "visible";
-  menues.value[index].count += 1;
-};
-
+  const num = document.getElementsByClassName('Menu_count')
+  num[index].style.visibility = 'visible'
+  menues.value[index].count += 1
+}
 
 const minus = (index) => {
   if (menues.value[index].count > 0) {
-    menues.value[index].count -= 1;
+    menues.value[index].count -= 1
   }
 
   if (menues.value[index].count == 0) {
-    const num = document.getElementsByClassName("Menu_count");
-    num[index].style.visibility = "hidden";
+    const num = document.getElementsByClassName('Menu_count')
+    num[index].style.visibility = 'hidden'
   }
-};
+}
 
 const menues = ref([]);
-const backupdata = ref([]);
+const backupdata = ref([])
 onMounted(() => {
-  menues.value = store.steak.itemlist;
-  backupdata.value = store.steak.itemlist;
-});
+  getMenuData('steak').then((res) => {
+    menues.value = res.data.itemlist;
+    backupdata = res.data.itemlist;
+  })
+})
 </script>
 
 <style scoped>
 .inline {
   display: flex;
 }
-.text{
-display: flex;
+.text {
+  display: flex;
   margin-left: -0.15rem;
   margin-top: -0.035rem;
 }
@@ -119,28 +117,28 @@ display: flex;
   margin-left: 0.3rem;
 }
 .btn {
-  box-shadow:inset 0px 1px 0px 0px #97c4fe;
-	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
-	background-color:#3d94f6;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:6px 24px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #1570cd;
+  box-shadow: inset 0px 1px 0px 0px #97c4fe;
+  background: linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+  background-color: #3d94f6;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #1570cd;
 }
 
-.btn:hover{
-  background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
-	background-color:#1e62d0;
+.btn:hover {
+  background: linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+  background-color: #1e62d0;
 }
 
-.btn:active{
-  position:relative;
-	top:1px;
+.btn:active {
+  position: relative;
+  top: 1px;
 }
 
 #people {
@@ -183,8 +181,6 @@ display: flex;
   box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
 }
 
-
-
 #btn3 {
   width: 150px;
   padding-bottom: 3px;
@@ -199,7 +195,7 @@ display: flex;
   border: white;
   color: aliceblue;
   font-size: 0.3rem;
-  font-family: "Calling Code", Courier, monospace;
+  font-family: 'Calling Code', Courier, monospace;
   background-color: #0ca33e;
   margin-top: 0.5rem;
   margin-left: 0.2rem;
@@ -264,50 +260,50 @@ display: flex;
 .Menu_button-minus {
   width: 0.9rem;
   height: 0.45rem;
-  box-shadow:inset 0px 1px 0px 0px #54a3f7;
-	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
-	background-color:#007dc1;
-	border:1px solid #124d77;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	padding:8px 24px;
-	text-shadow:0px 1px 0px #154682;
+  box-shadow: inset 0px 1px 0px 0px #54a3f7;
+  background: linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+  background-color: #007dc1;
+  border: 1px solid #124d77;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  padding: 8px 24px;
+  text-shadow: 0px 1px 0px #154682;
   padding-top: 0.06rem;
 }
-.Menu_button-minus:hover{
-  background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
-	background-color:#0061a7;
+.Menu_button-minus:hover {
+  background: linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+  background-color: #0061a7;
 }
 .Menu_button-minus:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
 .Menu_button-plus {
   width: 0.9rem;
   height: 0.45rem;
-  box-shadow:inset 0px 1px 0px 0px #54a3f7;
-	background:linear-gradient(to bottom, #ee4603 5%, #d85001 100%);
-	background-color:#d85001;
-	border:1px solid #d85001;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	padding:8px 24px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #154682;
+  box-shadow: inset 0px 1px 0px 0px #54a3f7;
+  background: linear-gradient(to bottom, #ee4603 5%, #d85001 100%);
+  background-color: #d85001;
+  border: 1px solid #d85001;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  padding: 8px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #154682;
   padding-top: 0.06rem;
 }
-.Menu_button-plus:hover{
-  background:linear-gradient(to bottom, #db7851 5%, #f05b06 100%);
-  background-color:#d85001;
+.Menu_button-plus:hover {
+  background: linear-gradient(to bottom, #db7851 5%, #f05b06 100%);
+  background-color: #d85001;
 }
 .Menu_button-plus:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
 </style>
