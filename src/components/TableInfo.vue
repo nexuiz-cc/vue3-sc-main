@@ -1,41 +1,15 @@
 <template>
   <div class="icon">
-   
     <h4 class="info">Table {{ tableNumber }}</h4>
-    <select v-model="selected" class="amount" @change="amChange()">
-      <option disabled value=""></option>
-      <option class="amount_option" value="1">1</option>
-      <option class="amount_option" value="2">2</option>
-      <option class="amount_option" value="3">3</option>
-      <option class="amount_option" value="4">4</option>
-      <option class="amount_option" value="5">5</option>
-      <option class="amount_option" value="6">6</option>
-    </select>
-    <h4 id="people">people</h4>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { store } from "../stores/store";
-const tableNumber = "54";
-
-
-
-const selected = ref("");
-
-
-const amChange = () => {
-  store.amount = selected.value;
-};
-
-onMounted(() => {
-  selected.value = store.amount;
-});
+  import { ref } from 'vue'
+  const tableNumber = ref('54');
 </script>
 
 <style scoped>
-
 .amount {
   display: inline-block;
   height: 0.5rem;

@@ -43,22 +43,14 @@
 </template>
 
 <script setup>
-import { computed, onMounted, reactive, ref, watchEffect } from 'vue'
-import { useRouter } from 'vue-router'
-const router = useRouter()
-defineProps([])
-const data = reactive({})
-const refData = ref('')
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+defineProps([]);
 
 function tohome() {
-  router.push('/home')
+  router.push('/home');
 }
-onMounted(() => {})
-
-const method = () => {}
-computed(() => {})
-
-watchEffect(() => {})
 </script>
 
 <style scoped>

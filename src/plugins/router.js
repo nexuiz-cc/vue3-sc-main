@@ -1,20 +1,19 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+/* eslint-disable no-use-before-define */
+import { createRouter, createWebHistory } from 'vue-router';
 import { store } from '../stores/store';
-import Login from '../pages/Login.vue'
-// import Reg from "../pages/Reg.vue";
+import Login from '../pages/Login.vue';
+
 const routes = [
   { path: '/login', component: Login },
-  //   { path: "/reg", component: Reg },
   {
     path: '/home',
     component: () => import('../pages/Home.vue'),
     beforeEnter: () => {
       if (store.isLogin) {
-        return true
-      } else {
-        router.push('./login')
-        return false
+        return true;
       }
+      router.push('./login');
+      return false;
     },
   },
   { path: '/menu', component: () => import('../pages/Menu.vue') },
@@ -26,14 +25,16 @@ const routes = [
   { path: '/myPage', component: () => import('../pages/MyPage.vue') },
   { path: '/steak', component: () => import('../pages/Steak.vue') },
   { path: '/drink', component: () => import('../pages/Drink.vue') },
+  { path: '/pasta', component: () => import('../pages/Pasta.vue') },
+  { path: '/sushi', component: () => import('../pages/Sushi.vue') },
   { path: '/', redirect: '/home' },
 
   //   { path: "/:pathMatch(.*)*", component: () => import("../pages/NoPage.vue") },
-]
+];
 
 const router = createRouter({
   routes,
-  history: createWebHashHistory(),
-})
+  history: createWebHistory(),
+});
 
-export default router
+export default router;

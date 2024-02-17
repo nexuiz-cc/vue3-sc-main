@@ -14,18 +14,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { store } from '../stores/store.js'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+// eslint-disable-next-line import/extensions
+import { store } from '../stores/store.js';
 
-const newPassword = ref('')
-const router = useRouter()
+const newPassword = ref('');
+const router = useRouter();
 const onSubmit = () => {
-  console.log('newPassword:', newPassword.value)
-  store.username = newUsernewPasswordname.value
-  console.log('password:', store.password)
-  router.push('./login')
-}
+  // eslint-disable-next-line no-console
+  console.log('newPassword:', newPassword.value);
+  store.username = newPassword.value;
+  // eslint-disable-next-line no-console
+  console.log('password:', store.password);
+  router.push('./login');
+};
 </script>
 
 <style scoped>

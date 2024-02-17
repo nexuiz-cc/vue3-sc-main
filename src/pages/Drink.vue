@@ -1,5 +1,6 @@
+<!-- eslint-disable no-restricted-globals -->
 <template>
-    <div class="inline">
+  <div class="inline">
     <div class="bars">
       <van-icon name="bars" color="#1989fa" size="25" @click="showPopup" />
     </div>
@@ -7,15 +8,11 @@
   </div>
 
   <van-popup v-model:show="show" position="left" :style="{ width: '30%', height: '100%' }">
-    <van-button size="large" type="primary" class="btn" @click="locate('#/menu')">Seafood</van-button>
-    <van-button  size="large" type="primary"  class="btn" @click="locate('#/steak')"
-      >Steak</van-button
-    >
-    <van-button  size="large" type="primary"  class="btn" @click="locate('#/drink')"
-      >Drink</van-button
-    >
-    <van-button  size="large" type="primary"  class="btn">Pasta</van-button>
-    <van-button  size="large" type="primary"  class="btn">Sushi</van-button>
+    <van-button size="large" type="primary" class="btn" @click="locate('/menu')">Seafood</van-button>
+    <van-button size="large" type="primary" class="btn" @click="locate('/steak')">Steak</van-button>
+    <van-button size="large" type="primary" class="btn" @click="locate('/drink')">Drink</van-button>
+    <van-button size="large" type="primary" class="btn" @click="locate('/pasta')">Pasta</van-button>
+    <van-button size="large" type="primary" class="btn" @click="locate('/sushi')">Sushi</van-button>
   </van-popup>
 
   <div>
@@ -36,10 +33,10 @@
           <p class="Menu_count" id="Menu_count">🗙 {{ menu.count }}</p>
           <div class="Menu_">
             <button class="Menu_button-minus" @click="minus(index)">
-            <div class="text">➖</div>
+              <div class="text">➖</div>
             </button>
             <button class="Menu_button-plus" @click="plus(index)">
-            <div class="text">➕</div>
+              <div class="text">➕</div>
             </button>
           </div>
         </div>
@@ -48,30 +45,58 @@
   </ul>
 
   <div>
-    <button class="btnadd">Add to cart</button>
+    <button class="btnadd" @click="addtoCart(index)">Add to cart</button>
   </div>
 
   <TabBar></TabBar>
 </template>
 
 <script setup>
-import TabBar from "../components/TabBar.vue";
-import { ref, onMounted } from "vue";
-import TableInfo from "../components/TableInfo.vue";
-import { setData, getData } from '../api/api';
+import { ref, onMounted } from 'vue';
+import TabBar from '../components/TabBar.vue';
+import TableInfo from '../components/TableInfo.vue';
+import { getMenuData, setMenuData, setShopingCart } from '../api/api';
 
-let show = ref(false)
+const menues = ref([]);
+const backupdata = ref([]);
+const show = ref(false);
+
+const addtoCart = () => {
+  menues.value = backupdata.value;
+  let sum = 0;
+  const arr = menues.value;
+
+  for (const item of arr) {
+    sum += item.totalPrice;
+  }
+
+  setMenuData('drink', {
+    id: 'drink',
+    itemlist: menues.value,
+  });
+  backupdata.value = backupdata.value.filter((item) => {
+    if (item.count > 0) {
+      return true;
+    }
+    return null;
+  });
+
+  setShopingCart('drink', {
+    id: 'drink',
+    itemlist: backupdata.value,
+    totalPrice: sum,
+  });
+};
 const showPopup = () => {
-  show.value = true
-}
+  show.value = true;
+};
 const locate = (url) => {
-  location.href = url
-}
+  // eslint-disable-next-line no-restricted-globals
+  location.href = url;
+};
 const filtered = () => {
-  console.log("filtered");
-  let str = document.getElementById("search").value;
-  let rs = menues.value.filter((menu) => menu.name.includes(str));
-  console.log(rs);
+  const str = document.getElementById('search').value;
+  const rs = menues.value.filter((menu) => menu.name.includes(str));
   menues.value = rs;
 };
 const cancel = () => {
@@ -79,9 +104,10 @@ const cancel = () => {
 };
 
 const plus = (index) => {
-  const num = document.getElementsByClassName("Menu_count");
-  num[index].style.visibility = "visible";
+  const num = document.getElementsByClassName('Menu_count');
+  num[index].style.visibility = 'visible';
   menues.value[index].count += 1;
+  menues.value[index].totalPrice = menues.value[index].count * menues.value[index].price;
 };
 
 const minus = (index) => {
@@ -89,18 +115,17 @@ const minus = (index) => {
     menues.value[index].count -= 1;
   }
 
-  if (menues.value[index].count == 0) {
-    const num = document.getElementsByClassName("Menu_count");
-    num[index].style.visibility = "hidden";
+  if (menues.value[index].count === 0) {
+    const num = document.getElementsByClassName('Menu_count');
+    num[index].style.visibility = 'hidden';
   }
 };
 
-const menues = ref([]);
-const backupdata = ref([]);
 onMounted(() => {
-  getData('drink').then((res) => {
-    menues.value = res.data.itemlist
-  })
+  getMenuData('drink').then((res) => {
+    menues.value = res.data.itemlist;
+    backupdata.value = res.data.itemlist;
+  });
 });
 </script>
 
@@ -108,39 +133,43 @@ onMounted(() => {
 .inline {
   display: flex;
 }
-.text{
-display: flex;
-margin-left: -0.15rem;
-margin-top: -0.035rem;
+
+.text {
+  display: flex;
+  margin-left: -0.15rem;
+  margin-top: -0.035rem;
 }
+
 .btn {
-  box-shadow:inset 0px 1px 0px 0px #97c4fe;
-	background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
-	background-color:#3d94f6;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:6px 24px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #1570cd;
+  box-shadow: inset 0px 1px 0px 0px #97c4fe;
+  background: linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+  background-color: #3d94f6;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #1570cd;
 }
 
-.btn:hover{
-  background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
-	background-color:#1e62d0;
+.btn:hover {
+  background: linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+  background-color: #1e62d0;
 }
 
-.btn:active{
-  position:relative;
-	top:1px;
+.btn:active {
+  position: relative;
+  top: 1px;
 }
+
 .bars {
-margin-top: 0.3rem;
-margin-left: 0.3rem;
+  margin-top: 0.3rem;
+  margin-left: 0.3rem;
 }
+
 .amount {
   display: inline-block;
   height: 0.5rem;
@@ -148,10 +177,12 @@ margin-left: 0.3rem;
   font-size: 0.3rem;
   margin-left: 0.1rem;
 }
+
 .amount_option {
   font-size: 0.3rem;
   margin-top: 0.1rem;
 }
+
 #people {
   font-size: 0.34rem;
   color: #096bec;
@@ -171,6 +202,7 @@ margin-left: 0.3rem;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
+
 .searchbtn {
   display: inline-block;
   position: relative;
@@ -187,6 +219,7 @@ margin-left: 0.3rem;
   top: 0.02rem;
   text-align: center;
 }
+
 .search:focus {
   outline: 0;
   box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
@@ -271,50 +304,54 @@ margin-left: 0.3rem;
 .Menu_button-minus {
   width: 0.9rem;
   height: 0.45rem;
-  box-shadow:inset 0px 1px 0px 0px #54a3f7;
-	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
-	background-color:#007dc1;
-	border:1px solid #124d77;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	padding:8px 24px;
-	text-shadow:0px 1px 0px #154682;
+  box-shadow: inset 0px 1px 0px 0px #54a3f7;
+  background: linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+  background-color: #007dc1;
+  border: 1px solid #124d77;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  padding: 8px 24px;
+  text-shadow: 0px 1px 0px #154682;
   padding-top: 0.06rem;
 }
-.Menu_button-minus:hover{
-  background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
-	background-color:#0061a7;
+
+.Menu_button-minus:hover {
+  background: linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+  background-color: #0061a7;
 }
+
 .Menu_button-minus:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
+
 .Menu_button-plus {
   width: 0.9rem;
   height: 0.45rem;
-  box-shadow:inset 0px 1px 0px 0px #54a3f7;
-	background:linear-gradient(to bottom, #ee4603 5%, #d85001 100%);
-	background-color:#d85001;
-	border:1px solid #d85001;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	padding:8px 24px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #154682;
+  box-shadow: inset 0px 1px 0px 0px #54a3f7;
+  background: linear-gradient(to bottom, #ee4603 5%, #d85001 100%);
+  background-color: #d85001;
+  border: 1px solid #d85001;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  padding: 8px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #154682;
   padding-top: 0.06rem;
 }
-.Menu_button-plus:hover{
-  background:linear-gradient(to bottom, #db7851 5%, #f05b06 100%);
-  background-color:#d85001;
+
+.Menu_button-plus:hover {
+  background: linear-gradient(to bottom, #db7851 5%, #f05b06 100%);
+  background-color: #d85001;
 }
+
 .Menu_button-plus:active {
-	position:relative;
-	top:1px;
-}
-</style>
+  position: relative;
+  top: 1px;
+}</style>

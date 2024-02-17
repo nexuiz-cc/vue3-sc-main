@@ -14,10 +14,11 @@
 
   <van-popup style="background-color: #aee2ff" v-model:show="show" position="left"
     :style="{ width: '30%', height: '100%' }">
-    <van-button size="large" type="primary" class="btn" @click="locate('#/menu')">Seafood</van-button>
-    <van-button size="large" type="primary" class="btn" @click="locate('#/steak')">Steak</van-button>
-    <van-button size="large" type="primary" class="btn" @click="locate('#/drink')">Drink</van-button>
-    <van-button size="large" type="primary" class="btn">Pasta</van-button>
+    <van-button size="large" type="primary" class="btn" @click="locate('/menu')">Seafood</van-button>
+    <van-button size="large" type="primary" class="btn" @click="locate('/steak')">Steak</van-button>
+    <van-button size="large" type="primary" class="btn" @click="locate('/drink')">Drink</van-button>
+    <van-button size="large" type="primary" class="btn" @click="locate('/pasta')">Pasta</van-button>
+    <van-button size="large" type="primary" class="btn" @click="locate('/sushi')">Sushi</van-button>
   </van-popup>
 
   <ul class="scroll">
@@ -30,7 +31,7 @@
         <p class="Menu_description">{{ item.description }}</p>
         <p class="Menu_price">¥{{ item.price }}</p>
         <div class="Menu_orderbox" ref="box">
-          <p class="Menu_count" id="Menu_count" v-if="item.count>0">🗙 {{ item.count }}</p>
+          <p class="Menu_count" id="Menu_count" v-show="item.count > 0">🗙 {{ item.count }}</p>
           <div class="Menu_">
             <button class="Menu_button-minus" @click="minus(index)">
               <div class="text">➖</div>
@@ -52,79 +53,82 @@
 </template>
 
 <script setup>
-import TabBar from '../components/TabBar.vue'
-import TableInfo from '../components/TableInfo.vue'
-import { ref, onMounted } from 'vue'
-import { setMenuData, getMenuData, setShopingCart } from '../api/api'
-const menues = ref([])
-const backupdata = ref([])
+import { ref, onMounted } from 'vue';
+import TabBar from '../components/TabBar.vue';
+import TableInfo from '../components/TableInfo.vue';
+import { setMenuData, getMenuData, setShopingCart } from '../api/api';
+
+const menues = ref([]);
+const backupdata = ref([]);
 const box = ref();
 onMounted(() => {
   getMenuData('seafood').then((res) => {
     menues.value = res.data.itemlist;
-  
-  })
-})
+    backupdata.value = res.data.itemlist;
+  });
+});
 const plus = (index) => {
-  const num = document.getElementsByClassName('Menu_count')
-  num[index].style.visibility = 'visible'
-  menues.value[index].count += 1
-  menues.value[index].totalPrice = menues.value[index].count * menues.value[index].price
-}
-
-let show = ref(false)
-const showPopup = () => {
-  show.value = true
-}
-
-const addtoCart = () => {
-  let sum = 0
-  let arr = menues.value
-  for (let i = 0; i < arr.length; i++) {
-    sum += arr[i].totalPrice
-  }
+  menues.value[index].count += 1;
+  menues.value[index].totalPrice = menues.value[index].count * menues.value[index].price;
   setMenuData('seafood', {
     id: 'seafood',
     itemlist: menues.value,
-  })
-  menues.value = menues.value.filter(function callback(item) {
+  });
+};
+
+const show = ref(false);
+const showPopup = () => {
+  show.value = true;
+};
+
+const addtoCart = () => {
+  menues.value = backupdata.value;
+  let sum = 0;
+  const arr = menues.value;
+
+  for (const item of arr) {
+    sum += item.totalPrice;
+  }
+
+  setMenuData('seafood', {
+    id: 'seafood',
+    itemlist: menues.value,
+  });
+  backupdata.value = backupdata.value.filter((item) => {
     if (item.count > 0) {
-      return true
+      return true;
     }
-  })
+    return null;
+  });
 
   setShopingCart('seafood', {
     id: 'seafood',
-    itemlist: menues.value,
+    itemlist: backupdata.value,
     totalPrice: sum,
-  })
-}
+  });
+};
 const minus = (index) => {
   if (menues.value[index].count > 0) {
-    menues.value[index].count -= 1
-    menues.value[index].totalPrice = menues.value[index].count * menues.value[index].price
+    menues.value[index].count -= 1;
+    menues.value[index].totalPrice = menues.value[index].count * menues.value[index].price;
+    setMenuData('seafood', {
+      id: 'seafood',
+      itemlist: menues.value,
+    });
   }
-
-  if (menues.value[index].count == 0) {
-    const num = document.getElementsByClassName('Menu_count')
-    num[index].style.visibility = 'hidden'
-  }
-}
+};
 const filtered = () => {
-  console.log('filtered')
-  const str = document.getElementById('search').value
-  const rs = menues.value.filter((menu) => menu.name.includes(str))
-  menues.value = rs
-}
+  const str = document.getElementById('search').value;
+  const rs = menues.value.filter((menu) => menu.name.includes(str));
+  menues.value = rs;
+};
 const cancel = () => {
-  menues.value = backupdata.value
-}
+  menues.value = backupdata.value;
+};
 const locate = (url) => {
-  location.href = url
-}
-
-
-
+  // eslint-disable-next-line no-restricted-globals
+  location.href = url;
+};
 </script>
 
 <style scoped>

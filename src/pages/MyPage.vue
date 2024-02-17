@@ -37,15 +37,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import TabBar from '../components/TabBar.vue'
+import { ref } from 'vue';
+import TabBar from '../components/TabBar.vue';
 import { store } from '../stores/store';
-const activeNames = ref(['1'])
-const checked = ref([false])
+
+const activeNames = ref(['1']);
+const checked = ref([false]);
 const locate = () => {
   store.isLogin = false;
-  location.href ='#/login';
-  }
+  // eslint-disable-next-line no-restricted-globals
+  location.href = '#/login';
+};
 </script>
 
 <style scoped>

@@ -2,20 +2,22 @@
   "user": [
     {
       "id": "profile",
-      "Flank": {
-        "username": "username",
-        "password": "password",
-        "role": "user",
-        "name": "Flank",
-        "tableNumber": "54"
-      },
-      "admin": {
-        "username": "admin",
-        "password": "admin",
-        "role": "admin",
-        "name": "LEON",
-        "tableNumber": "0"
-      }
+      "userList": [
+        {
+          "username": "username",
+          "password": "password",
+          "role": "user",
+          "name": "Flank",
+          "tableNumber": "54"
+        },
+        {
+          "username": "admin",
+          "password": "admin",
+          "role": "admin",
+          "name": "LEON",
+          "tableNumber": "0"
+        }
+      ]
     }
   ],
   "products": [
@@ -24,7 +26,7 @@
       "itemlist": [
         {
           "id": 0,
-          "name": "Grilled What Fish",
+          "name": "Fish 1",
           "description": "Grilled rock fish with sale.",
           "price": 2200,
           "image": "https://dummyimage.com/400x400/000/fff&text=fish+1",
@@ -32,22 +34,58 @@
           "totalPrice": 2200
         },
         {
-          "id": 2,
-          "name": "Grilled Rock Fish3",
+          "id": 1,
+          "name": "Fish 2",
           "description": "Grilled rock fish with sale.",
           "price": 2300,
           "image": "https://dummyimage.com/400x400/000/fff&text=fish+3",
+          "count": 1,
+          "totalPrice": 2300
+        },
+        {
+          "id": 2,
+          "name": "Fish 3",
+          "description": "Grilled rock fish with sale.",
+          "price": 2300,
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+2",
           "count": 0,
           "totalPrice": 0
         },
         {
-          "id": 1,
-          "name": "Grilled Rock Fish2",
+          "id": 3,
+          "name": "Fish 4",
           "description": "Grilled rock fish with sale.",
           "price": 2300,
-          "image": "https://dummyimage.com/400x400/000/fff&text=fish+2",
-          "count": 1,
-          "totalPrice": 2300
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+4",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 4,
+          "name": "Fish 5",
+          "description": "Grilled rock fish with sale.",
+          "price": 2300,
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+5",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 5,
+          "name": "Fish 6",
+          "description": "Grilled rock fish with sale.",
+          "price": 2300,
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+6",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 6,
+          "name": "Fish 7",
+          "description": "Grilled rock fish with sale.",
+          "price": 2300,
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+7",
+          "count": 0,
+          "totalPrice": 0
         }
       ]
     },
@@ -56,67 +94,75 @@
       "itemlist": [
         {
           "id": 0,
-          "name": "Emperors Steak for Two.",
-          "description": "ausdgfy(2名様用)",
-          "price": 37000,
-          "image": "https://dummyimage.com/400x400/000/fff&text=Emperors",
-          "count": 0
+          "name": "Steak 1",
+          "description": "ステーキ(2名様用)",
+          "price": 3700,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+1",
+          "count": 0,
+          "totalPrice": 0
         },
         {
           "id": 1,
-          "name": "Porter Steak for Two.",
+          "name": "Steak 2",
           "description": "ステーキ(2名様用)",
-          "price": 28000,
-          "image": "https://dummyimage.com/400x400/000/fff&text=Porterhouse2",
-          "count": 0
+          "price": 2800,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+2",
+          "count": 0,
+          "totalPrice": 5600
         },
         {
           "id": 2,
-          "name": "Porter Steak for Three",
+          "name": "Steak 3",
           "description": "ステーキ(3名様用)",
-          "price": 42000,
-          "image": "https://dummyimage.com/400x400/000/fff&text=Porterhouse3",
-          "count": 0
+          "price": 4200,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+3",
+          "count": 0,
+          "totalPrice": 0
         },
         {
           "id": 3,
-          "name": "Porter Steak for Four.",
+          "name": "Steak 4",
           "description": "ステーキ(4名様用)",
-          "price": 56000,
-          "image": "https://dummyimage.com/400x400/000/fff&text=Porterhouse4",
-          "count": 0
+          "price": 5600,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+4",
+          "count": 0,
+          "totalPrice": 0
         },
         {
           "id": 4,
-          "name": "Sirloin Steak.",
+          "name": "Steak 5",
           "description": "サーロインステーキ.",
-          "price": 15000,
-          "image": "https://dummyimage.com/400x400/000/fff&text=SirloinSteak",
-          "count": 0
+          "price": 1500,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+5",
+          "count": 0,
+          "totalPrice": 0
         },
         {
           "id": 5,
-          "name": "Rib Eye Steak.",
+          "name": "Steak 6",
           "description": "リブアイステーキ",
-          "price": 21000,
-          "image": "https://dummyimage.com/400x400/000/fff&text=RibEyeSteak",
-          "count": 0
+          "price": 2100,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+6",
+          "count": 0,
+          "totalPrice": 0
         },
         {
           "id": 6,
-          "name": "Filet Mignon.",
+          "name": "Steak 7",
           "description": "フィレミニオン",
-          "price": 16500,
-          "image": "https://dummyimage.com/400x400/000/fff&text=FiletMignon",
-          "count": 0
+          "price": 1650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+7",
+          "count": 0,
+          "totalPrice": 0
         },
         {
           "id": 7,
-          "name": "Today's Wagyu Beef.",
+          "name": "Steak 8",
           "description": "本日の厳選黒毛和牛",
-          "price": 16500,
-          "image": "https://dummyimage.com/400x400/000/fff&text=RibEyeSteak",
-          "count": 0
+          "price": 1650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+8",
+          "count": 0,
+          "totalPrice": 0
         }
       ]
     },
@@ -129,7 +175,8 @@
           "description": "drink 1.",
           "price": 650,
           "image": "https://dummyimage.com/400x400/000/fff&text=Drink1",
-          "count": 0
+          "count": 0,
+          "totalPrice": 0
         },
         {
           "id": 1,
@@ -137,7 +184,8 @@
           "description": "drink 1.",
           "price": 600,
           "image": "https://dummyimage.com/400x400/000/fff&text=Drink2",
-          "count": 0
+          "count": 0,
+          "totalPrice": 0
         },
         {
           "id": 2,
@@ -145,7 +193,8 @@
           "description": "drink 3.",
           "price": 750,
           "image": "https://dummyimage.com/400x400/000/fff&text=Drink3",
-          "count": 0
+          "count": 0,
+          "totalPrice": 0
         },
         {
           "id": 3,
@@ -153,7 +202,8 @@
           "description": "drink 4.",
           "price": 820,
           "image": "https://dummyimage.com/400x400/000/fff&text=Drink4",
-          "count": 0
+          "count": 0,
+          "totalPrice": 0
         },
         {
           "id": 4,
@@ -161,7 +211,8 @@
           "description": "drink 5.",
           "price": 820,
           "image": "https://dummyimage.com/400x400/000/fff&text=Drink5",
-          "count": 0
+          "count": 0,
+          "totalPrice": 0
         },
         {
           "id": 5,
@@ -169,7 +220,414 @@
           "description": "drink 6.",
           "price": 820,
           "image": "https://dummyimage.com/400x400/000/fff&text=Drink6",
-          "count": 0
+          "count": 0,
+          "totalPrice": 0
+        }
+      ]
+    },
+    {
+      "id": "pasta",
+      "itemlist": [
+        {
+          "id": 0,
+          "name": "Pasta 1",
+          "description": "Pasta 1.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Pasta+1",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 1,
+          "name": "Pasta 2",
+          "description": "Pasta 2.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Pasta+2",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 2,
+          "name": "Pasta 3",
+          "description": "Pasta 3.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Pasta+3",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 3,
+          "name": "Pasta 4",
+          "description": "Pasta 4.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Pasta+4",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 4,
+          "name": "Pasta 5",
+          "description": "Pasta 5.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Pasta+5",
+          "count": 0,
+          "totalPrice": 0
+        }
+      ]
+    },
+    {
+      "id": "sushi",
+      "itemlist": [
+        {
+          "id": 0,
+          "name": "sushi 1",
+          "description": "sushi 1.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=sushi+1",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 1,
+          "name": "sushi 2",
+          "description": "sushi 2.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=sushi+2",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 2,
+          "name": "sushi 3",
+          "description": "sushi 3.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=sushi+3",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 3,
+          "name": "sushi 4",
+          "description": "sushi 4.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=sushi+4",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 4,
+          "name": "sushi 5",
+          "description": "sushi 5.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=sushi+5",
+          "count": 0,
+          "totalPrice": 0
+        }
+      ]
+    }
+  ],
+  "default": [
+    {
+      "id": "seafood",
+      "itemlist": [
+        {
+          "id": 0,
+          "name": "Fish 1",
+          "description": "Grilled rock fish with sale.",
+          "price": 2200,
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+1",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 1,
+          "name": "Fish 2",
+          "description": "Grilled rock fish with sale.",
+          "price": 2300,
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+3",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 2,
+          "name": "Fish 3",
+          "description": "Grilled rock fish with sale.",
+          "price": 2300,
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+2",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 3,
+          "name": "Fish 4",
+          "description": "Grilled rock fish with sale.",
+          "price": 2300,
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+4",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 4,
+          "name": "Fish 5",
+          "description": "Grilled rock fish with sale.",
+          "price": 2300,
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+5",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 5,
+          "name": "Fish 6",
+          "description": "Grilled rock fish with sale.",
+          "price": 2300,
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+6",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 6,
+          "name": "Fish 7",
+          "description": "Grilled rock fish with sale.",
+          "price": 2300,
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+7",
+          "count": 0,
+          "totalPrice": 0
+        }
+      ]
+    },
+    {
+      "id": "steak",
+      "itemlist": [
+        {
+          "id": 0,
+          "name": "Steak 1",
+          "description": "ステーキ(2名様用)",
+          "price": 3700,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+1",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 1,
+          "name": "Steak 2",
+          "description": "ステーキ(2名様用)",
+          "price": 2800,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+2",
+          "count": 0,
+          "totalPrice": 5600
+        },
+        {
+          "id": 2,
+          "name": "Steak 3",
+          "description": "ステーキ(3名様用)",
+          "price": 4200,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+3",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 3,
+          "name": "Steak 4",
+          "description": "ステーキ(4名様用)",
+          "price": 5600,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+4",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 4,
+          "name": "Steak 5",
+          "description": "サーロインステーキ.",
+          "price": 1500,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+5",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 5,
+          "name": "Steak 6",
+          "description": "リブアイステーキ",
+          "price": 2100,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+6",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 6,
+          "name": "Steak 7",
+          "description": "フィレミニオン",
+          "price": 1650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+7",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 7,
+          "name": "Steak 8",
+          "description": "本日の厳選黒毛和牛",
+          "price": 1650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Steak+8",
+          "count": 0,
+          "totalPrice": 0
+        }
+      ]
+    },
+    {
+      "id": "drink",
+      "itemlist": [
+        {
+          "id": 0,
+          "name": "Drink 1.",
+          "description": "drink 1.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Drink1",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 1,
+          "name": "Drink 2.",
+          "description": "drink 1.",
+          "price": 600,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Drink2",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 2,
+          "name": "Drink 3.",
+          "description": "drink 3.",
+          "price": 750,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Drink3",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 3,
+          "name": "Drink 4.",
+          "description": "drink 4.",
+          "price": 820,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Drink4",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 4,
+          "name": "Drink 5.",
+          "description": "drink 5.",
+          "price": 820,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Drink5",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 5,
+          "name": "Drink 6.",
+          "description": "drink 6.",
+          "price": 820,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Drink6",
+          "count": 0,
+          "totalPrice": 0
+        }
+      ]
+    },
+    {
+      "id": "pasta",
+      "itemlist": [
+        {
+          "id": 0,
+          "name": "Pasta 1",
+          "description": "Pasta 1.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Pasta+1",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 1,
+          "name": "Pasta 2",
+          "description": "Pasta 2.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Pasta+2",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 2,
+          "name": "Pasta 3",
+          "description": "Pasta 3.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Pasta+3",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 3,
+          "name": "Pasta 4",
+          "description": "Pasta 4.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Pasta+4",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 4,
+          "name": "Pasta 5",
+          "description": "Pasta 5.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=Pasta+5",
+          "count": 0,
+          "totalPrice": 0
+        }
+      ]
+    },
+    {
+      "id": "sushi",
+      "itemlist": [
+        {
+          "id": 0,
+          "name": "sushi 1",
+          "description": "sushi 1.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=sushi+1",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 1,
+          "name": "sushi 2",
+          "description": "sushi 2.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=sushi+2",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 2,
+          "name": "sushi 3",
+          "description": "sushi 3.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=sushi+3",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 3,
+          "name": "sushi 4",
+          "description": "sushi 4.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=sushi+4",
+          "count": 0,
+          "totalPrice": 0
+        },
+        {
+          "id": 4,
+          "name": "sushi 5",
+          "description": "sushi 5.",
+          "price": 650,
+          "image": "https://dummyimage.com/400x400/000/fff&text=sushi+5",
+          "count": 0,
+          "totalPrice": 0
         }
       ]
     }
@@ -181,7 +639,7 @@
       "itemlist": [
         {
           "id": 0,
-          "name": "Grilled What Fish",
+          "name": "Fish 1",
           "description": "Grilled rock fish with sale.",
           "price": 2200,
           "image": "https://dummyimage.com/400x400/000/fff&text=fish+1",
@@ -190,10 +648,10 @@
         },
         {
           "id": 1,
-          "name": "Grilled Rock Fish2",
+          "name": "Fish 2",
           "description": "Grilled rock fish with sale.",
           "price": 2300,
-          "image": "https://dummyimage.com/400x400/000/fff&text=fish+2",
+          "image": "https://dummyimage.com/400x400/000/fff&text=fish+3",
           "count": 1,
           "totalPrice": 2300
         }
@@ -206,6 +664,16 @@
     },
     {
       "id": "drink",
+      "totalPrice": 0,
+      "itemlist": []
+    },
+    {
+      "id": "pasta",
+      "totalPrice": 0,
+      "itemlist": []
+    },
+    {
+      "id": "sushi",
       "totalPrice": 0,
       "itemlist": []
     }

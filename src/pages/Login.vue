@@ -25,64 +25,57 @@
         />
       </van-cell-group>
       <div style="margin: 16px">
-        <van-button
-          round
-          block
-          type="primary"
-          style="font-size: 0.25rem"
-          @click="onSubmit()"
-        >
-          Login
-        </van-button>
+        <van-button round block type="primary" style="font-size: 0.25rem" @click="onSubmit()"> Login </van-button>
       </div>
     </van-form>
 
     <div class="footbox" style="margin-top: 0.3rem">
-      <a class="tishi" @click="fg_username()">forgot username</a>
-      <a class="tishi" @click="fg_password()">forgot password</a>
+      <a class="tishi" @click="toUsername()">forgot username</a>
+      <a class="tishi" @click="toPassword()">forgot password</a>
       <a class="tishi" @click="fg_all()">forgot username & password</a>
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, watchEffect, ref, computed } from "vue";
-import { store } from "../stores/store";
-import axios from 'axios';
-import { useRouter } from "vue-router";
-const router = useRouter();
-const username = ref("username");
-const password = ref("password");
+// eslint-disable-next-line import/no-extraneous-dependencies
+import _ from 'lodash';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { store } from '../stores/store';
+import { getUserData } from '../api/api';
 
-function fg_username() {
-  router.push("./fg_username");
+const router = useRouter();
+const username = ref('username');
+const password = ref('password');
+
+function toUsername() {
+  router.push('./fg_username');
 }
-function fg_password() {
-  router.push("./fg_password");
+function toPassword() {
+  router.push('./fg_password');
 }
 function tohome() {
-  router.push("/home");
+  router.push('/home');
 }
 const login = () => {
   store.isLogin = true;
 };
 const onSubmit = () => {
-  if (username.value == store.username && password.value == store.password) {
-    login();
-    console.log("success");
-    console.log("username:",store.username);
-    console.log("password:",store.password);
-    tohome();
-  } else {
-    console.log("username:",store.username);
-    console.log("password:",store.password);
-  }
+  getUserData().then((res) => {
+    const arr = res.data.userList;
+    const user = _.find(arr, { username: username.value });
+    if (user !== undefined) {
+      login();
+      tohome();
+    }
+  });
 };
 </script>
 
 <style scoped>
 * {
-  font-family: "Consolas", Courier, monospace;
+  font-family: 'Consolas', Courier, monospace;
 }
 .content {
   max-width: 6.4rem;

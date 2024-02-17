@@ -8,16 +8,14 @@
 </template>
 
 <script setup>
-import { Tabbar, TabbarItem } from "vant";
-import { ref, onMounted } from "vue";
-import { store } from "../stores/store";
-const active = ref("home");
+import { Tabbar, TabbarItem } from 'vant';
+import { ref, onMounted } from 'vue';
+
+const active = ref('home');
 
 onMounted(() => {
-  if (store.isLogin) {
-    const tab = document.getElementById("tabbar");
-    tab.style.display = "flex";
-  }
+  const tab = document.getElementById('tabbar');
+  tab.style.display = 'flex';
 });
 </script>
 

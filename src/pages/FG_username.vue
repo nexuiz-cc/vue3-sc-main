@@ -14,18 +14,19 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { store } from '../stores/store.js'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+// eslint-disable-next-line import/extensions
+import { store } from '../stores/store.js';
 
-const newUsername = ref('')
-const router = useRouter()
+const newUsername = ref('');
+const router = useRouter();
 const onSubmit = () => {
-  console.log('newUsername:', newUsername.value)
-  store.username = newUsername.value
-  console.log('username:', store.username)
-  router.push('./login')
-}
+  console.log('newUsername:', newUsername.value);
+  store.username = newUsername.value;
+  console.log('username:', store.username);
+  router.push('./login');
+};
 </script>
 
 <style scoped>

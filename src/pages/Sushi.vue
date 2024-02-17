@@ -6,12 +6,6 @@
     <TableInfo></TableInfo>
   </div>
 
-  <div>
-    <input type="text" class="search" id="search" />
-    <button class="searchbtn" @click="filtered()">🔍</button>
-    <button class="cancel" @click="cancel()">❌</button>
-  </div>
-
   <van-popup style="background-color: #aee2ff" v-model:show="show" position="left"
     :style="{ width: '30%', height: '100%' }">
     <van-button size="large" type="primary" class="btn" @click="locate('/menu')">Seafood</van-button>
@@ -21,17 +15,22 @@
     <van-button size="large" type="primary" class="btn" @click="locate('/sushi')">Sushi</van-button>
   </van-popup>
 
+  <div>
+    <input type="text" class="search" id="search" />
+    <button class="searchbtn" @click="filtered()">🔍</button>
+    <button class="cancel" @click="cancel()">❌</button>
+  </div>
   <ul class="scroll">
-    <li v-for="(item, index) in menues" class="Menu" :key="index">
+    <li v-for="(menu, index) in menues" class="Menu" :key="index">
       <div class="Menu_imagearea">
-        <img :src="item.image" class="Menu_image" />
+        <img :src="menu.image" class="Menu_image" />
       </div>
       <div class="Menu_detail">
-        <h4 class="Menu_name">{{ item.name }}</h4>
-        <p class="Menu_description">{{ item.description }}</p>
-        <p class="Menu_price">¥{{ item.price }}</p>
-        <div class="Menu_orderbox" ref="box">
-          <p class="Menu_count" id="Menu_count" v-show="item.count > 0">🗙 {{ item.count }}</p>
+        <h4 class="Menu_name">{{ menu.name }}</h4>
+        <p class="Menu_description">{{ menu.description }}</p>
+        <p class="Menu_price">¥{{ menu.price }}</p>
+        <div class="Menu_orderbox">
+          <p class="Menu_count" id="Menu_count">🗙 {{ menu.count }}</p>
           <div class="Menu_">
             <button class="Menu_button-minus" @click="minus(index)">
               <div class="text">➖</div>
@@ -44,9 +43,8 @@
       </div>
     </li>
   </ul>
-
   <div>
-    <button class="btnadd" @click="addtoCart(index)">Add to cart</button>
+    <button class="btnadd" @click="addCart()">Add to cart</button>
   </div>
   <TabBar></TabBar>
 </template>
@@ -55,40 +53,36 @@
 import { ref, onMounted } from 'vue';
 import TabBar from '../components/TabBar.vue';
 import TableInfo from '../components/TableInfo.vue';
-import { setMenuData, getMenuData, setShopingCart } from '../api/api';
+import { getMenuData, setMenuData, setShopingCart } from '../api/api';
 
 const menues = ref([]);
 const backupdata = ref([]);
-const box = ref();
-onMounted(() => {
-  getMenuData('steak').then((res) => {
-    menues.value = res.data.itemlist;
-    backupdata.value = res.data.itemlist;
-  });
-});
-const plus = (index) => {
-  const num = document.getElementsByClassName('Menu_count');
-  num[index].style.visibility = 'visible';
-  menues.value[index].count += 1;
-  menues.value[index].totalPrice = menues.value[index].count * menues.value[index].price;
+const filtered = () => {
+  const str = document.getElementById('search').value;
+  const rs = menues.value.filter((menu) => menu.name.includes(str));
+  menues.value = rs;
 };
 
 const show = ref(false);
 const showPopup = () => {
   show.value = true;
 };
-
-const addtoCart = () => {
+const locate = (url) => {
+  // eslint-disable-next-line no-restricted-globals
+  location.href = url;
+};
+const cancel = () => {
   menues.value = backupdata.value;
+};
+
+const addCart = () => {
   let sum = 0;
   const arr = menues.value;
-
   for (const item of arr) {
     sum += item.totalPrice;
   }
-
-  setMenuData('steak', {
-    id: 'steak',
+  setMenuData('sushi', {
+    id: 'sushi',
     itemlist: menues.value,
   });
   backupdata.value = backupdata.value.filter((item) => {
@@ -97,17 +91,22 @@ const addtoCart = () => {
     }
     return null;
   });
-
-  setShopingCart('steak', {
-    id: 'steak',
+  setShopingCart('sushi', {
+    id: 'sushi',
     itemlist: backupdata.value,
     totalPrice: sum,
   });
 };
+const plus = (index) => {
+  const num = document.getElementsByClassName('Menu_count');
+  num[index].style.visibility = 'visible';
+  menues.value[index].count += 1;
+  menues.value[index].totalPrice = menues.value[index].count * menues.value[index].price;
+};
+
 const minus = (index) => {
   if (menues.value[index].count > 0) {
     menues.value[index].count -= 1;
-    menues.value[index].totalPrice = menues.value[index].count * menues.value[index].price;
   }
 
   if (menues.value[index].count === 0) {
@@ -115,54 +114,28 @@ const minus = (index) => {
     num[index].style.visibility = 'hidden';
   }
 };
-const filtered = () => {
-  const str = document.getElementById('search').value;
-  const rs = menues.value.filter((menu) => menu.name.includes(str));
-  menues.value = rs;
-};
-const cancel = () => {
-  menues.value = backupdata.value;
-};
-const locate = (url) => {
-  // eslint-disable-next-line no-restricted-globals
-  location.href = url;
-};
+
+onMounted(() => {
+  getMenuData('sushi').then((res) => {
+    menues.value = res.data.itemlist;
+    backupdata.value = res.data.itemlist;
+  });
+});
 </script>
 
 <style scoped>
-#people {
-  font-size: 0.34rem;
-  color: #096bec;
-  margin-left: 0.1rem;
-  margin-top: 0.02rem;
-}
-
 .inline {
   display: flex;
 }
-
+.text {
+  display: flex;
+  margin-left: -0.15rem;
+  margin-top: -0.035rem;
+}
 .bars {
   margin-top: 0.3rem;
   margin-left: 0.3rem;
 }
-
-.van-popup {
-  background: #1e62d0;
-}
-
-.search {
-  height: 0.55rem;
-  width: 58%;
-  margin-left: 0.3rem;
-  padding: 0 16px;
-  border-radius: 4px;
-  border: none;
-  box-shadow: 0 0 0 1px #ccc inset;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
 .btn {
   box-shadow: inset 0px 1px 0px 0px #97c4fe;
   background: linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
@@ -188,12 +161,25 @@ const locate = (url) => {
   top: 1px;
 }
 
-.text {
-  display: flex;
-  margin-left: -0.15rem;
-  margin-top: -0.035rem;
+#people {
+  font-size: 0.34rem;
+  color: #096bec;
+  margin-left: 0.1rem;
+  margin-top: 0.02rem;
 }
 
+.search {
+  height: 0.55rem;
+  width: 58%;
+  margin-left: 0.3rem;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 0 0 1px #ccc inset;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
 .searchbtn {
   display: inline-block;
   position: relative;
@@ -210,10 +196,17 @@ const locate = (url) => {
   top: 0.02rem;
   text-align: center;
 }
-
 .search:focus {
   outline: 0;
   box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
+}
+
+#btn3 {
+  width: 150px;
+  padding-bottom: 3px;
+  border: white;
+  color: aliceblue;
+  background-color: #ec09bb;
 }
 
 .btnadd {
@@ -224,8 +217,8 @@ const locate = (url) => {
   font-size: 0.3rem;
   font-family: 'Calling Code', Courier, monospace;
   background-color: #0ca33e;
-  margin-top: 1%;
-  margin-left: 2%;
+  margin-top: 0.5rem;
+  margin-left: 0.2rem;
 }
 </style>
 <style scoped>
@@ -274,7 +267,6 @@ const locate = (url) => {
 }
 
 .Menu_count {
-  visibility: visible;
   margin-left: 1.1rem;
   margin-top: -0.58rem;
   font-size: 0.22rem;
@@ -300,17 +292,14 @@ const locate = (url) => {
   text-shadow: 0px 1px 0px #154682;
   padding-top: 0.06rem;
 }
-
 .Menu_button-minus:hover {
   background: linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
   background-color: #0061a7;
 }
-
 .Menu_button-minus:active {
   position: relative;
   top: 1px;
 }
-
 .Menu_button-plus {
   width: 0.9rem;
   height: 0.45rem;
@@ -328,12 +317,10 @@ const locate = (url) => {
   text-shadow: 0px 1px 0px #154682;
   padding-top: 0.06rem;
 }
-
 .Menu_button-plus:hover {
   background: linear-gradient(to bottom, #db7851 5%, #f05b06 100%);
   background-color: #d85001;
 }
-
 .Menu_button-plus:active {
   position: relative;
   top: 1px;
