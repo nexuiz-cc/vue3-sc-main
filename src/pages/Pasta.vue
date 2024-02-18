@@ -5,12 +5,7 @@
         <strong class="strong">Raconter期間限定フェア開催中です！</strong>
         <p class="intro_text">ホテルベルクラシック東京に構えるイタリアンフレンチレストラン四季折々の食材くを取り入れた創作フレンチをスタイリッシュなカジュアル空間でご堪能...</p>
       </div>
-    </a-tab-pane>
-    <a-tab-pane key="2" tab="飲食店 2">飲食店 2</a-tab-pane>
-    <a-tab-pane key="3" tab="飲食店 3">飲食店 3</a-tab-pane>
-    <a-tab-pane key="4" tab="飲食店 4">飲食店 4</a-tab-pane>
-  </a-tabs>
-  <div class="shop">
+      <div class="shop">
     <div class="inline">
       <div class="bars">
         <van-icon name="bars" color="#1989fa" size="25" @click="showPopup" />
@@ -42,7 +37,9 @@
           <p class="Menu_description">{{ menu.description }}</p>
           <p class="Menu_price">¥{{ menu.price }}</p>
           <div class="Menu_orderbox">
-            <p class="Menu_count" id="Menu_count">🗙 {{ menu.count }}</p>
+            <div class="Menu_count" id="Menu_count">
+              <div v-show="menu.count>0">🗙 {{ menu.count }}</div>
+            </div>
             <div class="Menu_">
               <button class="Menu_button-minus" @click="minus(index)">
                 <div class="text">➖</div>
@@ -60,6 +57,12 @@
     </div>
     <TabBar></TabBar>
   </div>
+    </a-tab-pane>
+    <a-tab-pane key="2" tab="飲食店 2">飲食店 2</a-tab-pane>
+    <a-tab-pane key="3" tab="飲食店 3">飲食店 3</a-tab-pane>
+    <a-tab-pane key="4" tab="飲食店 4">飲食店 4</a-tab-pane>
+  </a-tabs>
+
 </template>
 
 <script setup>
@@ -268,28 +271,27 @@ onMounted(() => {
 }
 
 .Menu_description {
-  margin-top: 0.05rem;
-  padding-top: 0.03rem;
+  margin-top: -0.1rem;
   margin-left: 0.2rem;
   font-size: 0.22rem;
 }
 
 .Menu_price {
-  margin-top: 0.15rem;
+  margin-top: 0.08rem;
   font-size: 0.28rem;
   font-weight: bold;
 }
 
 .Menu_orderbox {
   position: relative;
-  margin-top: 0.2rem;
 }
 
 .Menu_count {
-  visibility: hidden;
-  margin-left: 1.1rem;
-  margin-top: -0.58rem;
+  display: flex;
+  margin-left: 0.8rem;
+  margin-top: -24px;
   font-size: 0.22rem;
+  height: 20.25px;
 }
 
 .Menu_ {

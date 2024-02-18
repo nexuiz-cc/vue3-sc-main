@@ -37,7 +37,9 @@
               <p class="Menu_description">{{ menu.description }}</p>
               <p class="Menu_price">¥{{ menu.price }}</p>
               <div class="Menu_orderbox">
-                <p class="Menu_count" id="Menu_count">🗙 {{ menu.count }}</p>
+                <div class="Menu_count" id="Menu_count">
+              <div v-show="menu.count>0">🗙 {{ menu.count }}</div>
+            </div>
                 <div class="Menu_">
                   <button class="Menu_button-minus" @click="minus(index)">
                     <div class="text">➖</div>
@@ -287,13 +289,11 @@ onMounted(() => {
 
 .Menu_description {
   margin-top: -0.05rem;
-  padding-top: 0.03rem;
   margin-left: 0.2rem;
   font-size: 0.22rem;
 }
 
 .Menu_price {
-  margin-top: 0.15rem;
   font-size: 0.28rem;
   font-weight: bold;
 }
@@ -303,12 +303,9 @@ onMounted(() => {
 }
 
 .Menu_count {
-  visibility: hidden;
-  margin-left: 1.1rem;
-  margin-top: -0.5rem;
-  position: relative;
-  top: 0.16rem;
-  left: -0.2rem;
+  display: flex;
+  margin-left: 0.8rem;
+  margin-top: -24px;
   font-size: 0.22rem;
   height: 20.25px;
 }

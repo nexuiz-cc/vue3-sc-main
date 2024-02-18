@@ -70,7 +70,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import TabBar from '../components/TabBar.vue';
-import TableInfo from '../components/Tableinfo.vue';
+import TableInfo from '../components/TableInfo.vue';
 import { setMenuData, getMenuData, setShopingCart } from '../api/api';
 
 const menues = ref([]);
@@ -294,7 +294,6 @@ const locate = (url) => {
 
 .Menu_count {
   display: flex;
-  visibility: visible;
   margin-left: 1.1rem;
   margin-top: -23px;
   font-size: 0.22rem;
