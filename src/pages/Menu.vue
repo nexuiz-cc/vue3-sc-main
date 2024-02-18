@@ -1,6 +1,6 @@
 <template>
   <div class="shop">
-    <a-tabs v-model:activeKey="activeKey">
+    <a-tabs class='menu' v-model:activeKey="activeKey">
       <a-tab-pane key="1" tab="飲食店 1">
         <div class="intro">
           <strong class="strong">Raconter期間限定フェア開催中です！</strong>

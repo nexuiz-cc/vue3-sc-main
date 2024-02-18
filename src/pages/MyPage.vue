@@ -1,127 +1,123 @@
 <template>
-  <div class="header">
-    <div class="user-box">
-      <div class="h1"></div>
-      <a href="login_m.html" class="a1">Login</a>
-      <a href="reg_m.html" class="a2">Register</a>
+  <div class="page" id="page">
+    <div class="title">マイページ</div>
+    <div class="dropdown-wrap">
+      <a-dropdown :placement="right">
+        <a-button>
+          <MenuOutlined />
+        </a-button>
+        <template #overlay>
+          <a-menu>
+            <a-menu-item>
+              <a-switch class="switch" v-model:checked="checked" @click="handleChange()" checked-children="Dark Mode"
+                un-checked-children="Light Mode" />
+            </a-menu-item>
+            <a-menu-item>
+              <a href="javascript:;">2nd menu item</a>
+            </a-menu-item>
+            <a-menu-item>
+              <a href="javascript:;">3rd menu item</a>
+            </a-menu-item>
+          </a-menu>
+        </template>
+      </a-dropdown>
     </div>
-    <ul class="clear">
-      <li>
-        <span>0</span>
-        <p>Follows</p>
-      </li>
-      <li>
-        <span>0</span>
-        <p class="end">Fans</p>
-      </li>
-    </ul>
+    <div class="card">
+      <a-card hoverable style="width: 355px">
+        <template #cover>
+          <img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" height="200" />
+        </template>
+        <template #actions>
+          <setting-outlined key="setting" />
+          <edit-outlined key="edit" />
+          <ellipsis-outlined key="ellipsis" />
+        </template>
+        <a-card-meta title="Card title" description="This is the description" style="height: 50px">
+          <template #avatar>
+            <a-avatar src="https://joeschmoe.io/api/v1/random" />
+          </template>
+        </a-card-meta>
+      </a-card>
+    </div>
+    <br />
+    <div :style="{ border: '1px solid #d9d9d9', borderRadius: '4px' }" class="calendar">
+      <a-calendar v-model:value="value" :fullscreen="false" @panelChange="onPanelChange" class="calendar_content"
+        @select="onSelect" />
+    </div>
   </div>
-  <div class="h1"></div>
-  <van-collapse v-model="activeNames">
-    <van-collapse-item title="Public Docs" name="Public">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-    </van-collapse-item>
-    <van-collapse-item title="Private Docs" name="Private"> Eveniet animi error eligendi</van-collapse-item>
-    <van-collapse-item title="Settings" name="Settings">
-      <div class="setting">
-        <div class="dm">
-          <van-switch v-model="checked" />
-          <p>Dark Mode</p>
-        </div>
-        <button class="logout" @click="locate()">Log out</button>
-      </div>
-    </van-collapse-item>
-  </van-collapse>
-
   <TabBar></TabBar>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import {
+  MenuOutlined, SettingOutlined, EditOutlined, EllipsisOutlined,
+} from '@ant-design/icons-vue';
 import TabBar from '../components/TabBar.vue';
-import { store } from '../stores/store';
 
-const activeNames = ref(['1']);
-const checked = ref([false]);
-const locate = () => {
-  store.isLogin = false;
-  // eslint-disable-next-line no-restricted-globals
-  location.href = '#/login';
+const right = 'bottomRight';
+const checked = ref(false);
+const value = ref();
+const handleChange = () => {
+  const el = document.getElementById('page');
+  if (checked.value) {
+    el.setAttribute('class', 'page_dark');
+  } else {
+    el.setAttribute('class', 'page');
+  }
 };
+const onPanelChange = (val, mode) => {
+  console.log(val, mode);
+};
+onMounted(() => { });
 </script>
 
 <style scoped>
-.logout {
-  font-size: 0.3rem;
-  margin-left: 0.2rem;
+.dm {
+  height: 1200px;
+}
+
+.page_dark {
+  background-color: #000;
+  height: 800px;
+  color: #fff;
+}
+
+.page {
+  background-color: #fff;
+  height: 800px;
+  color: #000;
+}
+
+.dropdown-wrap {
+  display: flex;
   position: relative;
-  bottom: 0.2rem;
-  left: 0.2rem;
-}
-.header h2 {
-  width: 1.02rem;
-  height: 1.02rem;
-  border-radius: 50%;
-  margin: 0 auto;
-}
-.header h2 img {
-  width: 100%;
-}
-.header .user-box {
-  width: 1.14rem;
-  font-size: 0.25rem;
-  color: #000;
-  margin: 0 auto;
-  margin-top: 0.2rem;
-}
-.user-box a {
-  color: #000;
-}
-.header ul {
-  margin-top: 0.4rem;
-}
-.header ul li {
-  width: 50%;
-  height: 0.7rem;
-  float: left;
-  color: #000;
-}
-.header ul li span {
-  height: 0.37rem;
-  line-height: 0.37rem;
-  text-align: center;
-  display: block;
-  font-size: 0.25rem;
-}
-.header ul li p {
-  text-align: center;
-  font-size: 0.3rem;
-  height: 0.32rem;
-  line-height: 0.32rem;
-  border-right: 1px solid #fff;
-}
-.header ul li p.end {
-  border: 0;
+  left: 310px;
+  top: -15px;
 }
 
-.h1 {
-  margin-top: 1rem;
-}
-.a1 {
-  margin-left: -0.6rem;
-  font-size: 0.3rem;
-}
-.a2 {
-  margin-left: 0.3rem;
-  font-size: 0.3rem;
+.switch {
+  background-color: lightblue;
+  color: #000 !important;
 }
 
-* {
-  font-family: 'Consolas', Courier, monospace;
+.card {
+  position: relative;
+  top: -5px;
+  left: 10px;
 }
 
-.setting {
-  display: inline-flex;
-  font-size: 0.25rem;
+.calendar {
+  width: 355px;
+  position: relative;
+  top: -10px;
+  left: 10px;
+}
+
+.title {
+  position: relative;
+  left: 20px;
+  top: 15px;
+  font-size: 20px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <a-tabs v-model:activeKey="activeKey">
+  <a-tabs class='menu' v-model:activeKey="activeKey">
     <a-tab-pane key="1" tab="飲食店 1">
       <div class="shop">
         <div class="intro">
