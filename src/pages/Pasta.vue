@@ -1,52 +1,65 @@
 <template>
-  <div class="inline">
-    <div class="bars">
-      <van-icon name="bars" color="#1989fa" size="25" @click="showPopup" />
-    </div>
-    <TableInfo></TableInfo>
-  </div>
-
-  <van-popup style="background-color: #aee2ff" v-model:show="show" position="left"
-    :style="{ width: '30%', height: '100%' }">
-    <van-button size="large" type="primary" class="btn" @click="locate('/menu')">Seafood</van-button>
-    <van-button size="large" type="primary" class="btn" @click="locate('/steak')">Steak</van-button>
-    <van-button size="large" type="primary" class="btn" @click="locate('/drink')">Drink</van-button>
-    <van-button size="large" type="primary" class="btn" @click="locate('/pasta')">Pasta</van-button>
-    <van-button size="large" type="primary" class="btn" @click="locate('/sushi')">Sushi</van-button>
-  </van-popup>
-
-  <div>
-    <input type="text" class="search" id="search" />
-    <button class="searchbtn" @click="filtered()">🔍</button>
-    <button class="cancel" @click="cancel()">❌</button>
-  </div>
-  <ul class="scroll">
-    <li v-for="(menu, index) in menues" class="Menu" :key="index">
-      <div class="Menu_imagearea">
-        <img :src="menu.image" class="Menu_image" />
+  <a-tabs v-model:activeKey="activeKey">
+    <a-tab-pane key="1" tab="飲食店 1">
+      <div class="intro">
+        <strong class="strong">Raconter期間限定フェア開催中です！</strong>
+        <p class="intro_text">ホテルベルクラシック東京に構えるイタリアンフレンチレストラン四季折々の食材くを取り入れた創作フレンチをスタイリッシュなカジュアル空間でご堪能...</p>
       </div>
-      <div class="Menu_detail">
-        <h4 class="Menu_name">{{ menu.name }}</h4>
-        <p class="Menu_description">{{ menu.description }}</p>
-        <p class="Menu_price">¥{{ menu.price }}</p>
-        <div class="Menu_orderbox">
-          <p class="Menu_count" id="Menu_count">🗙 {{ menu.count }}</p>
-          <div class="Menu_">
-            <button class="Menu_button-minus" @click="minus(index)">
-              <div class="text">➖</div>
-            </button>
-            <button class="Menu_button-plus" @click="plus(index)">
-              <div class="text">➕</div>
-            </button>
+    </a-tab-pane>
+    <a-tab-pane key="2" tab="飲食店 2">飲食店 2</a-tab-pane>
+    <a-tab-pane key="3" tab="飲食店 3">飲食店 3</a-tab-pane>
+    <a-tab-pane key="4" tab="飲食店 4">飲食店 4</a-tab-pane>
+  </a-tabs>
+  <div class="shop">
+    <div class="inline">
+      <div class="bars">
+        <van-icon name="bars" color="#1989fa" size="25" @click="showPopup" />
+      </div>
+      <TableInfo></TableInfo>
+    </div>
+
+    <van-popup style="background-color: #aee2ff" v-model:show="show" position="left"
+      :style="{ width: '30%', height: '100%' }">
+      <van-button size="large" type="primary" class="btn" @click="locate('/menu')">Seafood</van-button>
+      <van-button size="large" type="primary" class="btn" @click="locate('/steak')">Steak</van-button>
+      <van-button size="large" type="primary" class="btn" @click="locate('/drink')">Drink</van-button>
+      <van-button size="large" type="primary" class="btn" @click="locate('/pasta')">Pasta</van-button>
+      <van-button size="large" type="primary" class="btn" @click="locate('/sushi')">Sushi</van-button>
+    </van-popup>
+
+    <div>
+      <input type="text" class="search" id="search" />
+      <button class="searchbtn" @click="filtered()">🔍</button>
+      <button class="cancel" @click="cancel()">❌</button>
+    </div>
+    <ul class="scroll">
+      <li v-for="(menu, index) in menues" class="Menu" :key="index">
+        <div class="Menu_imagearea">
+          <img :src="menu.image" class="Menu_image" />
+        </div>
+        <div class="Menu_detail">
+          <h4 class="Menu_name">{{ menu.name }}</h4>
+          <p class="Menu_description">{{ menu.description }}</p>
+          <p class="Menu_price">¥{{ menu.price }}</p>
+          <div class="Menu_orderbox">
+            <p class="Menu_count" id="Menu_count">🗙 {{ menu.count }}</p>
+            <div class="Menu_">
+              <button class="Menu_button-minus" @click="minus(index)">
+                <div class="text">➖</div>
+              </button>
+              <button class="Menu_button-plus" @click="plus(index)">
+                <div class="text">➕</div>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </li>
-  </ul>
-  <div>
-    <button class="btnadd" @click="addCart()">Add to cart</button>
+      </li>
+    </ul>
+    <div>
+      <button class="btnadd" @click="addCart()">Add to cart</button>
+    </div>
+    <TabBar></TabBar>
   </div>
-  <TabBar></TabBar>
 </template>
 
 <script setup>
@@ -127,15 +140,18 @@ onMounted(() => {
 .inline {
   display: flex;
 }
+
 .text {
   display: flex;
   margin-left: -0.15rem;
   margin-top: -0.035rem;
 }
+
 .bars {
   margin-top: 0.3rem;
   margin-left: 0.3rem;
 }
+
 .btn {
   box-shadow: inset 0px 1px 0px 0px #97c4fe;
   background: linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
@@ -180,6 +196,7 @@ onMounted(() => {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
+
 .searchbtn {
   display: inline-block;
   position: relative;
@@ -196,6 +213,7 @@ onMounted(() => {
   top: 0.02rem;
   text-align: center;
 }
+
 .search:focus {
   outline: 0;
   box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
@@ -210,15 +228,16 @@ onMounted(() => {
 }
 
 .btnadd {
-  width: 6rem;
+  width: 5.8rem;
   height: 0.8rem;
   border: white;
   color: aliceblue;
   font-size: 0.3rem;
   font-family: 'Calling Code', Courier, monospace;
   background-color: #0ca33e;
-  margin-top: 0.5rem;
-  margin-left: 0.2rem;
+  margin-top: 3%;
+  border-radius: 5px;
+  margin-left: 4.1%;
 }
 </style>
 <style scoped>
@@ -293,14 +312,17 @@ onMounted(() => {
   text-shadow: 0px 1px 0px #154682;
   padding-top: 0.06rem;
 }
+
 .Menu_button-minus:hover {
   background: linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
   background-color: #0061a7;
 }
+
 .Menu_button-minus:active {
   position: relative;
   top: 1px;
 }
+
 .Menu_button-plus {
   width: 0.9rem;
   height: 0.45rem;
@@ -318,10 +340,12 @@ onMounted(() => {
   text-shadow: 0px 1px 0px #154682;
   padding-top: 0.06rem;
 }
+
 .Menu_button-plus:hover {
   background: linear-gradient(to bottom, #db7851 5%, #f05b06 100%);
   background-color: #d85001;
 }
+
 .Menu_button-plus:active {
   position: relative;
   top: 1px;

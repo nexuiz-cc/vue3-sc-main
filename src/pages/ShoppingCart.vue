@@ -20,7 +20,7 @@
   </a-row>
   <VanButton class="pay" @click="showModal1" v-show="totalPrice !== 0">会計</VanButton>
   <a-modal v-model:open="open1" title="会計金額" @ok="payBill">
-    <p>{{ totalPrice }}</p>
+    <p>{{ totalPrice }} 円</p>
     <a-modal v-model:open="open2" footer=''>
       <a-result
         status="success"
@@ -30,7 +30,6 @@
       </a-result>
     </a-modal>
   </a-modal>
-
   <TabBar></TabBar>
 </template>
 

@@ -1,61 +1,76 @@
 <template>
-  <div class="inline">
-    <div class="bars">
-      <van-icon name="bars" color="#1989fa" size="25" @click="showPopup" />
-    </div>
-    <TableInfo></TableInfo>
-  </div>
+  <div class="shop">
+    <a-tabs v-model:activeKey="activeKey">
+      <a-tab-pane key="1" tab="飲食店 1">
+        <div class="intro">
+          <strong class="strong">Raconter期間限定フェア開催中です！</strong>
+          <p class="intro_text">ホテルベルクラシック東京に構えるイタリアンフレンチレストラン四季折々の食材くを取り入れた創作フレンチをスタイリッシュなカジュアル空間でご堪能...</p>
+        </div>
+        <div class="box">
+          <div class="inline">
+            <div class="bars">
+              <van-icon name="bars" color="#1989fa" size="25" @click="showPopup" />
+            </div>
+            <TableInfo></TableInfo>
+          </div>
 
-  <div>
-    <input type="text" class="search" id="search" />
-    <button class="searchbtn" @click="filtered()">🔍</button>
-    <button class="cancel" @click="cancel()">❌</button>
-  </div>
+          <div>
+            <input type="text" class="search" id="search" />
+            <button class="searchbtn" @click="filtered()">🔍</button>
+            <button class="cancel" @click="cancel()">❌</button>
+          </div>
 
-  <van-popup style="background-color: #aee2ff" v-model:show="show" position="left"
-    :style="{ width: '30%', height: '100%' }">
-    <van-button size="large" type="primary" class="btn" @click="locate('/menu')">Seafood</van-button>
-    <van-button size="large" type="primary" class="btn" @click="locate('/steak')">Steak</van-button>
-    <van-button size="large" type="primary" class="btn" @click="locate('/drink')">Drink</van-button>
-    <van-button size="large" type="primary" class="btn" @click="locate('/pasta')">Pasta</van-button>
-    <van-button size="large" type="primary" class="btn" @click="locate('/sushi')">Sushi</van-button>
-  </van-popup>
+          <van-popup style="background-color: #aee2ff" v-model:show="show" position="left"
+            :style="{ width: '30%', height: '100%' }">
+            <van-button size="large" type="primary" class="btn" @click="locate('/menu')">Seafood</van-button>
+            <van-button size="large" type="primary" class="btn" @click="locate('/steak')">Steak</van-button>
+            <van-button size="large" type="primary" class="btn" @click="locate('/drink')">Drink</van-button>
+            <van-button size="large" type="primary" class="btn" @click="locate('/pasta')">Pasta</van-button>
+            <van-button size="large" type="primary" class="btn" @click="locate('/sushi')">Sushi</van-button>
+          </van-popup>
 
-  <ul class="scroll">
-    <li v-for="(item, index) in menues" class="Menu" :key="index">
-      <div class="Menu_imagearea">
-        <img :src="item.image" class="Menu_image" />
-      </div>
-      <div class="Menu_detail">
-        <h4 class="Menu_name">{{ item.name }}</h4>
-        <p class="Menu_description">{{ item.description }}</p>
-        <p class="Menu_price">¥{{ item.price }}</p>
-        <div class="Menu_orderbox" ref="box">
-          <p class="Menu_count" id="Menu_count" v-show="item.count > 0">🗙 {{ item.count }}</p>
-          <div class="Menu_">
-            <button class="Menu_button-minus" @click="minus(index)">
-              <div class="text">➖</div>
-            </button>
-            <button class="Menu_button-plus" @click="plus(index)">
-              <div class="text">➕</div>
-            </button>
+          <ul class="scroll">
+            <li v-for="(item, index) in menues" class="Menu" :key="index">
+              <div class="Menu_imagearea">
+                <img :src="item.image" class="Menu_image" />
+              </div>
+              <div class="Menu_detail">
+                <h4 class="Menu_name">{{ item.name }}</h4>
+                <p class="Menu_description">{{ item.description }}</p>
+                <p class="Menu_price">¥{{ item.price }}</p>
+                <div class="Menu_orderbox" ref="box">
+                  <div class="Menu_count" id="Menu_count" >
+                    <div v-show="item.count > 0">🗙 {{ item.count }}</div>
+                  </div>
+                  <div class="Menu_">
+                    <button class="Menu_button-minus" @click="minus(index)">
+                      <div class="text">➖</div>
+                    </button>
+                    <button class="Menu_button-plus" @click="plus(index)">
+                      <div class="text">➕</div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div>
+            <button class="btnadd" @click="addtoCart(index)">Add to cart</button>
           </div>
         </div>
-      </div>
-    </li>
-  </ul>
-
-  <div>
-    <button class="btnadd" @click="addtoCart(index)">Add to cart</button>
+      </a-tab-pane>
+      <a-tab-pane key="2" tab="飲食店 2">飲食店 2</a-tab-pane>
+      <a-tab-pane key="3" tab="飲食店 3">飲食店 3</a-tab-pane>
+      <a-tab-pane key="4" tab="飲食店 4">飲食店 4</a-tab-pane>
+    </a-tabs>
   </div>
-
   <TabBar></TabBar>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 import TabBar from '../components/TabBar.vue';
-import TableInfo from '../components/TableInfo.vue';
+import TableInfo from '../components/Tableinfo.vue';
 import { setMenuData, getMenuData, setShopingCart } from '../api/api';
 
 const menues = ref([]);
@@ -117,6 +132,7 @@ const minus = (index) => {
     });
   }
 };
+const activeKey = ref('1');
 const filtered = () => {
   const str = document.getElementById('search').value;
   const rs = menues.value.filter((menu) => menu.name.includes(str));
@@ -193,7 +209,7 @@ const locate = (url) => {
 .text {
   display: flex;
   margin-left: -0.15rem;
-  margin-top: -0.035rem;
+  margin-top: -0.06rem;
 }
 
 .searchbtn {
@@ -219,15 +235,16 @@ const locate = (url) => {
 }
 
 .btnadd {
-  width: 6rem;
+  width: 5.8rem;
   height: 0.8rem;
   border: white;
   color: aliceblue;
   font-size: 0.3rem;
   font-family: 'Calling Code', Courier, monospace;
   background-color: #0ca33e;
-  margin-top: 1%;
-  margin-left: 2%;
+  margin-top: 3%;
+  border-radius: 5px;
+  margin-left: 4.1%;
 }
 </style>
 <style scoped>
@@ -258,28 +275,30 @@ const locate = (url) => {
 }
 
 .Menu_description {
-  margin-top: 0.05rem;
+  margin-top: -0.05rem;
   padding-top: 0.03rem;
   margin-left: 0.2rem;
   font-size: 0.22rem;
 }
 
 .Menu_price {
-  margin-top: 0.15rem;
+  margin-top: -0.05rem;
   font-size: 0.28rem;
   font-weight: bold;
 }
 
 .Menu_orderbox {
   position: relative;
-  margin-top: 0.2rem;
+
 }
 
 .Menu_count {
+  display: flex;
   visibility: visible;
   margin-left: 1.1rem;
-  margin-top: -0.58rem;
+  margin-top: -23px;
   font-size: 0.22rem;
+  height: 20.25px;
 }
 
 .Menu_ {
@@ -340,4 +359,34 @@ const locate = (url) => {
   position: relative;
   top: 1px;
 }
+
+.shop {
+  position: relative;
+  width: 90%;
+  left: 10px;
+  margin-top: 10px;
+}
+
+.intro {
+ height: 60px;
+}
+.intro_text{
+  line-height: 18px;
+  position: relative;
+  left: 10px;
+  top:-5px;
+  font-family: 'Meiryo UI';
+}
+.strong{
+  position: relative;
+  top: -8px;
+  left: 2px;
+  font-family: 'Meiryo UI';
+}
+.box{
+  position: relative;
+  left: -15px;
+  width: 420px;
+}
+
 </style>

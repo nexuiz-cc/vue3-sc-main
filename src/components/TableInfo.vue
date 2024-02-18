@@ -5,8 +5,9 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
-  const tableNumber = ref('54');
+import { ref } from 'vue';
+
+const tableNumber = ref('54');
 </script>
 
 <style scoped>
@@ -73,6 +74,6 @@
   font-size: 0.3rem;
   color: #096bec;
   margin-left: -0.05rem;
-  margin-top: 0.05rem;
+  margin-top: -0.02rem;
 }
 </style>

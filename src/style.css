@@ -90,9 +90,22 @@ input::-ms-clear {
 .van-nav-bar__text {
   font-family: 'Consolas', Courier, monospace;
 }
-.ant-table-thead .ant-table-cell{
+.ant-table-thead .ant-table-cell {
   background-color: #4816d1 !important;
   color: white !important;
   line-height: 12px;
   border: 1px solid #4816d1 !important;
+}
+.ant-tabs-tab.ant-tabs-tab-active {
+  background-color: #0CA33E;
+  width: 80px;
+  position: relative;
+  padding-left: 10px;
+  font-family: 'Meiryo UI';
+  display: flex !important;
+  z-index: 2;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: white !important;
+  font-family: 'Meiryo UI';
 }

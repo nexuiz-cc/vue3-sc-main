@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [vue()],
   server: {
     port: 8081,
+    hmr:{overlay: false}
   },
   css: {
     postcss: [

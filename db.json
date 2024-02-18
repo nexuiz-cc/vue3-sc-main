@@ -30,8 +30,8 @@
           "description": "Grilled rock fish with sale.",
           "price": 2200,
           "image": "https://dummyimage.com/400x400/000/fff&text=fish+1",
-          "count": 1,
-          "totalPrice": 2200
+          "count": 0,
+          "totalPrice": 0
         },
         {
           "id": 1,
@@ -39,8 +39,8 @@
           "description": "Grilled rock fish with sale.",
           "price": 2300,
           "image": "https://dummyimage.com/400x400/000/fff&text=fish+3",
-          "count": 1,
-          "totalPrice": 2300
+          "count": 0,
+          "totalPrice": 0
         },
         {
           "id": 2,
@@ -635,27 +635,8 @@
   "shopingCart": [
     {
       "id": "seafood",
-      "totalPrice": 4500,
-      "itemlist": [
-        {
-          "id": 0,
-          "name": "Fish 1",
-          "description": "Grilled rock fish with sale.",
-          "price": 2200,
-          "image": "https://dummyimage.com/400x400/000/fff&text=fish+1",
-          "count": 1,
-          "totalPrice": 2200
-        },
-        {
-          "id": 1,
-          "name": "Fish 2",
-          "description": "Grilled rock fish with sale.",
-          "price": 2300,
-          "image": "https://dummyimage.com/400x400/000/fff&text=fish+3",
-          "count": 1,
-          "totalPrice": 2300
-        }
-      ]
+      "totalPrice": 0,
+      "itemlist": []
     },
     {
       "id": "steak",
