@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "server": "json-server --watch https://nexuiz-cc.github.io/expjson/db.json",
-    "client": "vite"
+    "client": "vite",
+    "build":"vite build"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
