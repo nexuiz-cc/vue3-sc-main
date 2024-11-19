@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "client": "vite",
-    "build":"vite build"
+    "build": "vite build --base=/vue3-sc-main/"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
