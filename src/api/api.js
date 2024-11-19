@@ -6,7 +6,7 @@ import request from './request';
  */
 export function getUserData() {
   return request({
-    url: '/user/profile',
+    url: 'https://nexuiz-cc.github.io/expjson/user.json',
     method: 'GET',
   });
 }
