@@ -1,0 +1,1 @@
+import{_ as s,f as o,o as _,j as a,d as t,x as c}from"./index-41d55bc1.js";const n={class:"icon"},l={class:"info"},r={__name:"TableInfo",setup(f){const e=o("54");return(p,i)=>(_(),a("div",n,[t("h4",l,"Table "+c(e.value),1)]))}},u=s(r,[["__scopeId","data-v-3f994374"]]);export{u as T};
