@@ -3,7 +3,7 @@
 import axios from "axios";
 
 const request = axios.create({
-    baseURL: "http://localhost:8082",
+    baseURL: "https://nexuiz-cc.github.io/expjson/db.json",
     timeout: 5000
 })
 
