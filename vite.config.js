@@ -4,7 +4,6 @@ import vue from '@vitejs/plugin-vue';
 import postCssPxToRem from 'postcss-pxtorem';
 
 export default defineConfig({
-  outputDir: 'docs',
   plugins: [vue()],
   server: {
     port: 8081,
